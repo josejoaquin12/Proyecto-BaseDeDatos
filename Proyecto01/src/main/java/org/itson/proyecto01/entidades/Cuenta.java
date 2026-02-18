@@ -17,7 +17,7 @@ public class Cuenta {
     private Integer id;
     private String numeroCuenta;
     private LocalDateTime fechaApertura;
-    private BigDecimal saldo;
+    private Double saldo;
     private EstadoCuenta estado;
     private Integer idCliente;
     
@@ -25,7 +25,7 @@ public class Cuenta {
         
     }
 
-    public Cuenta(Integer id, String numeroCuenta, LocalDateTime fechaApertura, BigDecimal saldo, EstadoCuenta estado, Integer idCliente) {
+    public Cuenta(Integer id, String numeroCuenta, LocalDateTime fechaApertura, Double saldo, EstadoCuenta estado, Integer idCliente) {
         this.id = id;
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
@@ -58,11 +58,11 @@ public class Cuenta {
         this.fechaApertura = fechaApertura;
     }
 
-    public BigDecimal getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(BigDecimal saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
