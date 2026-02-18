@@ -6,7 +6,7 @@ package org.itson.proyecto01.entidades;
 
 /**
  *
- * @author elgps
+ * @author 
  */
 public class RetiroSinCuenta {
     
