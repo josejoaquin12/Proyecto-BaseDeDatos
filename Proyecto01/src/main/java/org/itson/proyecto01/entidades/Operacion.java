@@ -5,11 +5,12 @@
 package org.itson.proyecto01.entidades;
 
 import java.util.GregorianCalendar;
+import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
  *
  * @author elgps
- */
+ */ 
 public abstract class Operacion {
     private int idOperacion;
     private GregorianCalendar fechaHoraOperacion; 

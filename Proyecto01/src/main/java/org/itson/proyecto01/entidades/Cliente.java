@@ -4,10 +4,110 @@
  */
 package org.itson.proyecto01.entidades;
 
+import java.util.GregorianCalendar;
+
 /**
  *
- * @author elgps
+ * @author Jesus Omar
  */
 public class Cliente {
+    
+    private Integer id;
+    private String nombres;
+    private String apellidoP;
+    private String apellidoM;
+    private GregorianCalendar fechaNacimiento;
+    private String contrasenia;
+    private GregorianCalendar fechaRegistro;
+    private Integer edad;
+    private Integer idDomicilio;
+    
+    public Cliente(){
+        
+    }
+
+    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, GregorianCalendar fechaNacimiento, String contrasenia, GregorianCalendar fechaRegistro, Integer edad, Integer idDomicilio) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.fechaNacimiento = fechaNacimiento;
+        this.contrasenia = contrasenia;
+        this.fechaRegistro = fechaRegistro;
+        this.edad = edad;
+        this.idDomicilio = idDomicilio;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidoP() {
+        return apellidoP;
+    }
+
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+    public String getApellidoM() {
+        return apellidoM;
+    }
+
+    public void setApellidoM(String apellidoM) {
+        this.apellidoM = apellidoM;
+    }
+
+    public GregorianCalendar getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public GregorianCalendar getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(GregorianCalendar fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public Integer getIdDomicilio() {
+        return idDomicilio;
+    }
+
+    public void setIdDomicilio(Integer idDomicilio) {
+        this.idDomicilio = idDomicilio;
+    }
     
 }
