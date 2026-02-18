@@ -4,7 +4,7 @@
  */
 package org.itson.proyecto01.entidades;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -16,9 +16,9 @@ public class Cliente {
     private String nombres;
     private String apellidoP;
     private String apellidoM;
-    private GregorianCalendar fechaNacimiento;
+    private LocalDateTime fechaNacimiento;
     private String contrasenia;
-    private GregorianCalendar fechaRegistro;
+    private LocalDateTime fechaRegistro;
     private Integer edad;
     private Integer idDomicilio;
     
@@ -26,7 +26,7 @@ public class Cliente {
         
     }
 
-    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, GregorianCalendar fechaNacimiento, String contrasenia, GregorianCalendar fechaRegistro, Integer edad, Integer idDomicilio) {
+    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, LocalDateTime fechaNacimiento, String contrasenia, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
         this.id = id;
         this.nombres = nombres;
         this.apellidoP = apellidoP;
@@ -70,11 +70,11 @@ public class Cliente {
         this.apellidoM = apellidoM;
     }
 
-    public GregorianCalendar getFechaNacimiento() {
+    public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
+    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -86,11 +86,11 @@ public class Cliente {
         this.contrasenia = contrasenia;
     }
 
-    public GregorianCalendar getFechaRegistro() {
+    public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(GregorianCalendar fechaRegistro) {
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

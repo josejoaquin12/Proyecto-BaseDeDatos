@@ -4,7 +4,7 @@
  */
 package org.itson.proyecto01.entidades;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
@@ -22,7 +22,7 @@ public class Transferencia extends Operacion{
         this.setTipoOperacion(TipoOperacion.TRANSFERENCIA);    
     }
 
-    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto, int idOperacion, GregorianCalendar fechaHoraOperacion, Object tipoOperacion) {
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto, int idOperacion, LocalDateTime fechaHoraOperacion, Object tipoOperacion) {
         super(idOperacion, fechaHoraOperacion, TipoOperacion.TRANSFERENCIA);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;

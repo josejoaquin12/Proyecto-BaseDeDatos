@@ -4,7 +4,7 @@
  */
 package org.itson.proyecto01.dtos;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -15,11 +15,11 @@ public class NuevoClienteDTO {
     private String nombres;
     private String apellidoP;
     private String apelidoM;
-    private GregorianCalendar fechaNacimiento;
+    private LocalDateTime fechaNacimiento;
     private String contrasenia;
     private Integer idDomicilio;
 
-    public NuevoClienteDTO(String nombres, String apellidoP, String apelidoM, GregorianCalendar fechaNacimiento, String contrasenia, Integer idDomicilio) {
+    public NuevoClienteDTO(String nombres, String apellidoP, String apelidoM, LocalDateTime fechaNacimiento, String contrasenia, Integer idDomicilio) {
         this.nombres = nombres;
         this.apellidoP = apellidoP;
         this.apelidoM = apelidoM;
@@ -40,7 +40,7 @@ public class NuevoClienteDTO {
         return apelidoM;
     }
 
-    public GregorianCalendar getFechaNacimiento() {
+    public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
     }
 

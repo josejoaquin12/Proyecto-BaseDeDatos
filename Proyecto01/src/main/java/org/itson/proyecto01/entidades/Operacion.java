@@ -4,6 +4,7 @@
  */
 package org.itson.proyecto01.entidades;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import org.itson.proyecto01.enums.TipoOperacion;
 
@@ -13,13 +14,13 @@ import org.itson.proyecto01.enums.TipoOperacion;
  */ 
 public abstract class Operacion {
     private int idOperacion;
-    private GregorianCalendar fechaHoraOperacion; 
+    private LocalDateTime fechaHoraOperacion; 
     private TipoOperacion tipoOperacion; 
 
     public Operacion() {
     }
 
-    public Operacion(int idOperacion, GregorianCalendar fechaHoraOperacion, TipoOperacion tipoOperacion) {
+    public Operacion(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
         this.idOperacion = idOperacion;
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;
@@ -33,11 +34,11 @@ public abstract class Operacion {
         this.idOperacion = idOperacion;
     }
 
-    public GregorianCalendar getFechaHoraOperacion() {
+    public LocalDateTime getFechaHoraOperacion() {
         return fechaHoraOperacion;
     }
 
-    public void setFechaHoraOperacion(GregorianCalendar fechaHoraOperacion) {
+    public void setFechaHoraOperacion(LocalDateTime fechaHoraOperacion) {
         this.fechaHoraOperacion = fechaHoraOperacion;
     }
 
