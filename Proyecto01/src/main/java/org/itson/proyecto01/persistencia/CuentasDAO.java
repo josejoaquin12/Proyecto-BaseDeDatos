@@ -29,12 +29,12 @@ public abstract class CuentasDAO implements ICuentasDAO {
             ResultSet resultados = comandoSQL.executeQuery();
 
             while (resultados.next()) {
-                int id = resultados.getInt("id_cuenta");
+                Integer id = resultados.getInt("id_cuenta");
                 String numerocuenta = resultados.getString("numero_cuenta");
                 LocalDateTime fechaApertura = resultados.getTimestamp("fecha_apertura").toLocalDateTime();
                 double saldo = resultados.getDouble("saldo");
                 EstadoCuenta estado = EstadoCuenta.valueOf(resultados.getString("estado"));
-                int codigoCliente = resultados.getInt("id_cliente");
+                Integer codigoCliente = resultados.getInt("id_cliente");
                 
                 Cuenta cuenta = new Cuenta(
                     id,
@@ -95,7 +95,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
 //            Connection conexion = ConexionBD.crearConexion();
 //
 //            String codigoSQL = """
-//                insert into Cuenta(numero_cuenta, fecha_apertura,
+//                insert Integero Cuenta(numero_cuenta, fecha_apertura,
 //                                   saldo, estado, id_cliente)
 //                values (?, ?, ?, ?, ?)
 //                """;
