@@ -8,6 +8,7 @@ import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
+import org.itson.proyecto01.negocio.ITransferenciasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 
 /**
@@ -19,10 +20,10 @@ public class TransferenciaForm extends javax.swing.JFrame {
     /**
      * Creates new form TransferenciaForm
      */
-    IClientesBO clientesBO;
-    private Integer idClienteDestino;
-    ICuentasBO cuentasBO;
+    private final ICuentasBO cuentasBO;
     private Integer idCliente;
+    private final ITransferenciasBO transferenciasBO;
+    private final IClientesBO clientesBO;
 
     /**
      * el metodo constructivo inicializamos el id cliente ya que todavia no
@@ -30,11 +31,13 @@ public class TransferenciaForm extends javax.swing.JFrame {
      *
      * @param cuentasBO
      */
-    public TransferenciaForm(ICuentasBO cuentasBO) {
+    public TransferenciaForm(ICuentasBO cuentasBO, ITransferenciasBO transferenciasBO, IClientesBO clientesBO) {
         this.cuentasBO = cuentasBO;
         initComponents();
         this.setLocationRelativeTo(null);
         this.idCliente = 1;
+        this.transferenciasBO = transferenciasBO;
+        this.clientesBO = clientesBO;
         cargarCuentasCliente();
         txtMonto.setText("Monto                                                                                                                                                                                                              $");
         txtMonto.setForeground(Color.GRAY);
@@ -494,8 +497,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         try {
             Cuenta cuenta = this.cuentasBO.obtenerCuentaporNumeroCuenta(txtNumeroCuentaDestino.getText()); // Busca la cuenta que se ingreso
             Cliente cliente = this.clientesBO.obtenerClientePorId(cuenta.getIdCliente()); // Busca el propietario con el id que viene ligado a la cuenta
-            String nombreCompleto = cliente.getNombres() + "" + cliente.getApellidoP() + "" + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
-            lblNumeroCuentaDestino.setText(cuentaDestino); // Cambia el texto de la label por la cuenta que se ingreso
+            String nombreCompleto = cliente.getNombres() + " " + cliente.getApellidoP() + " " + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
             lblNombreCuentaDestino.setText(nombreCompleto); // Cambia el texto de la label por el nombre del propietario de la cuenta
         }catch(NegocioException ex){
             JOptionPane.showMessageDialog(this, "Error. Cuenta no encontrada");
@@ -530,6 +532,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         String numeroDestino = txtNumeroCuentaDestino.getText().trim();
         String montoTexto = txtMonto.getText().trim();
         String nombreCuentaDestino = lblNombreCuentaDestino.getText().trim();
+        String saldoDisponible = lblSaldoDisponible.getText().trim();
         if (cuentaSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "Selecciona una cuenta origen", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -544,7 +547,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         }
         try {
             double monto = Double.parseDouble(montoTexto);
-            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta, numeroDestino, monto, nombreCuentaDestino, null);
+            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta, numeroDestino, monto, nombreCuentaDestino,transferenciasBO,saldoDisponible);
             confirmarForm.setLocationRelativeTo(null);
             confirmarForm.setVisible(true);
 

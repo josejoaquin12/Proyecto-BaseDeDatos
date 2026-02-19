@@ -20,13 +20,24 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     private LocalDateTime fechaHoraOperacion;
     private final ITransferenciasBO transferenciasBO;
     private String nombreCuentaDestino;
+    private String saldoDispnible;
     /**
      * Creates new form ConfirmarTransferenciaForm
      */
-    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino,ITransferenciasBO transferenciasBO) {
+    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino,ITransferenciasBO transferenciasBO,String saldoDisponible) {
         this.transferenciasBO = transferenciasBO;
-        initComponents();
+        this.cuentaSeleccionada = cuentaSeleccionada;
+        this.numeroDestino = numeroDestino;
+        this.monto = monto;
+        this.nombreCuentaDestino = nombreCuentaDestino;
+        this.saldoDispnible = saldoDisponible;
         
+        initComponents();
+        this.txtNumeroCuenta.setText(cuentaSeleccionada);
+        this.txtNumeroCuentaDestino.setText(numeroDestino);
+        this.txtMonto.setText("$ "+monto);
+        this.lblNombredestinatario.setText(nombreCuentaDestino);
+        this.lblSaldoDisponible.setText(saldoDisponible);
         btnConfirmarTransferencia.setBackground(Color.WHITE);
         btnConfirmarTransferencia.setForeground(Color.BLACK);
         btnConfirmarTransferencia.setFocusPainted(false);
