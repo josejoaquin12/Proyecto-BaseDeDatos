@@ -1,4 +1,3 @@
-
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;

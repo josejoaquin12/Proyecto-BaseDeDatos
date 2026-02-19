@@ -81,10 +81,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         try {
             double monto = Double.parseDouble(txtMonto.getText());
 
-            boolean valido
-                    = monto > 0
-                    && monto <= 100000
-                    && cuenta.getSaldo() > 0;
+            boolean valido= monto > 0&& monto <= 100000&& cuenta.getSaldo() > 0;
 
             btnContinuarTransferencia.setEnabled(valido);
 
