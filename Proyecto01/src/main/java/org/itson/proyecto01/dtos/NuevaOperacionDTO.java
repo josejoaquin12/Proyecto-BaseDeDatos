@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -17,7 +17,7 @@ public class NuevaOperacionDTO {
     private LocalDateTime fechaHoraOperacion;
     private TipoOperacion tipoOperacion;
 
-    public NuevaOperacionDTO(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
+    public NuevaOperacionDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
         this.idOperacion = idOperacion;
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;

@@ -16,10 +16,10 @@ public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
 
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;
-    private float monto;
+    private double monto;
 
-    public NuevaTransferenciaDTO(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto) {
-        super(idOperacion, fechaHoraOperacion, tipoOperacion);
+    public NuevaTransferenciaDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, Cuenta cuentaOrigen, Cuenta cuentaDestino, double monto) {
+        super( fechaHoraOperacion, tipoOperacion);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.monto = monto;
@@ -34,7 +34,7 @@ public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
         return cuentaDestino;
     }
 
-    public float getMonto() {
+    public double getMonto() {
         return monto;
     }
     
