@@ -302,7 +302,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         try{
             fechaHoraOperacion = LocalDateTime.now();
             NuevaTransferenciaDTO nuevaTransferencia = new NuevaTransferenciaDTO(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, cuentaSeleccionada, numeroDestino, monto);
-            this.transferenciasBO.crearNuevaTransferencia(nuevaTransferencia);
+            this.transferenciasBO.realizarTransferencia(nuevaTransferencia);
             JOptionPane.showMessageDialog(this, "Transferencia Realizada ", "informacion: ", JOptionPane.INFORMATION_MESSAGE);
             
             TransferenciaExitosaForm transferenciaExitosaForm = new TransferenciaExitosaForm(fechaHoraOperacion, cuentaSeleccionada, numeroDestino, monto,nombreCuentaDestino);

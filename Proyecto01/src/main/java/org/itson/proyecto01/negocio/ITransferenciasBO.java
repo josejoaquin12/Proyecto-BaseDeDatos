@@ -12,7 +12,7 @@ import org.itson.proyecto01.entidades.Transferencia;
  */
 public interface ITransferenciasBO {
 
-    public void crearNuevaTransferencia(NuevaTransferenciaDTO nuevaTransferencia)throws NegocioException;
+    
     
     public abstract Transferencia realizarTransferencia(
             NuevaTransferenciaDTO nuevaTransferencia

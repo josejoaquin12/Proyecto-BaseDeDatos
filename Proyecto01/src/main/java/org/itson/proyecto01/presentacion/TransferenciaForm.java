@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
@@ -482,15 +483,23 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCuentasClienteActionPerformed
 
     private void txtNumeroCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuentaDestinoActionPerformed
-        // TODO add your handling code here:
+
         String cuentaDestino = txtNumeroCuentaDestino.getText().trim();
         if (cuentaDestino.length() != 18) {
             JOptionPane.showMessageDialog(this, "La cuenta debe ser de 18 digitos");
             txtNumeroCuentaDestino.requestFocus();
             return;
         }
-        lblNumeroCuentaDestino.setText(cuentaDestino);
-        
+        // Buscar la cuenta y el cliente, y cambiar las label
+        try {
+            Cuenta cuenta = this.cuentasBO.obtenerCuentaporNumeroCuenta(txtNumeroCuentaDestino.getText()); // Busca la cuenta que se ingreso
+            Cliente cliente = this.clientesBO.obtenerClientePorId(cuenta.getIdCliente()); // Busca el propietario con el id que viene ligado a la cuenta
+            String nombreCompleto = cliente.getNombres() + "" + cliente.getApellidoP() + "" + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
+            lblNumeroCuentaDestino.setText(cuentaDestino); // Cambia el texto de la label por la cuenta que se ingreso
+            lblNombreCuentaDestino.setText(nombreCompleto); // Cambia el texto de la label por el nombre del propietario de la cuenta
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(this, "Error. Cuenta no encontrada");
+        }
 
     }//GEN-LAST:event_txtNumeroCuentaDestinoActionPerformed
 

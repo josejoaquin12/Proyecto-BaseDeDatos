@@ -29,5 +29,15 @@ public class CuentasBO implements ICuentasBO{
             throw new NegocioException("Error al consultar la lista de cliente", ex);
         }   
     }
+
+    @Override
+    public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws NegocioException {
+        try{
+            Cuenta cuenta = this.cuentasDAO.obtenerCuentaporNumeroCuenta(numeroCuenta);
+            return cuenta;
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error, no se encontro la cuenta", null);
+        }
+    }
     
 }
