@@ -22,8 +22,8 @@ public class Transferencia extends Operacion{
         this.setTipoOperacion(TipoOperacion.TRANSFERENCIA);    
     }
 
-    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto, int idOperacion, LocalDateTime fechaHoraOperacion, Object tipoOperacion) {
-        super(idOperacion, fechaHoraOperacion, TipoOperacion.TRANSFERENCIA);
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto, LocalDateTime fechaHoraOperacion, Object tipoOperacion) {
+        super(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.monto = monto;

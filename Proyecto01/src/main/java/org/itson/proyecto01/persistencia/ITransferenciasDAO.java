@@ -4,16 +4,18 @@
  */
 package org.itson.proyecto01.persistencia;
 
-import java.util.logging.Logger;
+import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
 import org.itson.proyecto01.entidades.Transferencia;
 
 /**
  *
  * @author calo2
  */
-public interface ITransferenciaDAO {
+public interface ITransferenciasDAO {
     
     
-    public Transferencia realizarTransferencia() throws PersistenciaException;
+    public Transferencia realizarTransferencia(
+            NuevaTransferenciaDTO nuevaTransferenciaDTO
+    ) throws PersistenciaException;
 
 }

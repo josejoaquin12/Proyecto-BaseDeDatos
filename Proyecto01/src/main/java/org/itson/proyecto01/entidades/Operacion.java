@@ -20,8 +20,7 @@ public abstract class Operacion {
     public Operacion() {
     }
 
-    public Operacion(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
-        this.idOperacion = idOperacion;
+    public Operacion( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;
     }

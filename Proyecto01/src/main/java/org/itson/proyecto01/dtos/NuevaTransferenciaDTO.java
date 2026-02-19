@@ -14,11 +14,11 @@ import org.itson.proyecto01.enums.TipoOperacion;
  */
 public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
 
-    private Cuenta cuentaOrigen;
-    private Cuenta cuentaDestino;
+    private String cuentaOrigen;
+    private String cuentaDestino;
     private float monto;
 
-    public NuevaTransferenciaDTO(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, Cuenta cuentaOrigen, Cuenta cuentaDestino, float monto) {
+    public NuevaTransferenciaDTO(int idOperacion, LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, String cuentaOrigen, String cuentaDestino, float monto) {
         super(idOperacion, fechaHoraOperacion, tipoOperacion);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
@@ -26,11 +26,11 @@ public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
                       
     }
 
-    public Cuenta getCuentaOrigen() {
+    public String getCuentaOrigen() {
         return cuentaOrigen;
     }
 
-    public Cuenta getCuentaDestino() {
+    public String getCuentaDestino() {
         return cuentaDestino;
     }
 
