@@ -12,15 +12,17 @@ import org.itson.proyecto01.entidades.Cuenta;
 
 public interface ICuentasDAO {
 
+    public List<Cuenta> obtenerCuentas(Integer idCliente)throws PersistenciaException ;
+    
     public List<Cuenta> obtenerCuentasActivas(Integer idCliente)throws PersistenciaException ;
 
     public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta) throws PersistenciaException;
 
-    public String obtenerIdCuenta(String numeroCuenta) throws PersistenciaException;
+    //public String obtenerIdCuenta(String numeroCuenta) throws PersistenciaException;
 
     public void actualizarSaldo(Integer idCuenta, double nuevoSaldo)throws PersistenciaException ;
     
-    public Cuenta altaCuenta(NuevaCuentaDTO nuevacuenta)throws PersistenciaException ;//TODO
+   // public Cuenta altaCuenta(NuevaCuentaDTO nuevacuenta)throws PersistenciaException ;//TODO
 
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException ;
 }

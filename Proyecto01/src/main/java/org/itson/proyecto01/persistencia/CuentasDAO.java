@@ -56,7 +56,49 @@ public abstract class CuentasDAO implements ICuentasDAO {
             throw new PersistenciaException("No se pudo Consultar las Cuentas 'Activas' ", ex);
         }
     }
+    @Override
+    public List<Cuenta> obtenerCuentas(Integer idCliente)throws PersistenciaException {
+        List<Cuenta> listaCuentas = new LinkedList<>();
+        
+        try {
+            Connection conexion = ConexionBD.crearConexion();
+            String codigoSQL = """
+                select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
+                form Cuenta
+                where id_cliente = ? and estado = 'ACTIVA'
+                """;
+            PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
+            comandoSQL.setInt(1, idCliente);
+            ResultSet resultados = comandoSQL.executeQuery();
 
+            while (resultados.next()) {
+                Integer id = resultados.getInt("id_cuenta");
+                String numerocuenta = resultados.getString("numero_cuenta");
+                LocalDateTime fechaApertura = resultados.getTimestamp("fecha_apertura").toLocalDateTime();
+                double saldo = resultados.getDouble("saldo");
+                EstadoCuenta estado = EstadoCuenta.valueOf(resultados.getString("estado"));
+                Integer codigoCliente = resultados.getInt("id_cliente");
+                
+                Cuenta cuenta = new Cuenta(
+                    id,
+                    numerocuenta,
+                    fechaApertura,
+                    saldo,
+                    estado,
+                    codigoCliente      
+                );
+
+                listaCuentas.add(cuenta);
+            }
+
+            conexion.close();
+            return listaCuentas;
+
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo Consultar las Cuentas 'Activas' ", ex);
+        }
+    }
     @Override
     public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta)
             throws PersistenciaException {

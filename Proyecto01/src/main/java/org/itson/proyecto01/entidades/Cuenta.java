@@ -82,6 +82,10 @@ public class Cuenta {
         this.idCliente = idCliente;
     }
     
-    
+    @Override
+    public String toString() {
+        return numeroCuenta;
+    }
+
     
 }
