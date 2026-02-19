@@ -18,7 +18,7 @@ public interface ICuentasDAO {
 
     public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta) throws PersistenciaException;
 
-    //public String obtenerIdCuenta(String numeroCuenta) throws PersistenciaException;
+    public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws PersistenciaException;
 
     public void actualizarSaldo(Integer idCuenta, double nuevoSaldo)throws PersistenciaException ;
     

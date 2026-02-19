@@ -27,17 +27,16 @@ public class TransferenciaForm extends javax.swing.JFrame {
     public TransferenciaForm(ICuentasBO cuentasBO) {      
         this.cuentasBO = cuentasBO;
         initComponents();
+        this.setLocationRelativeTo(null);
         this.idCliente = 1; 
         cargarCuentasCliente();
         txtMonto.setText("Monto                                                                                                                                                                                                              $");
         txtMonto.setForeground(Color.GRAY);
-        
         btnContinuarTransferencia.setBackground(Color.WHITE);
         btnContinuarTransferencia.setForeground(Color.BLACK);
         btnContinuarTransferencia.setFocusPainted(false);
         btnContinuarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12,140,233), 6, true));
-        
-
+      
         validarBotonContinuar();
     }
 
@@ -49,15 +48,13 @@ public class TransferenciaForm extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void cargarCuentasCliente() {
         try {
-            List<Cuenta> listaCuentasCliente = this.cuentasBO.consultarCuentasCliente(idCliente);// id cliente es el id que el login va a mandar una vez que este creado 
+            List<Cuenta> listaCuentasCliente = this.cuentasBO.consultarCuentasCliente(idCliente);// id cliente es el id que el login va a mandar una vez que este creado
             DefaultComboBoxModel<Cuenta> modeloComboBox = new DefaultComboBoxModel<>();
-            
+            modeloComboBox.addElement(new Cuenta(0, "Seleccione una cuenta...", null, 0.0, null, 0));
             for (Cuenta cuenta : listaCuentasCliente) {
                 modeloComboBox.addElement(cuenta);
             }
-
             cboCuentasCliente.setModel(modeloComboBox);
-
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this,"Error al consultar las cuentas", "Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -527,7 +524,10 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void btnContinuarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTransferenciaActionPerformed
-        // TODO add your handling code here:
+        ConfirmarTransferenciaForm confirmarFrom = new ConfirmarTransferenciaForm();
+        confirmarFrom.setLocationRelativeTo(null);
+        confirmarFrom.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnContinuarTransferenciaActionPerformed
 
     

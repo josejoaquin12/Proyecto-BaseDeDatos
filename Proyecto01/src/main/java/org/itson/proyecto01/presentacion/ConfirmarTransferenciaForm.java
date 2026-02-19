@@ -14,6 +14,10 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
      */
     public ConfirmarTransferenciaForm() {
         initComponents();
+        btnConfirmarTransferencia.setBackground(Color.WHITE);
+        btnConfirmarTransferencia.setForeground(Color.BLACK);
+        btnConfirmarTransferencia.setFocusPainted(false);
+        btnConfirmarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12,140,233), 6, true));
     }
 
     /**
@@ -25,13 +29,6 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panMenuBar = new javax.swing.JPanel();
-        btnUsuario = new javax.swing.JButton();
-        btnVerCuentas = new javax.swing.JButton();
-        btnTransferir = new javax.swing.JButton();
-        btnRetiroSinCuenta = new javax.swing.JButton();
-        btnConsultarOperaciones = new javax.swing.JButton();
-        btnCerrarSesion = new javax.swing.JButton();
         panCuentaOrigenConfirmarTransferencia = new javax.swing.JPanel();
         lblCuentaOrigen1 = new javax.swing.JLabel();
         lblEstadoCuentaOrigen = new javax.swing.JLabel();
@@ -49,80 +46,6 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         btnConfirmarTransferencia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        panMenuBar.setBackground(new java.awt.Color(12, 140, 233));
-
-        btnUsuario.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnUsuario.setText("Usuario");
-
-        btnVerCuentas.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnVerCuentas.setText("Ver Cuentas");
-        btnVerCuentas.setToolTipText("");
-        btnVerCuentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerCuentasActionPerformed(evt);
-            }
-        });
-
-        btnTransferir.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnTransferir.setText("Transferir");
-        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransferirActionPerformed(evt);
-            }
-        });
-
-        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin<br>cuenta</html> ");
-        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuentaActionPerformed(evt);
-            }
-        });
-
-        btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
-        btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarOperacionesActionPerformed(evt);
-            }
-        });
-
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesion");
-
-        javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
-        panMenuBar.setLayout(panMenuBarLayout);
-        panMenuBarLayout.setHorizontalGroup(
-            panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTransferir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarOperaciones)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRetiroSinCuenta))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        panMenuBarLayout.setVerticalGroup(
-            panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(btnUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(btnVerCuentas)
-                .addGap(18, 18, 18)
-                .addComponent(btnTransferir)
-                .addGap(18, 18, 18)
-                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCerrarSesion)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
 
         panCuentaOrigenConfirmarTransferencia.setBackground(new java.awt.Color(12, 140, 233));
         panCuentaOrigenConfirmarTransferencia.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -152,7 +75,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                     .addGroup(panCuentaOrigenConfirmarTransferenciaLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
                 .addGroup(panCuentaOrigenConfirmarTransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenConfirmarTransferenciaLayout.createSequentialGroup()
                         .addComponent(lblEstadoCuentaOrigen)
@@ -211,7 +134,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                 .addGroup(panCuentaDestinoConfirmarTransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCuentaDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(56, 56, 56)
                 .addComponent(lblSaldoCuentaOrigen1)
@@ -300,32 +223,30 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(panCuentaDestinoConfirmarTransferencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panCuentaOrigenConfirmarTransferencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panMontoTransferenciaConfirmarTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panCuentaDestinoConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panCuentaOrigenConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panMontoTransferenciaConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
+                        .addGap(301, 301, 301)
                         .addComponent(btnConfirmarTransferencia)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(panCuentaOrigenConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panCuentaDestinoConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panMontoTransferenciaConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(btnConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(45, 45, 45))
         );
 
         panCuentaOrigenConfirmarTransferencia.setUI(new javax.swing.plaf.basic.BasicPanelUI() {
@@ -365,22 +286,6 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCuentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerCuentasActionPerformed
-
-    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTransferirActionPerformed
-
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
-
-    private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
-
     private void txtNumeroCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuentaDestinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroCuentaDestinoActionPerformed
@@ -409,13 +314,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnConfirmarTransferencia;
-    private javax.swing.JButton btnConsultarOperaciones;
-    private javax.swing.JButton btnRetiroSinCuenta;
-    private javax.swing.JButton btnTransferir;
-    private javax.swing.JButton btnUsuario;
-    private javax.swing.JButton btnVerCuentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCuentaDestino;
     private javax.swing.JLabel lblCuentaDestino1;
@@ -426,7 +325,6 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JPanel panCuentaDestinoConfirmarTransferencia;
     private javax.swing.JPanel panCuentaOrigenConfirmarTransferencia;
-    private javax.swing.JPanel panMenuBar;
     private javax.swing.JPanel panMontoTransferenciaConfirmarTransferencia;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNumeroCuenta;

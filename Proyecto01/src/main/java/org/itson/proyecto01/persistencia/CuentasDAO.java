@@ -64,8 +64,8 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
             String codigoSQL = """
                 select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
-                form Cuenta
-                where id_cliente = ? and estado = 'ACTIVA'
+                from cuenta
+                where id_cliente = ? 
                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
             comandoSQL.setInt(1, idCliente);
@@ -100,8 +100,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
         }
     }
     @Override
-    public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta)
-            throws PersistenciaException {
+    public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta)throws PersistenciaException {
 
         try {
             Connection conexion = ConexionBD.crearConexion();
@@ -211,6 +210,42 @@ public abstract class CuentasDAO implements ICuentasDAO {
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException( "No se pudo cancelar la cuenta", ex);
+        }
+    }
+    @Override
+    public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta)throws PersistenciaException {
+        try {
+            Connection conexion = ConexionBD.crearConexion();
+
+            String codigoSQL = """
+                select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
+                from Cuenta
+                where numero_cuenta = ?
+                """;
+
+            PreparedStatement comando = conexion.prepareStatement(codigoSQL);
+            comando.setString(1, numeroCuenta);
+
+            ResultSet resultado = comando.executeQuery();
+
+            if (resultado.next()) {
+                Integer id = resultado.getInt("id_cuenta");
+                String numerocuenta = resultado.getString("numero_cuenta");
+                LocalDateTime fechaApertura = resultado.getTimestamp("fecha_apertura").toLocalDateTime();
+                double saldo = resultado.getDouble("saldo");
+                EstadoCuenta estado = EstadoCuenta.valueOf(resultado.getString("estado"));
+                Integer codigoCliente = resultado.getInt("id_cliente");
+                
+                Cuenta cuentaNueva = new Cuenta(id,numerocuenta,fechaApertura,saldo,estado,codigoCliente);
+                return cuentaNueva;
+            }
+
+            conexion.close();
+            return null;
+
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo obtener el saldo", ex);
         }
     }
 }
