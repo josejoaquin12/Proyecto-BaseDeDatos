@@ -520,7 +520,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         }
         try {
             double monto = Double.parseDouble(montoTexto);
-            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta,numeroDestino,monto,nombreCuentaDestino);
+            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta,numeroDestino,monto,nombreCuentaDestino,null);
             confirmarForm.setLocationRelativeTo(null);
             confirmarForm.setVisible(true);
 
