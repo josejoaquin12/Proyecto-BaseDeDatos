@@ -4,11 +4,15 @@
  */
 package org.itson.proyecto01.negocio;
 
+import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
+
 /**
  *
  * @author calo2
  */
 public interface ITransferenciasBO {
+
+    public void crearNuevaTransferencia(NuevaTransferenciaDTO nuevaTransferencia)throws NegocioException;
     
     
 }

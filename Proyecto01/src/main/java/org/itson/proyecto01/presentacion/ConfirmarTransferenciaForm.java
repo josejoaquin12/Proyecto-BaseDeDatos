@@ -3,9 +3,11 @@ package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
-import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.enums.TipoOperacion;
+import org.itson.proyecto01.negocio.ITransferenciasBO;
+import org.itson.proyecto01.negocio.NegocioException;
 
 /**
  *
@@ -16,19 +18,22 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     private String numeroDestino;
     private double monto;
     private LocalDateTime fechaHoraOperacion;
+    private final ITransferenciasBO transferenciasBO;
+    private String nombreCuentaDestino;
     /**
      * Creates new form ConfirmarTransferenciaForm
      */
-    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino) {
+    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino,ITransferenciasBO transferenciasBO) {
+        this.transferenciasBO = transferenciasBO;
         initComponents();
-        this.txtNumeroCuenta.setText(cuentaSeleccionada);
-        this.txtNumeroCuentaDestino.setText(numeroDestino);
-        this.txtMonto.setText("$ "+monto);
-        this.lblNombredestinatario.setText(nombreCuentaDestino);
+        
         btnConfirmarTransferencia.setBackground(Color.WHITE);
         btnConfirmarTransferencia.setForeground(Color.BLACK);
         btnConfirmarTransferencia.setFocusPainted(false);
         btnConfirmarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12,140,233), 6, true));
+        txtMonto.setEditable(false);
+        txtNumeroCuenta.setEditable(false);
+        txtNumeroCuentaDestino.setEditable(false);
     }
 
     /**
@@ -71,6 +76,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         lblSaldoDisponible.setForeground(new java.awt.Color(255, 255, 255));
         lblSaldoDisponible.setText("saldo");
 
+        txtNumeroCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtNumeroCuenta.setToolTipText("");
 
         javax.swing.GroupLayout panCuentaOrigenConfirmarTransferenciaLayout = new javax.swing.GroupLayout(panCuentaOrigenConfirmarTransferencia);
@@ -124,6 +130,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         lblSaldoCuentaOrigen1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSaldoCuentaOrigen1.setForeground(new java.awt.Color(255, 255, 255));
 
+        txtNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtNumeroCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroCuentaDestinoActionPerformed(evt);
@@ -175,15 +182,8 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Monto");
 
+        txtMonto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtMonto.setToolTipText("");
-        txtMonto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtMontoFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtMontoFocusLost(evt);
-            }
-        });
         txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoActionPerformed(evt);
@@ -293,28 +293,26 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroCuentaDestinoActionPerformed
 
-    private void txtMontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusGained
-        if(txtMonto.getText().equals("Monto                                                                                                                                                                                                              $")){
-            txtMonto.setText("");
-            txtMonto.setForeground(Color.BLACK);
-        }
-    }//GEN-LAST:event_txtMontoFocusGained
-
-    private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
-        if(txtMonto.getText().isEmpty()){
-            txtMonto.setText("Monto                                                                                                                                                                                                              $");
-            txtMonto.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtMontoFocusLost
-
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
        
         
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void btnConfirmarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTransferenciaActionPerformed
-        fechaHoraOperacion = LocalDateTime.now();
-        NuevaTransferenciaDTO nuevaTransferencia = new NuevaTransferenciaDTO(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, cuentaSeleccionada, numeroDestino, monto);
+        try{
+            fechaHoraOperacion = LocalDateTime.now();
+            NuevaTransferenciaDTO nuevaTransferencia = new NuevaTransferenciaDTO(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, cuentaSeleccionada, numeroDestino, monto);
+            this.transferenciasBO.crearNuevaTransferencia(nuevaTransferencia);
+            JOptionPane.showMessageDialog(this, "Transferencia Realizada ", "informacion: ", JOptionPane.INFORMATION_MESSAGE);
+            
+            TransferenciaExitosaForm transferenciaExitosaForm = new TransferenciaExitosaForm(fechaHoraOperacion, cuentaSeleccionada, numeroDestino, monto,nombreCuentaDestino);
+            transferenciaExitosaForm.setLocationRelativeTo(null);
+            transferenciaExitosaForm.setVisible(true);
+
+            this.dispose(); // cerrar ventana actual
+        }catch(NegocioException ex){
+            
+        }
     }//GEN-LAST:event_btnConfirmarTransferenciaActionPerformed
 
 
