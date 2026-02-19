@@ -21,7 +21,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
             String codigoSQL = """
                 select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
-                form Cuenta
+                from  cuenta
                 where id_cliente = ? and estado = 'ACTIVA'
                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
