@@ -8,6 +8,6 @@ package org.itson.proyecto01.negocio;
  *
  * @author joset
  */
-public class TransferenciaBO {
+public class TransferenciasBO {
     
 }
