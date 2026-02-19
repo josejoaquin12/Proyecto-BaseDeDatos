@@ -8,10 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.logging.Logger;
 import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
-import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.entidades.Transferencia;
 
 /**
@@ -44,7 +42,7 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
             comandoOperacion.setString(1, nuevaTransferencia.getTipoOperacion().name());
             comandoOperacion.setTimestamp(2, Timestamp.valueOf(nuevaTransferencia.getFechaHoraOperacion()));
-            comandoOperacion.setFloat(3, nuevaTransferencia.getMonto());
+            comandoOperacion.setDouble(3, nuevaTransferencia.getMonto());
             comandoOperacion.setInt(4, 1); //CLIENTE HARCODEADO 
 
             PreparedStatement comandoTransferencia = conexion.prepareStatement(codigoSQLTransferencia);
