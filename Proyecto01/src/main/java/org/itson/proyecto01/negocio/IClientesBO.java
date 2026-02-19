@@ -13,6 +13,8 @@ import org.itson.proyecto01.entidades.Cliente;
  */
 public interface IClientesBO {
     
-    public abstract Cliente crearCliente(NuevoClienteDTO nuevoCliente)throws NegocioException;
+    public abstract Cliente crearCliente(NuevoClienteDTO nuevoCliente, Integer idDomicilio)throws NegocioException;
     
+    public abstract Cliente obtenerClientePorId(Integer idCliente)throws NegocioException;
+   
 }

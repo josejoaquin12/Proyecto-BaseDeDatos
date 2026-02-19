@@ -4,6 +4,7 @@
  */
 package org.itson.proyecto01.entidades;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -16,7 +17,7 @@ public class Cliente {
     private String nombres;
     private String apellidoP;
     private String apellidoM;
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String contrasenia;
     private LocalDateTime fechaRegistro;
     private Integer edad;
@@ -26,7 +27,7 @@ public class Cliente {
         
     }
 
-    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, LocalDateTime fechaNacimiento, String contrasenia, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
+    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, LocalDate fechaNacimiento, String contrasenia, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
         this.id = id;
         this.nombres = nombres;
         this.apellidoP = apellidoP;
@@ -70,11 +71,11 @@ public class Cliente {
         this.apellidoM = apellidoM;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
