@@ -2,18 +2,25 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
+import org.itson.proyecto01.entidades.Cuenta;
 
 /**
  *
  * @author joset
  */
 public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
-
+    private Cuenta cuentaseleccionada;
+    private String numeroDestino;
+    private double monto; 
     /**
      * Creates new form ConfirmarTransferenciaForm
      */
-    public ConfirmarTransferenciaForm() {
+    public ConfirmarTransferenciaForm(Cuenta cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino) {
         initComponents();
+        this.txtNumeroCuenta.setText(cuentaSeleccionada.getNumeroCuenta());
+        this.txtNumeroCuentaDestino.setText(numeroDestino);
+        this.txtMonto.setText("$ "+monto);
+        this.lblNombredestinatario.setText(nombreCuentaDestino);
         btnConfirmarTransferencia.setBackground(Color.WHITE);
         btnConfirmarTransferencia.setForeground(Color.BLACK);
         btnConfirmarTransferencia.setFocusPainted(false);
@@ -38,7 +45,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         lblCuentaDestino = new javax.swing.JLabel();
         lblSaldoCuentaOrigen1 = new javax.swing.JLabel();
         txtNumeroCuentaDestino = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombredestinatario = new javax.swing.JLabel();
         panMontoTransferenciaConfirmarTransferencia = new javax.swing.JPanel();
         lblCuentaDestino1 = new javax.swing.JLabel();
         lblSaldoCuentaOrigen2 = new javax.swing.JLabel();
@@ -120,10 +127,10 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("destinatario");
-        jLabel1.setToolTipText("");
+        lblNombredestinatario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombredestinatario.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombredestinatario.setText("destinatario");
+        lblNombredestinatario.setToolTipText("");
 
         javax.swing.GroupLayout panCuentaDestinoConfirmarTransferenciaLayout = new javax.swing.GroupLayout(panCuentaDestinoConfirmarTransferencia);
         panCuentaDestinoConfirmarTransferencia.setLayout(panCuentaDestinoConfirmarTransferenciaLayout);
@@ -135,7 +142,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                     .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCuentaDestino))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblNombredestinatario)
                 .addGap(56, 56, 56)
                 .addComponent(lblSaldoCuentaOrigen1)
                 .addGap(64, 64, 64))
@@ -154,7 +161,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                         .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panCuentaDestinoConfirmarTransferenciaLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblNombredestinatario)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -315,11 +322,11 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarTransferencia;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCuentaDestino;
     private javax.swing.JLabel lblCuentaDestino1;
     private javax.swing.JLabel lblCuentaOrigen1;
     private javax.swing.JLabel lblEstadoCuentaOrigen;
+    private javax.swing.JLabel lblNombredestinatario;
     private javax.swing.JLabel lblSaldoCuentaOrigen1;
     private javax.swing.JLabel lblSaldoCuentaOrigen2;
     private javax.swing.JLabel lblSaldoDisponible;

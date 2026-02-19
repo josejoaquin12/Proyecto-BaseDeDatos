@@ -90,14 +90,13 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnVerCuentas = new javax.swing.JButton();
-        btnTransferir = new javax.swing.JButton();
         btnRetiroSinCuenta = new javax.swing.JButton();
         btnConsultarOperaciones = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         lblTrasnferirTitulo = new javax.swing.JLabel();
         panCuentaOrigen = new javax.swing.JPanel();
         lblNumeroCuentaOrigen = new javax.swing.JLabel();
-        lblCuentaOrigen1 = new javax.swing.JLabel();
+        lblCuentaOrigen = new javax.swing.JLabel();
         cboCuentasCliente = new javax.swing.JComboBox<>();
         lblEstadoCuentaOrigen = new javax.swing.JLabel();
         lblSaldoCuentaOrigen = new javax.swing.JLabel();
@@ -105,12 +104,11 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panCuentaDestino = new javax.swing.JPanel();
         lblCuentaDestino = new javax.swing.JLabel();
         lblNumeroCuentaDestino = new javax.swing.JLabel();
-        lblSaldoCuentaOrigen1 = new javax.swing.JLabel();
+        lblSaldoCuentaDestino = new javax.swing.JLabel();
         txtNumeroCuentaDestino = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreCuentaDestino = new javax.swing.JLabel();
         panMontoTransferencia = new javax.swing.JPanel();
-        lblCuentaDestino1 = new javax.swing.JLabel();
-        lblSaldoCuentaOrigen2 = new javax.swing.JLabel();
+        lblMonto = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
         btnContinuarTransferencia = new javax.swing.JButton();
 
@@ -128,14 +126,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
         btnVerCuentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerCuentasActionPerformed(evt);
-            }
-        });
-
-        btnTransferir.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnTransferir.setText("Transferir");
-        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransferirActionPerformed(evt);
             }
         });
 
@@ -167,7 +157,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTransferir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnConsultarOperaciones)
                     .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRetiroSinCuenta))
@@ -176,19 +165,17 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panMenuBarLayout.setVerticalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(btnVerCuentas)
-                .addGap(18, 18, 18)
-                .addComponent(btnTransferir)
                 .addGap(18, 18, 18)
                 .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarSesion)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(137, 137, 137))
         );
 
         lblTrasnferirTitulo.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
@@ -200,9 +187,9 @@ public class TransferenciaForm extends javax.swing.JFrame {
         lblNumeroCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNumeroCuentaOrigen.setText("Numero de cuenta");
 
-        lblCuentaOrigen1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCuentaOrigen1.setForeground(new java.awt.Color(255, 255, 255));
-        lblCuentaOrigen1.setText("CUENTA ORIGEN");
+        lblCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCuentaOrigen.setForeground(new java.awt.Color(255, 255, 255));
+        lblCuentaOrigen.setText("CUENTA ORIGEN");
 
         cboCuentasCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +231,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
             .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panCuentaOrigenLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
-                    .addComponent(lblCuentaOrigen1)
+                    .addComponent(lblCuentaOrigen)
                     .addContainerGap(591, Short.MAX_VALUE)))
         );
         panCuentaOrigenLayout.setVerticalGroup(
@@ -267,7 +254,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
             .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panCuentaOrigenLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
-                    .addComponent(lblCuentaOrigen1)
+                    .addComponent(lblCuentaOrigen)
                     .addContainerGap(77, Short.MAX_VALUE)))
         );
 
@@ -281,8 +268,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
         lblNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNumeroCuentaDestino.setText("Numero de cuenta");
 
-        lblSaldoCuentaOrigen1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSaldoCuentaOrigen1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSaldoCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSaldoCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
 
         txtNumeroCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,10 +277,10 @@ public class TransferenciaForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("destinatario");
-        jLabel1.setToolTipText("");
+        lblNombreCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombreCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreCuentaDestino.setText("destinatario");
+        lblNombreCuentaDestino.setToolTipText("");
 
         javax.swing.GroupLayout panCuentaDestinoLayout = new javax.swing.GroupLayout(panCuentaDestino);
         panCuentaDestino.setLayout(panCuentaDestinoLayout);
@@ -309,9 +296,9 @@ public class TransferenciaForm extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(lblNumeroCuentaDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(lblNombreCuentaDestino)
                         .addGap(70, 70, 70)))
-                .addComponent(lblSaldoCuentaOrigen1)
+                .addComponent(lblSaldoCuentaDestino)
                 .addGap(64, 64, 64))
             .addGroup(panCuentaDestinoLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
@@ -325,11 +312,11 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addComponent(lblCuentaDestino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSaldoCuentaOrigen1)
+                    .addComponent(lblSaldoCuentaDestino)
                     .addGroup(panCuentaDestinoLayout.createSequentialGroup()
                         .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNumeroCuentaDestino)
-                            .addComponent(jLabel1))
+                            .addComponent(lblNombreCuentaDestino))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -338,12 +325,9 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panMontoTransferencia.setBackground(new java.awt.Color(12, 140, 233));
         panMontoTransferencia.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
 
-        lblCuentaDestino1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCuentaDestino1.setForeground(new java.awt.Color(255, 255, 255));
-        lblCuentaDestino1.setText("Monto");
-
-        lblSaldoCuentaOrigen2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSaldoCuentaOrigen2.setForeground(new java.awt.Color(255, 255, 255));
+        lblMonto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMonto.setForeground(new java.awt.Color(255, 255, 255));
+        lblMonto.setText("Monto");
 
         txtMonto.setToolTipText("");
         txtMonto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -367,24 +351,20 @@ public class TransferenciaForm extends javax.swing.JFrame {
             .addGroup(panMontoTransferenciaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(lblSaldoCuentaOrigen2)
-                .addGap(64, 64, 64))
+                .addGap(72, 72, 72))
             .addGroup(panMontoTransferenciaLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(lblCuentaDestino1)
+                .addComponent(lblMonto)
                 .addContainerGap(706, Short.MAX_VALUE))
         );
         panMontoTransferenciaLayout.setVerticalGroup(
             panMontoTransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMontoTransferenciaLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(lblCuentaDestino1)
+                .addComponent(lblMonto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSaldoCuentaOrigen2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         btnContinuarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
@@ -478,10 +458,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerCuentasActionPerformed
 
-    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTransferirActionPerformed
-
     private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
@@ -512,6 +488,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         if(txtMonto.getText().equals("Monto                                                                                                                                                                                                              $")){
             txtMonto.setText("");
             txtMonto.setForeground(Color.BLACK);
+            validarBotonContinuar();
         }
     }//GEN-LAST:event_txtMontoFocusGained
 
@@ -519,15 +496,37 @@ public class TransferenciaForm extends javax.swing.JFrame {
        if(txtMonto.getText().isEmpty()){
            txtMonto.setText("Monto                                                                                                                                                                                                              $");
            txtMonto.setForeground(Color.GRAY);
+           validarBotonContinuar();
        }
-       validarBotonContinuar();
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void btnContinuarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTransferenciaActionPerformed
-        ConfirmarTransferenciaForm confirmarFrom = new ConfirmarTransferenciaForm();
-        confirmarFrom.setLocationRelativeTo(null);
-        confirmarFrom.setVisible(true);
-        this.dispose();
+        Cuenta cuentaSeleccionada =(Cuenta) cboCuentasCliente.getSelectedItem();
+        String numeroDestino = txtNumeroCuentaDestino.getText().trim();
+        String montoTexto = txtMonto.getText().trim();
+        String nombreCuentaDestino = lblNombreCuentaDestino.getText().trim();
+        if (cuentaSeleccionada == null) {
+            JOptionPane.showMessageDialog(this,"Selecciona una cuenta origen","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (numeroDestino.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Ingresa una cuenta destino","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (montoTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Ingresa un monto", "Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            double monto = Double.parseDouble(montoTexto);
+            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(cuentaSeleccionada,numeroDestino,monto,nombreCuentaDestino);
+            confirmarForm.setLocationRelativeTo(null);
+            confirmarForm.setVisible(true);
+
+            this.dispose(); // cerrar ventana actual
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,"El monto debe ser numérico", "Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnContinuarTransferenciaActionPerformed
 
     
@@ -536,20 +535,18 @@ public class TransferenciaForm extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultarOperaciones;
     private javax.swing.JButton btnContinuarTransferencia;
     private javax.swing.JButton btnRetiroSinCuenta;
-    private javax.swing.JButton btnTransferir;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVerCuentas;
     private javax.swing.JComboBox<Cuenta> cboCuentasCliente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCuentaDestino;
-    private javax.swing.JLabel lblCuentaDestino1;
-    private javax.swing.JLabel lblCuentaOrigen1;
+    private javax.swing.JLabel lblCuentaOrigen;
     private javax.swing.JLabel lblEstadoCuentaOrigen;
+    private javax.swing.JLabel lblMonto;
+    private javax.swing.JLabel lblNombreCuentaDestino;
     private javax.swing.JLabel lblNumeroCuentaDestino;
     private javax.swing.JLabel lblNumeroCuentaOrigen;
+    private javax.swing.JLabel lblSaldoCuentaDestino;
     private javax.swing.JLabel lblSaldoCuentaOrigen;
-    private javax.swing.JLabel lblSaldoCuentaOrigen1;
-    private javax.swing.JLabel lblSaldoCuentaOrigen2;
     private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JLabel lblTrasnferirTitulo;
     private javax.swing.JPanel panCuentaDestino;

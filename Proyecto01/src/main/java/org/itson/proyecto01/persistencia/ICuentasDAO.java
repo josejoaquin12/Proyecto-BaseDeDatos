@@ -1,7 +1,6 @@
 
 package org.itson.proyecto01.persistencia;
 import java.util.List;
-import org.itson.proyecto01.dtos.NuevaCuentaDTO;
 import org.itson.proyecto01.entidades.Cuenta;
 
 /**
