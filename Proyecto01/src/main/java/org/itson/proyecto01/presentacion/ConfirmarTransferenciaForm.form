@@ -3,9 +3,6 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -30,47 +27,35 @@
               <Component id="panMenuBar" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="panCuentaDestino" max="32767" attributes="0"/>
-                                  <Component id="panMontoTransferencia" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="panCuentaOrigen" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="50" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="lblTrasnferirTitulo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="panCuentaDestinoConfirmarTransferencia" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panCuentaOrigenConfirmarTransferencia" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panMontoTransferenciaConfirmarTransferencia" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnContinuarTransferencia" min="-2" pref="190" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
+                      <Component id="btnConfirmarTransferencia" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="panMenuBar" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTrasnferirTitulo" pref="69" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="panCuentaOrigen" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="panCuentaOrigenConfirmarTransferencia" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="panCuentaDestino" min="-2" max="-2" attributes="0"/>
+              <Component id="panCuentaDestinoConfirmarTransferencia" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="panMontoTransferencia" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="btnContinuarTransferencia" min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="panMontoTransferenciaConfirmarTransferencia" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="btnConfirmarTransferencia" min="-2" pref="49" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +74,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnUsuario" max="32767" attributes="0"/>
+                      <Component id="btnUsuario" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnVerCuentas" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnTransferir" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnConsultarOperaciones" alignment="0" max="32767" attributes="0"/>
@@ -115,7 +100,7 @@
                   <Component id="btnConsultarOperaciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -184,15 +169,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblTrasnferirTitulo">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Variable" size="36" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Transferir"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JPanel" name="panCuentaOrigen">
+    <Container class="javax.swing.JPanel" name="panCuentaOrigenConfirmarTransferencia">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e9" green="8c" red="c" type="rgb"/>
@@ -202,36 +179,33 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaOrigen.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaOrigenConfirmarTransferencia.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="cboCuentasCliente" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="lblCuentaOrigen1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="txtNumeroCuenta" min="-2" pref="197" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblSaldoCuentaOrigen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblEstadoCuentaOrigen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="lblNumeroCuentaOrigen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblSaldoDisponible" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="lblCuentaOrigen1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="591" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblEstadoCuentaOrigen" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblSaldoDisponible" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -239,44 +213,30 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblEstadoCuentaOrigen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblEstadoCuentaOrigen" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="4" pref="46" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblNumeroCuentaOrigen" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lblCuentaOrigen1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblSaldoDisponible" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cboCuentasCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblSaldoCuentaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtNumeroCuenta" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="lblCuentaOrigen1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="77" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblSaldoDisponible" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblNumeroCuentaOrigen">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Numero de cuenta"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblCuentaOrigen1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -288,19 +248,6 @@
             <Property name="text" type="java.lang.String" value="CUENTA ORIGEN"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cboCuentasCliente">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboCuentasClienteActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Cuenta&gt;"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblEstadoCuentaOrigen">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -309,21 +256,10 @@
             <Property name="text" type="java.lang.String" value="Estado : Activa"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblSaldoCuentaOrigen">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Saldo Disponible"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblSaldoDisponible">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
+              <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -331,9 +267,14 @@
             <Property name="text" type="java.lang.String" value="saldo"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JTextField" name="txtNumeroCuenta">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panCuentaDestino">
+    <Container class="javax.swing.JPanel" name="panCuentaDestinoConfirmarTransferencia">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e9" green="8c" red="c" type="rgb"/>
@@ -343,55 +284,46 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaDestino.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaDestinoConfirmarTransferencia.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="txtNumeroCuentaDestino" min="-2" pref="173" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="lblNumeroCuentaDestino" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="txtNumeroCuentaDestino" min="-2" pref="173" max="-2" attributes="0"/>
+                      <Component id="lblCuentaDestino" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="lblSaldoCuentaOrigen1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="lblCuentaDestino" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="lblCuentaDestino" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblSaldoCuentaOrigen1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNumeroCuentaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="lblSaldoCuentaOrigen1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="lblCuentaDestino" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtNumeroCuentaDestino" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -406,14 +338,6 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CUENTA DESTINO"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblNumeroCuentaDestino">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Numero de cuenta"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSaldoCuentaOrigen1">
@@ -445,7 +369,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panMontoTransferencia">
+    <Container class="javax.swing.JPanel" name="panMontoTransferenciaConfirmarTransferencia">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e9" green="8c" red="c" type="rgb"/>
@@ -455,14 +379,14 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaDestino.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panCuentaDestinoConfirmarTransferencia.setUI(new javax.swing.plaf.basic.BasicPanelUI() {&#xd;&#xa;    @Override&#xd;&#xa;    public void paint(java.awt.Graphics g, javax.swing.JComponent c) {&#xd;&#xa;        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();&#xd;&#xa;        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);&#xd;&#xa;        g2.setColor(c.getBackground()); &#xd;&#xa;        g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); &#xd;&#xa;        super.paint(g2, c);&#xd;&#xa;        g2.dispose();&#xd;&#xa;    }&#xd;&#xa;});&#xd;&#xa;"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Component id="txtMonto" min="-2" pref="679" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Component id="lblSaldoCuentaOrigen2" min="-2" max="-2" attributes="0"/>
@@ -471,7 +395,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Component id="lblCuentaDestino1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="706" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -523,15 +447,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnContinuarTransferencia">
+    <Component class="javax.swing.JButton" name="btnConfirmarTransferencia">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI Variable" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Continuar"/>
+        <Property name="text" type="java.lang.String" value="Confirmar Transferencia"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContinuarTransferenciaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarTransferenciaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
