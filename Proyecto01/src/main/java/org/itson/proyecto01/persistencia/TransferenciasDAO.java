@@ -27,17 +27,47 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
         try {
 
+            //sql para restar el saldo de la cuenta origen
+            String codigoSQLRestaOrigen = """
+                               UPDATE Cuenta 
+                                    SET saldo = saldo - ? 
+                               WHERE numero_cuenta = ?
+                               """;
+
+            //sql para sumar al saldo de la cuenta destino
+            String codigoSQLSumaDestino = """
+                                UPDATE Cuenta 
+                                    SET saldo = saldo + ? 
+                                WHERE numero_cuenta = ?
+                                """;
+
+            //sql para registrar operacion
             String codigoSQLOperacion = """
                                INSERT INTO OPERACIONES (tipo_operacion, fecha_hora, monto, id_cuenta) 
                                VALUES (?,?,?,?);
                                """;
 
+            //sql para registrar trasferencia
             String codigoSQLTransferencia = """
                                INSERT INTO TRANSFERENCIAS (id_cuenta_destino) 
                                VALUES (?);
                                """;
+
+            //conexión
             Connection conexion = ConexionBD.crearConexion();
 
+            //suma y resta de saldos
+            PreparedStatement comandoRestaSaldo = conexion.prepareStatement(codigoSQLRestaOrigen);
+            comandoRestaSaldo.setDouble(1, nuevaTransferencia.getMonto());
+            comandoRestaSaldo.setString(2, nuevaTransferencia.getCuentaOrigen());
+            comandoRestaSaldo.executeUpdate();
+
+            PreparedStatement comandoSumaSaldo = conexion.prepareStatement(codigoSQLSumaDestino);
+            comandoSumaSaldo.setDouble(1, nuevaTransferencia.getMonto());
+            comandoSumaSaldo.setString(2, nuevaTransferencia.getCuentaDestino());
+            comandoSumaSaldo.executeUpdate();
+
+            //registro de operacion y transferencia
             PreparedStatement comandoOperacion = conexion.prepareStatement(codigoSQLOperacion);
 
             comandoOperacion.setString(1, nuevaTransferencia.getTipoOperacion().name());
@@ -48,23 +78,25 @@ public class TransferenciasDAO implements ITransferenciasDAO {
             PreparedStatement comandoTransferencia = conexion.prepareStatement(codigoSQLTransferencia);
             comandoTransferencia.setInt(1, 1); //CLIENTE HARCODEADO 
 
+            //ejecucion
             comandoOperacion.execute();
             comandoTransferencia.execute();
 
             LOGGER.fine("Se realizó la transferencia con éxito.");
-            
-           Transferencia transferencia = new Transferencia(
+
+            //Creacion del objeto transferencia
+            Transferencia transferencia = new Transferencia(
                     cuentasDAO.obtenerCuentaporNumeroCuenta(nuevaTransferencia.getCuentaOrigen()),
                     cuentasDAO.obtenerCuentaporNumeroCuenta(nuevaTransferencia.getCuentaDestino()),
                     nuevaTransferencia.getMonto(),
                     nuevaTransferencia.getFechaHoraOperacion(),
                     nuevaTransferencia.getTipoOperacion()
             );
-            
-           conexion.close();
-           
-           return transferencia;
-            
+
+            conexion.close();
+
+            return transferencia;
+
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No se pudo realizar la transferencia.", ex);
