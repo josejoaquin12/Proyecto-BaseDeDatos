@@ -19,7 +19,7 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
         this.lblNumeroCuentaOrigen.setText(cuentaSeleccionada);
         this.lblNumeroCuentaDestino.setText(numeroDestino);
         this.lblNumeroMonto.setText("$ "+monto);
-        this.lblnombreCuentaDestino.setText(nombreCuentaDestino);
+        this.lblNombreDestinatario.setText(nombreCuentaDestino);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.lblFechaHoraOperacion.setText(fechaHoraOperacion.format(formatter));
         btnVolveralMenu.setBackground(new Color(40,167,69));
