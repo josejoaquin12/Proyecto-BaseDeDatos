@@ -56,7 +56,7 @@ public class ClientesBO implements IClientesBO {
         if(nuevoCliente.getContrasenia().length() < 6){
             throw new NegocioException("La contrasena debe contener minimo 6 caracteres", null);
         }
-        
+        return null;
     }
     
 }
