@@ -1,12 +1,14 @@
-
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Cuenta;
+import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
+import org.itson.proyecto01.negocio.ITransferenciasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 
 /**
@@ -14,29 +16,36 @@ import org.itson.proyecto01.negocio.NegocioException;
  * @author joset
  */
 public class TransferenciaForm extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form TransferenciaForm
      */
-    ICuentasBO cuentasBO; 
-    private Integer idCliente ;
+    private final ICuentasBO cuentasBO;
+    private Integer idCliente;
+    private final ITransferenciasBO transferenciasBO;
+    private final IClientesBO clientesBO;
+
     /**
-     * el metodo constructivo inicializamos el id cliente ya que todavia no tenemos un login donde inice sesion el usuario
-     * @param cuentasBO 
+     * el metodo constructivo inicializamos el id cliente ya que todavia no
+     * tenemos un login donde inice sesion el usuario
+     *
+     * @param cuentasBO
      */
-    public TransferenciaForm(ICuentasBO cuentasBO) {      
+    public TransferenciaForm(ICuentasBO cuentasBO, ITransferenciasBO transferenciasBO, IClientesBO clientesBO) {
         this.cuentasBO = cuentasBO;
         initComponents();
         this.setLocationRelativeTo(null);
-        this.idCliente = 1; 
+        this.idCliente = 1;
+        this.transferenciasBO = transferenciasBO;
+        this.clientesBO = clientesBO;
         cargarCuentasCliente();
         txtMonto.setText("Monto                                                                                                                                                                                                              $");
         txtMonto.setForeground(Color.GRAY);
         btnContinuarTransferencia.setBackground(Color.WHITE);
         btnContinuarTransferencia.setForeground(Color.BLACK);
         btnContinuarTransferencia.setFocusPainted(false);
-        btnContinuarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12,140,233), 6, true));
-      
+        btnContinuarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12, 140, 233), 6, true));
+
         validarBotonContinuar();
     }
 
@@ -56,9 +65,10 @@ public class TransferenciaForm extends javax.swing.JFrame {
             }
             cboCuentasCliente.setModel(modeloComboBox);
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this,"Error al consultar las cuentas", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al consultar las cuentas", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void validarBotonContinuar() {
 
         Cuenta cuenta = (Cuenta) cboCuentasCliente.getSelectedItem();
@@ -71,10 +81,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         try {
             double monto = Double.parseDouble(txtMonto.getText());
 
-            boolean valido =
-                    monto > 0 &&
-                    monto <= 100000 &&
-                    cuenta.getSaldo() > 0;
+            boolean valido= monto > 0&& monto <= 100000&& cuenta.getSaldo() > 0;
 
             btnContinuarTransferencia.setEnabled(valido);
 
@@ -82,8 +89,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
             btnContinuarTransferencia.setEnabled(false);
         }
     }
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -467,7 +474,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     private void cboCuentasClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCuentasClienteActionPerformed
-        Cuenta cuentaSeleccionada =(Cuenta) cboCuentasCliente.getSelectedItem();
+        Cuenta cuentaSeleccionada = (Cuenta) cboCuentasCliente.getSelectedItem();
 
         if (cuentaSeleccionada != null) {
             lblSaldoDisponible.setText("$ " + cuentaSeleccionada.getSaldo());
@@ -476,7 +483,23 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCuentasClienteActionPerformed
 
     private void txtNumeroCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuentaDestinoActionPerformed
-        // TODO add your handling code here:
+
+        String cuentaDestino = txtNumeroCuentaDestino.getText().trim();
+        if (cuentaDestino.length() != 18) {
+            JOptionPane.showMessageDialog(this, "La cuenta debe ser de 18 digitos");
+            txtNumeroCuentaDestino.requestFocus();
+            return;
+        }
+        // Buscar la cuenta y el cliente, y cambiar las label
+        try {
+            Cuenta cuenta = this.cuentasBO.obtenerCuentaporNumeroCuenta(txtNumeroCuentaDestino.getText()); // Busca la cuenta que se ingreso
+            Cliente cliente = this.clientesBO.obtenerClientePorId(cuenta.getIdCliente()); // Busca el propietario con el id que viene ligado a la cuenta
+            String nombreCompleto = cliente.getNombres() + " " + cliente.getApellidoP() + " " + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
+            lblNombreCuentaDestino.setText(nombreCompleto); // Cambia el texto de la label por el nombre del propietario de la cuenta
+        }catch(NegocioException ex){
+            JOptionPane.showMessageDialog(this, "Error. Cuenta no encontrada");
+        }
+
     }//GEN-LAST:event_txtNumeroCuentaDestinoActionPerformed
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -485,7 +508,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void txtMontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusGained
-        if(txtMonto.getText().equals("Monto                                                                                                                                                                                                              $")){
+        if (txtMonto.getText().equals("Monto                                                                                                                                                                                                              $")) {
             txtMonto.setText("");
             txtMonto.setForeground(Color.BLACK);
             validarBotonContinuar();
@@ -493,44 +516,45 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoFocusGained
 
     private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
-       if(txtMonto.getText().isEmpty()){
-           txtMonto.setText("Monto                                                                                                                                                                                                              $");
-           txtMonto.setForeground(Color.GRAY);
-           validarBotonContinuar();
-       }
+        if (txtMonto.getText().isEmpty()) {
+            txtMonto.setText("Monto                                                                                                                                                                                                              $");
+            txtMonto.setForeground(Color.GRAY);
+            validarBotonContinuar();
+        }
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void btnContinuarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTransferenciaActionPerformed
-        Cuenta cuentaSeleccionada =(Cuenta) cboCuentasCliente.getSelectedItem();
+        Cuenta cuentaSeleccionada = (Cuenta) cboCuentasCliente.getSelectedItem();
         String numeroCuenta = cuentaSeleccionada.getNumeroCuenta();
         String numeroDestino = txtNumeroCuentaDestino.getText().trim();
         String montoTexto = txtMonto.getText().trim();
         String nombreCuentaDestino = lblNombreCuentaDestino.getText().trim();
+        String saldoDisponible = lblSaldoDisponible.getText().trim();
         if (cuentaSeleccionada == null) {
-            JOptionPane.showMessageDialog(this,"Selecciona una cuenta origen","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecciona una cuenta origen", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (numeroDestino.isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Ingresa una cuenta destino","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingresa una cuenta destino", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (montoTexto.isEmpty()) {
-            JOptionPane.showMessageDialog(this,"Ingresa un monto", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingresa un monto", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
             double monto = Double.parseDouble(montoTexto);
-            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta,numeroDestino,monto,nombreCuentaDestino,null);
+            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta, numeroDestino, monto, nombreCuentaDestino,transferenciasBO,saldoDisponible);
             confirmarForm.setLocationRelativeTo(null);
             confirmarForm.setVisible(true);
 
             this.dispose(); // cerrar ventana actual
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,"El monto debe ser numérico", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El monto debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnContinuarTransferenciaActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnConsultarOperaciones;

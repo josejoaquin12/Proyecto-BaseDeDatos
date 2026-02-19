@@ -1,4 +1,3 @@
-
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
@@ -20,13 +19,24 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     private LocalDateTime fechaHoraOperacion;
     private final ITransferenciasBO transferenciasBO;
     private String nombreCuentaDestino;
+    private String saldoDispnible;
     /**
      * Creates new form ConfirmarTransferenciaForm
      */
-    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino,ITransferenciasBO transferenciasBO) {
+    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino,ITransferenciasBO transferenciasBO,String saldoDisponible) {
         this.transferenciasBO = transferenciasBO;
-        initComponents();
+        this.cuentaSeleccionada = cuentaSeleccionada;
+        this.numeroDestino = numeroDestino;
+        this.monto = monto;
+        this.nombreCuentaDestino = nombreCuentaDestino;
+        this.saldoDispnible = saldoDisponible;
         
+        initComponents();
+        this.txtNumeroCuenta.setText(cuentaSeleccionada);
+        this.txtNumeroCuentaDestino.setText(numeroDestino);
+        this.txtMonto.setText("$ "+monto);
+        this.lblNombredestinatario.setText(nombreCuentaDestino);
+        this.lblSaldoDisponible.setText(saldoDisponible);
         btnConfirmarTransferencia.setBackground(Color.WHITE);
         btnConfirmarTransferencia.setForeground(Color.BLACK);
         btnConfirmarTransferencia.setFocusPainted(false);
@@ -302,7 +312,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         try{
             fechaHoraOperacion = LocalDateTime.now();
             NuevaTransferenciaDTO nuevaTransferencia = new NuevaTransferenciaDTO(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, cuentaSeleccionada, numeroDestino, monto);
-            this.transferenciasBO.crearNuevaTransferencia(nuevaTransferencia);
+            this.transferenciasBO.realizarTransferencia(nuevaTransferencia);
             JOptionPane.showMessageDialog(this, "Transferencia Realizada ", "informacion: ", JOptionPane.INFORMATION_MESSAGE);
             
             TransferenciaExitosaForm transferenciaExitosaForm = new TransferenciaExitosaForm(fechaHoraOperacion, cuentaSeleccionada, numeroDestino, monto,nombreCuentaDestino);

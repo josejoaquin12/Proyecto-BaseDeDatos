@@ -4,10 +4,13 @@
  */
 package org.itson.proyecto01.negocio;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.itson.proyecto01.dtos.NuevoClienteDTO;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.persistencia.IClientesDAO;
+import org.itson.proyecto01.persistencia.PersistenciaException;
 
 /**
  *
@@ -22,9 +25,9 @@ public class ClientesBO implements IClientesBO {
     }
 
     @Override
-    public Cliente crearCliente(NuevoClienteDTO nuevoCliente)throws NegocioException{
+    public Cliente crearCliente(NuevoClienteDTO nuevoCliente, Integer idDomicilio)throws NegocioException{
         // Limite de edad para validar que el cliente sea mayor de edad
-        LocalDateTime edadMinima = LocalDateTime.now().minusYears(18);
+        LocalDate edadMinima = LocalDate.now().minusYears(18);
         // Validaciones
         if(nuevoCliente.getNombres() == null){
             throw new NegocioException("El nombre no puede estar vacio", null);
@@ -56,7 +59,24 @@ public class ClientesBO implements IClientesBO {
         if(nuevoCliente.getContrasenia().length() < 6){
             throw new NegocioException("La contrasena debe contener minimo 6 caracteres", null);
         }
-        return null;
+        
+        try{
+            Cliente cliente = this.clientesDAO.crearCliente(nuevoCliente, idDomicilio);
+            return cliente;
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error al registrarse", null);
+        }
+           
+    }
+
+    @Override
+    public Cliente obtenerClientePorId(Integer idCliente) throws NegocioException {
+        try{
+            Cliente cliente = this.clientesDAO.obtenerClientePorId(idCliente);
+            return cliente;
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error, no se encontro el cliente", null);
+        }
     }
     
 }

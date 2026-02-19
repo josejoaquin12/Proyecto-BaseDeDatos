@@ -6,6 +6,7 @@ package org.itson.proyecto01.persistencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Logger;
@@ -21,6 +22,12 @@ public class TransferenciasDAO implements ITransferenciasDAO {
     private static final Logger LOGGER = Logger.getLogger(TransferenciasDAO.class.getName());
 
     private ICuentasDAO cuentasDAO;
+    
+    public TransferenciasDAO(ICuentasDAO cuentasDAO){
+        this.cuentasDAO= cuentasDAO;
+        
+    }
+
 
     @Override
     public Transferencia realizarTransferencia(NuevaTransferenciaDTO nuevaTransferencia) throws PersistenciaException {
@@ -43,14 +50,14 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
             //sql para registrar operacion
             String codigoSQLOperacion = """
-                               INSERT INTO OPERACIONES (tipo_operacion, fecha_hora, monto, id_cuenta) 
+                               INSERT INTO OPERACION (tipo_operacion, fecha_hora, monto, id_cuenta) 
                                VALUES (?,?,?,?);
                                """;
 
             //sql para registrar trasferencia
             String codigoSQLTransferencia = """
-                               INSERT INTO TRANSFERENCIAS (id_cuenta_destino) 
-                               VALUES (?);
+                               INSERT INTO TRANSFERENCIA (id_transaccion,id_cuenta_destino) 
+                               VALUES (?,?);
                                """;
 
             //conexión
@@ -68,19 +75,23 @@ public class TransferenciasDAO implements ITransferenciasDAO {
             comandoSumaSaldo.executeUpdate();
 
             //registro de operacion y transferencia
-            PreparedStatement comandoOperacion = conexion.prepareStatement(codigoSQLOperacion);
+            PreparedStatement comandoOperacion = conexion.prepareStatement(codigoSQLOperacion,PreparedStatement.RETURN_GENERATED_KEYS);
 
             comandoOperacion.setString(1, nuevaTransferencia.getTipoOperacion().name());
             comandoOperacion.setTimestamp(2, Timestamp.valueOf(nuevaTransferencia.getFechaHoraOperacion()));
             comandoOperacion.setDouble(3, nuevaTransferencia.getMonto());
-            comandoOperacion.setInt(4, 1); //CLIENTE HARCODEADO 
+            comandoOperacion.setInt(4, 2); //CLIENTE HARCODEADO 
+            
+            comandoOperacion.executeUpdate();
+            ResultSet rs = comandoOperacion.getGeneratedKeys();
+            rs.next();
+            int idTransaccion = rs.getInt(1);
+            
+            PreparedStatement comandoTransferencia =conexion.prepareStatement(codigoSQLTransferencia);
+            comandoTransferencia.setInt(1, idTransaccion);
+            comandoTransferencia.setInt(2, 4);
 
-            PreparedStatement comandoTransferencia = conexion.prepareStatement(codigoSQLTransferencia);
-            comandoTransferencia.setInt(1, 1); //CLIENTE HARCODEADO 
-
-            //ejecucion
-            comandoOperacion.execute();
-            comandoTransferencia.execute();
+            comandoTransferencia.executeUpdate(); //CLIENTE HARCODEADO 
 
             LOGGER.fine("Se realizó la transferencia con éxito.");
 
