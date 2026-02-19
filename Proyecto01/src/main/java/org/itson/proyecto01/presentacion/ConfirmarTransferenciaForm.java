@@ -2,22 +2,26 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
+import java.time.LocalDateTime;
+import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
 import org.itson.proyecto01.entidades.Cuenta;
+import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
  *
  * @author joset
  */
 public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
-    private Cuenta cuentaseleccionada;
+    private String cuentaSeleccionada;
     private String numeroDestino;
-    private double monto; 
+    private double monto;
+    private LocalDateTime fechaHoraOperacion;
     /**
      * Creates new form ConfirmarTransferenciaForm
      */
-    public ConfirmarTransferenciaForm(Cuenta cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino) {
+    public ConfirmarTransferenciaForm(String cuentaSeleccionada, String numeroDestino, double monto,String nombreCuentaDestino) {
         initComponents();
-        this.txtNumeroCuenta.setText(cuentaSeleccionada.getNumeroCuenta());
+        this.txtNumeroCuenta.setText(cuentaSeleccionada);
         this.txtNumeroCuentaDestino.setText(numeroDestino);
         this.txtMonto.setText("$ "+monto);
         this.lblNombredestinatario.setText(nombreCuentaDestino);
@@ -304,11 +308,13 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
+       
+        
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void btnConfirmarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTransferenciaActionPerformed
-        // TODO add your handling code here:
+        fechaHoraOperacion = LocalDateTime.now();
+        NuevaTransferenciaDTO nuevaTransferencia = new NuevaTransferenciaDTO(fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, cuentaSeleccionada, numeroDestino, monto);
     }//GEN-LAST:event_btnConfirmarTransferenciaActionPerformed
 
 

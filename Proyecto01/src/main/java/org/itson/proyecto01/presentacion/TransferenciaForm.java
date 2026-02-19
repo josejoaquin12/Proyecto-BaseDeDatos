@@ -502,6 +502,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
 
     private void btnContinuarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTransferenciaActionPerformed
         Cuenta cuentaSeleccionada =(Cuenta) cboCuentasCliente.getSelectedItem();
+        String numeroCuenta = cuentaSeleccionada.getNumeroCuenta();
         String numeroDestino = txtNumeroCuentaDestino.getText().trim();
         String montoTexto = txtMonto.getText().trim();
         String nombreCuentaDestino = lblNombreCuentaDestino.getText().trim();
@@ -519,7 +520,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         }
         try {
             double monto = Double.parseDouble(montoTexto);
-            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(cuentaSeleccionada,numeroDestino,monto,nombreCuentaDestino);
+            ConfirmarTransferenciaForm confirmarForm = new ConfirmarTransferenciaForm(numeroCuenta,numeroDestino,monto,nombreCuentaDestino);
             confirmarForm.setLocationRelativeTo(null);
             confirmarForm.setVisible(true);
 

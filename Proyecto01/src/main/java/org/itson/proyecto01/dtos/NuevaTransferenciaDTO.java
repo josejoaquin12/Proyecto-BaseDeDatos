@@ -5,7 +5,6 @@
 package org.itson.proyecto01.dtos;
 
 import java.time.LocalDateTime;
-import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
@@ -17,9 +16,9 @@ public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
 
    private String cuentaOrigen;
     private String cuentaDestino;
-    private float monto;
+    private double monto;
 
-    public NuevaTransferenciaDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, String cuentaOrigen, String cuentaDestino, float monto) {
+    public NuevaTransferenciaDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, String cuentaOrigen, String cuentaDestino, double monto) {
         super( fechaHoraOperacion, tipoOperacion);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
