@@ -16,16 +16,16 @@ public class NuevaCuentaDTO {
      private Integer id;
     private String numeroCuenta;
     private LocalDateTime fechaApertura;
-    private Double saldo= 0.0;
+    private Double saldo;
     private EstadoCuenta estado;
     private Integer idCliente;
 
-    public NuevaCuentaDTO(Integer id, String numeroCuenta, LocalDateTime fechaApertura, EstadoCuenta estado, Integer idCliente) {
+    public NuevaCuentaDTO(Integer id, String numeroCuenta, LocalDateTime fechaApertura, Integer idCliente) {
         this.id = id;
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
         this.saldo = 0.0;
-        this.estado = estado;
+        this.estado = EstadoCuenta.ACTIVA;
         this.idCliente = idCliente;
     }
 

@@ -14,43 +14,52 @@ import org.itson.proyecto01.persistencia.PersistenciaException;
  *
  * @author joset
  */
-public class CuentasBO implements ICuentasBO{
+public class CuentasBO implements ICuentasBO {
+
     private final ICuentasDAO cuentasDAO;
-     
-    public CuentasBO(ICuentasDAO cuentasDAO){
+
+    public CuentasBO(ICuentasDAO cuentasDAO) {
         this.cuentasDAO = cuentasDAO;
     }
 
     @Override
     public List<Cuenta> consultarCuentasCliente(Integer idCliente) throws NegocioException {
-     try{
+        try {
             List<Cuenta> listaCuentasCliente = this.cuentasDAO.obtenerCuentasActivas(idCliente);
             return listaCuentasCliente;
-        }catch(PersistenciaException  ex){
+        } catch (PersistenciaException ex) {
             throw new NegocioException("Error al consultar la lista de cliente", ex);
-        }   
+        }
     }
 
     @Override
     public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws NegocioException {
-        try{
+        try {
             Cuenta cuenta = this.cuentasDAO.obtenerCuentaporNumeroCuenta(numeroCuenta);
             return cuenta;
-        }catch(PersistenciaException ex){
+        } catch (PersistenciaException ex) {
             throw new NegocioException("Error, no se encontro la cuenta", null);
         }
     }
 
     @Override
     public Cuenta altaCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException {
+        try {
+            if (nuevaCuenta.getIdCliente() <= 0) {
+                throw new NegocioException("Las cuentas deben tener un cliente asociado.", null);
+            }
 
-        
+            Cuenta cuenta = this.cuentasDAO.altaCuenta(nuevaCuenta);
+            return cuenta;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al crear la cuenta.", ex);
+        }
     }
 
     @Override
     public void cancelarCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException {
 
-
+        
     }
-    
+
 }
