@@ -29,13 +29,15 @@ public class LoginControl {
         if (password == null || password.isBlank()) {
             throw new ControlException("La contraseña es obligatoria", null);
         }
-
-        int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
-
-        if (idCliente <= 0) {
-            throw new ControlException("Correo o contraseña incorrectos", null);
+        try{    
+            int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
+            if (idCliente <= 0) {
+                throw new ControlException("Correo o contraseña incorrectos", null);
+            }
+            abrirMenuPrincipal(idCliente);
+        }catch(NegocioException ex){ 
+            throw new NegocioException("Error, no se encontro el cliente", null);
         }
-        abrirMenuPrincipal(idCliente);
     }
     private void abrirMenuPrincipal(int idCliente) {
         MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
