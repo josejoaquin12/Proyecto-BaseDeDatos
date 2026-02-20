@@ -13,7 +13,7 @@ import org.itson.proyecto01.persistencia.IDomciliosDAO;
  * @author Jesus Omar
  */
 public class DomiciliosBO implements IDomiciliosBO{
-
+    
     private final IDomciliosDAO domiciliosDAO;
     
     public DomiciliosBO (IDomciliosDAO domiciliosDAO){
