@@ -28,7 +28,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="393" max="-2" attributes="0"/>
-              <Component id="PanelInicioSesion" min="-2" max="-2" attributes="0"/>
+              <Component id="panInicioSesion" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="420" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -37,14 +37,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
-              <Component id="PanelInicioSesion" min="-2" max="-2" attributes="0"/>
+              <Component id="panInicioSesion" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="142" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="PanelInicioSesion">
+    <Container class="javax.swing.JPanel" name="panInicioSesion">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -68,10 +68,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtUsuario" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="txtCorreo" min="-2" pref="180" max="-2" attributes="0"/>
                               <Component id="txtContraseniaUsuario" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="lblIngresarNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIngresarCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblContraseña" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -92,11 +92,11 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="lblTituloInicioSesion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="lblIngresarNombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIngresarCorreo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtUsuario" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCorreo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblContraseña" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="txtContraseniaUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -117,28 +117,25 @@
             <Property name="text" type="java.lang.String" value="Iniciar Sesion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtUsuario">
+        <Component class="javax.swing.JTextField" name="txtCorreo">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsuarioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtContraseniaUsuario">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblIngresarNombre">
+        <Component class="javax.swing.JLabel" name="lblIngresarCorreo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombre completo"/>
+            <Property name="text" type="java.lang.String" value="Correo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblContrase&#xf1;a">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
@@ -170,6 +167,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Registrarse"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarseActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

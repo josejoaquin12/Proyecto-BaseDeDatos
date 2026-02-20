@@ -171,7 +171,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
 
             String codigoSQL = """
-                update Cuenta
+                update cuentas
                 set saldo = ?
                 where id_cuenta = ?
                 """;
@@ -237,12 +237,14 @@ public abstract class CuentasDAO implements ICuentasDAO {
                 Integer codigoCliente = resultado.getInt("id_cliente");
                 
                 Cuenta cuentaNueva = new Cuenta(id,numerocuenta,fechaApertura,saldo,estado,codigoCliente);
+                conexion.close();
                 return cuentaNueva;
-            }
-
-            conexion.close();
-            return null;
-
+                
+            }else{
+                conexion.close();
+               throw new PersistenciaException("La cuenta no existe o el número es incorrecto.",null);
+               
+            }            
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No se pudo obtener el saldo", ex);

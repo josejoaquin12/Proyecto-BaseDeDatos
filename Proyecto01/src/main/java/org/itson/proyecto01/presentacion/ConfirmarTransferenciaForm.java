@@ -71,6 +71,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         btnConfirmarTransferencia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panCuentaOrigenConfirmarTransferencia.setBackground(new java.awt.Color(12, 140, 233));
         panCuentaOrigenConfirmarTransferencia.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -84,7 +85,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
 
         lblSaldoDisponible.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblSaldoDisponible.setForeground(new java.awt.Color(255, 255, 255));
-        lblSaldoDisponible.setText("saldo");
+        lblSaldoDisponible.setText("0.00");
 
         txtNumeroCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtNumeroCuenta.setToolTipText("");
@@ -101,13 +102,13 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                     .addGroup(panCuentaOrigenConfirmarTransferenciaLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(txtNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addGroup(panCuentaOrigenConfirmarTransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenConfirmarTransferenciaLayout.createSequentialGroup()
                         .addComponent(lblEstadoCuentaOrigen)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenConfirmarTransferenciaLayout.createSequentialGroup()
-                        .addComponent(lblSaldoDisponible)
+                        .addComponent(lblSaldoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(158, 158, 158))))
         );
         panCuentaOrigenConfirmarTransferenciaLayout.setVerticalGroup(
@@ -161,8 +162,8 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                 .addGroup(panCuentaDestinoConfirmarTransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCuentaDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
-                .addComponent(lblNombredestinatario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addComponent(lblNombredestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(lblSaldoCuentaOrigen1)
                 .addGap(64, 64, 64))

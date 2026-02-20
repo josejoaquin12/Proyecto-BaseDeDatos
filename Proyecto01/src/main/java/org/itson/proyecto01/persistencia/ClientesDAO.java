@@ -102,10 +102,41 @@ public class ClientesDAO implements IClientesDAO {
 
                 conexion.close();
                 return cliente;
-            }else{
+            } else {
                 return null;
             }
 
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se encontro al cliente", null);
+        }
+    }
+
+    @Override
+    public int verificarCredenciales(String correo, String password) throws PersistenciaException {
+        try {
+
+            String codigoSQL = """
+                           select id_cliente 
+                           from clientes 
+                           where correo = ? and password = ?
+                           """;
+
+            Connection conexion = ConexionBD.crearConexion();
+            PreparedStatement comando = conexion.prepareStatement(codigoSQL);
+
+            comando.setString(1, correo);
+            comando.setString(2, password);
+
+            ResultSet resultado = comando.executeQuery();
+
+            if (resultado.next()) {
+                int id = resultado.getInt("id_cliente");
+                return id;
+
+            }else{
+                return -1;
+            }
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No se encontro al cliente", null);

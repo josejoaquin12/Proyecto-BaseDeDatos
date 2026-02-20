@@ -73,7 +73,25 @@ public class ClientesBO implements IClientesBO {
     public Cliente obtenerClientePorId(Integer idCliente) throws NegocioException {
         try{
             Cliente cliente = this.clientesDAO.obtenerClientePorId(idCliente);
+            if(cliente == null){
+                throw new NegocioException("El cliente no existe",null);
+                
+            }
+                
             return cliente;
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error, no se encontro el cliente", null);
+        }
+    }
+    
+    @Override
+    public int autenticarCorreoPassword(String correo, String password) throws NegocioException {
+        
+        if (correo == null || password == null) {
+            throw new NegocioException("Datos inválidos",null);
+        }
+        try{
+         return clientesDAO.verificarCredenciales(correo, password);   
         }catch(PersistenciaException ex){
             throw new NegocioException("Error, no se encontro el cliente", null);
         }

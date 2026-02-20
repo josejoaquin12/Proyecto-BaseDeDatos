@@ -122,6 +122,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         panMenuBar.setBackground(new java.awt.Color(45, 102, 237));
 
@@ -268,7 +269,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
 
         lblSaldoDisponible.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSaldoDisponible.setForeground(new java.awt.Color(255, 255, 255));
-        lblSaldoDisponible.setText("saldo");
+        lblSaldoDisponible.setText("0.00");
 
         javax.swing.GroupLayout panCuentaOrigenLayout = new javax.swing.GroupLayout(panCuentaOrigen);
         panCuentaOrigen.setLayout(panCuentaOrigenLayout);
@@ -279,18 +280,21 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addComponent(lblEstadoCuentaOrigen)
                 .addContainerGap())
             .addGroup(panCuentaOrigenLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNumeroCuentaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboCuentasCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(lblNumeroCuentaOrigen))
+                    .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(cboCuentasCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 311, Short.MAX_VALUE)
                 .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblSaldoDisponible)
-                        .addGap(132, 132, 132))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
                         .addComponent(lblSaldoCuentaOrigen)
-                        .addGap(105, 105, 105))))
+                        .addGap(105, 105, 105))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblSaldoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(132, 132, 132))))
             .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panCuentaOrigenLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -303,17 +307,16 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblEstadoCuentaOrigen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblNumeroCuentaOrigen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panCuentaOrigenLayout.createSequentialGroup()
                         .addComponent(lblSaldoDisponible)
-                        .addGap(4, 4, 4)))
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboCuentasCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSaldoCuentaOrigen))
-                .addGap(24, 24, 24))
+                        .addGap(4, 4, 4)
+                        .addComponent(lblSaldoCuentaOrigen))
+                    .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblNumeroCuentaOrigen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboCuentasCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
             .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panCuentaOrigenLayout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -340,9 +343,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
             }
         });
 
-        lblNombreCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombreCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNombreCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreCuentaDestino.setText("destinatario");
         lblNombreCuentaDestino.setToolTipText("");
 
         javax.swing.GroupLayout panCuentaDestinoLayout = new javax.swing.GroupLayout(panCuentaDestino);
@@ -350,21 +352,22 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panCuentaDestinoLayout.setHorizontalGroup(
             panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblNumeroCuentaDestino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
-                .addComponent(lblNombreCuentaDestino)
+                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(lblNumeroCuentaDestino))
+                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombreCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(lblSaldoCuentaDestino)
                 .addGap(64, 64, 64))
             .addGroup(panCuentaDestinoLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCuentaDestino)
-                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblCuentaDestino)
+                .addContainerGap(572, Short.MAX_VALUE))
         );
         panCuentaDestinoLayout.setVerticalGroup(
             panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,12 +377,12 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSaldoCuentaDestino)
-                    .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
                         .addComponent(lblNumeroCuentaDestino)
-                        .addComponent(lblNombreCuentaDestino)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNombreCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -389,15 +392,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(297, 297, 297)
-                                .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(342, 342, 342)
-                                .addComponent(lblTrasnferirTitulo)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -410,7 +404,16 @@ public class TransferenciaForm extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
                                     .addComponent(panCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(297, 297, 297)
+                                .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(326, 326, 326)
+                                .addComponent(lblTrasnferirTitulo)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,6 +517,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
             Cliente cliente = this.clientesBO.obtenerClientePorId(cuenta.getIdCliente()); // Busca el propietario con el id que viene ligado a la cuenta
             String nombreCompleto = cliente.getNombres() + " " + cliente.getApellidoP() + " " + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
             lblNombreCuentaDestino.setText(nombreCompleto); // Cambia el texto de la label por el nombre del propietario de la cuenta
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(this,"La cuenta destino no existe.","Error",JOptionPane.ERROR_MESSAGE);
         }catch(NegocioException ex){
             JOptionPane.showMessageDialog(this, "Error. Cuenta no encontrada");
         }
