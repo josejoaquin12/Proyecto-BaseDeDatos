@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 import org.itson.proyecto01.dtos.NuevaCuentaDTO;
 import org.itson.proyecto01.entidades.Cuenta;
@@ -157,7 +158,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             PreparedStatement comandoCuenta = conexion.prepareStatement(codigoSQLCuenta, Statement.RETURN_GENERATED_KEYS);
 
             //insertar la nueva cuenta en la tabla cuentas
-            comandoCuenta.setString(1, nuevaCuenta.getNumeroCuenta());
+            comandoCuenta.setString(1, generarNumeroCuenta(conexion));
             comandoCuenta.setTimestamp(2, Timestamp.valueOf(nuevaCuenta.getFechaApertura()));
             comandoCuenta.setDouble(3, nuevaCuenta.getSaldo());
             comandoCuenta.setString(4, nuevaCuenta.getEstado().name());
@@ -172,7 +173,6 @@ public abstract class CuentasDAO implements ICuentasDAO {
                 throw new PersistenciaException("No se pudo obtener el id_cuenta generado.", null);
             }
 
-            
             //insertar la operacion de alte de cuenta de la cuenta que acabamos de crear
             PreparedStatement psOperacion = conexion.prepareStatement(codigoSQLOperacion);
             psOperacion.setString(1, TipoOperacion.ALTA_DE_CUENTA.name());
@@ -303,4 +303,31 @@ public abstract class CuentasDAO implements ICuentasDAO {
             throw new PersistenciaException("No se pudo obtener el saldo", ex);
         }
     }
+
+    private String generarNumeroCuenta(Connection conexion) throws SQLException {
+        Random random = new Random();
+        String numeroCuenta;
+        boolean existe;
+
+        do {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 18; i++) {
+                sb.append(random.nextInt(10));
+            }
+            numeroCuenta = sb.toString();
+
+            String sqlCheck = "SELECT COUNT(id_cuenta) FROM Cuentas WHERE numero_cuenta = ?";
+            PreparedStatement comando = conexion.prepareStatement(sqlCheck);
+            comando.setString(1, numeroCuenta);
+            ResultSet resultado = comando.executeQuery();
+            resultado.next();
+            existe = resultado.getInt(1) > 0;
+            resultado.close();
+            comando.close();
+
+        } while (existe);
+
+        return numeroCuenta;
+    }
+
 }

@@ -5,6 +5,7 @@
 package org.itson.proyecto01.negocio;
 
 import java.util.List;
+import org.itson.proyecto01.dtos.NuevaCuentaDTO;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
 import org.itson.proyecto01.persistencia.PersistenciaException;
@@ -38,6 +39,18 @@ public class CuentasBO implements ICuentasBO{
         }catch(PersistenciaException ex){
             throw new NegocioException("Error, no se encontro la cuenta", null);
         }
+    }
+
+    @Override
+    public Cuenta altaCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException {
+
+        
+    }
+
+    @Override
+    public void cancelarCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException {
+
+
     }
     
 }
