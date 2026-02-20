@@ -37,6 +37,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(245, 247, 250));
+        setResizable(false);
 
         PanelInicioSesion.setBackground(new java.awt.Color(255, 255, 255));
         PanelInicioSesion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -50,8 +51,6 @@ public class LoginForm extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
-
-        txtContraseniaUsuario.setText("jPasswordField1");
 
         lblIngresarNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblIngresarNombre.setText("Nombre completo");
@@ -79,11 +78,11 @@ public class LoginForm extends javax.swing.JFrame {
                         .addComponent(lblTituloInicioSesion))
                     .addGroup(PanelInicioSesionLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseniaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtContraseniaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(lblIngresarNombre)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(txtUsuario)))
                     .addGroup(PanelInicioSesionLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -123,9 +122,9 @@ public class LoginForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
+                .addGap(127, 127, 127)
                 .addComponent(PanelInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
