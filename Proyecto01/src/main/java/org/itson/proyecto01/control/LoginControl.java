@@ -10,10 +10,12 @@ import org.itson.proyecto01.presentacion.LoginForm;
 public class LoginControl {
 
     private IClientesBO clienteBO;
+    private LoginForm loginForm;
 
     public LoginControl(LoginForm loginForm) {
         IClientesDAO clienteDAO = new ClientesDAO();
         this.clienteBO = new ClientesBO(clienteDAO);
+        this.loginForm = loginForm;
     }
 
     public void iniciarSesion(String correo, String password) throws ControlException, NegocioException {
