@@ -52,14 +52,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lblOperacionExitosa" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnVolveralMenu" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                               <Component id="lblTransferenciaExitosa" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lblCuentaDestino" min="-2" max="-2" attributes="0"/>
@@ -69,14 +67,21 @@
                                   <Component id="lblFechaHora" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblNumeroCuentaOrigen" alignment="1" pref="126" max="32767" attributes="0"/>
-                                  <Component id="lblNumeroCuentaDestino" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="lblFechaHoraOperacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblNombreDestinatario" max="32767" attributes="0"/>
-                                  <Component id="lblNumeroMonto" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblOperacionExitosa" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="lblNumeroCuentaOrigen" alignment="1" pref="126" max="32767" attributes="0"/>
+                                      <Component id="lblNumeroCuentaDestino" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="lblFechaHoraOperacion" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lblNombreDestinatario" max="32767" attributes="0"/>
+                                      <Component id="lblNumeroMonto" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnVolveralMenu" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="113" max="32767" attributes="0"/>
