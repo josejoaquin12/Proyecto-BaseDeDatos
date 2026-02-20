@@ -1,6 +1,7 @@
 
 package org.itson.proyecto01.persistencia;
 import java.util.List;
+import org.itson.proyecto01.dtos.NuevaCuentaDTO;
 import org.itson.proyecto01.entidades.Cuenta;
 
 /**
@@ -21,7 +22,7 @@ public interface ICuentasDAO {
 
     public void actualizarSaldo(Integer idCuenta, double nuevoSaldo)throws PersistenciaException ;
     
-   // public Cuenta altaCuenta(NuevaCuentaDTO nuevacuenta)throws PersistenciaException ;//TODO
+    public Cuenta altaCuenta(NuevaCuentaDTO nuevacuenta)throws PersistenciaException ;
 
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException ;
 }
