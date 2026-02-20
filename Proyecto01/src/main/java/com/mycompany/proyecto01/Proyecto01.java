@@ -36,9 +36,7 @@ public class Proyecto01 {
             IClientesBO clientesBO = new ClientesBO(clientesDAO);
             
             // Crear y mostrar Frame
-            TransferenciaForm frame = new TransferenciaForm(cuentasBO,TransferenciaBO,clientesBO);
-
-            frame.setVisible(true);
+            
 
     }
 }

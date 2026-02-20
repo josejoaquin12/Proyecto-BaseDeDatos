@@ -11,7 +11,7 @@ import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.enums.EstadoCuenta;
 import org.itson.proyecto01.enums.TipoOperacion;
 
-public abstract class CuentasDAO implements ICuentasDAO {
+public class CuentasDAO implements ICuentasDAO {
 
     private static final Logger LOGGER = Logger.getLogger(CuentasDAO.class.getName());
 

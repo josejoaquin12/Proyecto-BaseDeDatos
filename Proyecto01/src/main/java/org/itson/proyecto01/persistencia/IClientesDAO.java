@@ -17,6 +17,6 @@ public interface IClientesDAO {
     
     public Cliente obtenerClientePorId(Integer idCliente) throws PersistenciaException;
     
-    public int verificarCredenciales(String correo, String password) throws PersistenciaException ;
+    public int verificarCredenciales(String NombreCompleto, String password) throws PersistenciaException ;
     
 }

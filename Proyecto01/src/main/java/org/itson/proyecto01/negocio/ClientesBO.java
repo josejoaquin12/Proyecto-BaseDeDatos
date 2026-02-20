@@ -4,9 +4,7 @@
  */
 package org.itson.proyecto01.negocio;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import org.itson.proyecto01.dtos.NuevoClienteDTO;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.persistencia.IClientesDAO;
@@ -85,13 +83,14 @@ public class ClientesBO implements IClientesBO {
     }
     
     @Override
-    public int autenticarCorreoPassword(String correo, String password) throws NegocioException {
+    public int autenticarNombreCompletoPassword(String nombreCompleto, String password) throws NegocioException {
         
-        if (correo == null || password == null) {
+        if (nombreCompleto == null || password == null) {
             throw new NegocioException("Datos inválidos",null);
         }
+        
         try{
-         return clientesDAO.verificarCredenciales(correo, password);   
+         return clientesDAO.verificarCredenciales(nombreCompleto, password);   
         }catch(PersistenciaException ex){
             throw new NegocioException("Error, no se encontro el cliente", null);
         }

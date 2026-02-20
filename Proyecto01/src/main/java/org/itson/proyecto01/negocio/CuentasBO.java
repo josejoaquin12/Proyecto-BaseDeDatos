@@ -45,6 +45,9 @@ public class CuentasBO implements ICuentasBO{
     public Cuenta altaCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException {
 
         
+        return null;
+
+        
     }
 
     @Override

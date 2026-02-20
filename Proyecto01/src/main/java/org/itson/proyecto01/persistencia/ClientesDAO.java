@@ -113,19 +113,19 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     @Override
-    public int verificarCredenciales(String correo, String password) throws PersistenciaException {
+    public int verificarCredenciales(String nombreCompleto, String password) throws PersistenciaException {
         try {
 
             String codigoSQL = """
-                           select id_cliente 
-                           from clientes 
-                           where correo = ? and password = ?
-                           """;
+                    select id_cliente
+                    from clientes
+                    where concat(nombres, ' ', apellido_paterno, ' ', apellido_materno) = ? and contrasena = ?
+                    """;
 
             Connection conexion = ConexionBD.crearConexion();
             PreparedStatement comando = conexion.prepareStatement(codigoSQL);
 
-            comando.setString(1, correo);
+            comando.setString(1, nombreCompleto);
             comando.setString(2, password);
 
             ResultSet resultado = comando.executeQuery();
@@ -139,7 +139,7 @@ public class ClientesDAO implements IClientesDAO {
             }
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se encontro al cliente", null);
+            throw new PersistenciaException("No se encontro al cliente, contraseña o nombre incorrectos", null);
         }
     }
 

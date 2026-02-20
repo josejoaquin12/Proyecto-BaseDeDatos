@@ -36,15 +36,16 @@ public class LoginForm extends javax.swing.JFrame {
 
         panInicioSesion = new javax.swing.JPanel();
         lblTituloInicioSesion = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
+        txtNombreCompleto = new javax.swing.JTextField();
         txtContraseniaUsuario = new javax.swing.JPasswordField();
-        lblIngresarCorreo = new javax.swing.JLabel();
+        lblNombreCompleto = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(245, 247, 250));
+        setResizable(false);
 
         panInicioSesion.setBackground(new java.awt.Color(255, 255, 255));
         panInicioSesion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -52,15 +53,15 @@ public class LoginForm extends javax.swing.JFrame {
         lblTituloInicioSesion.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTituloInicioSesion.setText("Iniciar Sesion");
 
-        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreCompleto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreCompleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+                txtNombreCompletoActionPerformed(evt);
             }
         });
 
-        lblIngresarCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblIngresarCorreo.setText("Correo");
+        lblNombreCompleto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreCompleto.setText("Nombre completo");
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblContraseña.setText("Contraseña");
@@ -91,9 +92,9 @@ public class LoginForm extends javax.swing.JFrame {
                     .addGroup(panInicioSesionLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(panInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtContraseniaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIngresarCorreo)
+                            .addComponent(lblNombreCompleto)
                             .addComponent(lblContraseña)))
                     .addGroup(panInicioSesionLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
@@ -108,9 +109,9 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(lblTituloInicioSesion)
                 .addGap(35, 35, 35)
-                .addComponent(lblIngresarCorreo)
+                .addComponent(lblNombreCompleto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblContraseña)
                 .addGap(4, 4, 4)
@@ -142,17 +143,17 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void txtNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompletoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    }//GEN-LAST:event_txtNombreCompletoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         try {
-            String correo = txtCorreo.getText();
+            String nombreCompleto = txtNombreCompleto.getText();
             char[] contraseniaUsuario = txtContraseniaUsuario.getPassword();
             String password = new String(contraseniaUsuario);
             
-            loginControl.iniciarSesion(correo, password);
+            loginControl.iniciarSesion(nombreCompleto, password);
         }catch(ControlException ex){
             JOptionPane.showMessageDialog(this, "Error al iniciar sesion", "Error", JOptionPane.ERROR_MESSAGE);
         }catch(NegocioException ex){
@@ -165,10 +166,10 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel lblContraseña;
-    private javax.swing.JLabel lblIngresarCorreo;
+    private javax.swing.JLabel lblNombreCompleto;
     private javax.swing.JLabel lblTituloInicioSesion;
     private javax.swing.JPanel panInicioSesion;
     private javax.swing.JPasswordField txtContraseniaUsuario;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombreCompleto;
     // End of variables declaration//GEN-END:variables
 }

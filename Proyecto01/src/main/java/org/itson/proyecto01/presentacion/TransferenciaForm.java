@@ -31,7 +31,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
      *
      * @param cuentasBO
      */
-    public TransferenciaForm(ICuentasBO cuentasBO, ITransferenciasBO transferenciasBO, IClientesBO clientesBO) {
+    public TransferenciaForm(ICuentasBO cuentasBO, ITransferenciasBO transferenciasBO, IClientesBO clientesBO, int idCliente) {
         this.cuentasBO = cuentasBO;
         initComponents();
         this.setLocationRelativeTo(null);
