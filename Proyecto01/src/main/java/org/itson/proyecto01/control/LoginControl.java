@@ -17,6 +17,7 @@ public class LoginControl {
         this.loginForm = loginForm;
         IClientesDAO clienteDAO = new ClientesDAO();
         this.clienteBO = new ClientesBO(clienteDAO);
+        this.loginForm = loginForm;
     }
 
     public void iniciarSesion(String nombreCompleto, String password) throws ControlException, NegocioException {
