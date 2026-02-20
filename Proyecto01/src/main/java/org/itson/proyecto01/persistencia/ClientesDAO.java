@@ -31,7 +31,7 @@ public class ClientesDAO implements IClientesDAO {
 
         try {
             String codigoSQL = """
-                               insert into cliente(nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio)
+                               insert into clientes(nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio)
                                values(?,?,?,?,?,?,?,?);
                                """;
             Connection conexion = ConexionBD.crearConexion();
@@ -78,7 +78,8 @@ public class ClientesDAO implements IClientesDAO {
     public Cliente obtenerClientePorId(Integer idCliente) throws PersistenciaException {
         try {
             String codigoSQL = """
-                           select id_cliente, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio from cliente
+                           select id_cliente, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio 
+                           from clientes
                            where id_cliente = ?
                            """;
             Connection conexion = ConexionBD.crearConexion();

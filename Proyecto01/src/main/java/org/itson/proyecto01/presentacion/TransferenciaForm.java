@@ -94,12 +94,17 @@ public class TransferenciaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnVerCuentas = new javax.swing.JButton();
         btnRetiroSinCuenta = new javax.swing.JButton();
         btnConsultarOperaciones = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnContinuarTransferencia = new javax.swing.JButton();
+        panMontoTransferencia = new javax.swing.JPanel();
+        lblMonto = new javax.swing.JLabel();
+        txtMonto = new javax.swing.JTextField();
         lblTrasnferirTitulo = new javax.swing.JLabel();
         panCuentaOrigen = new javax.swing.JPanel();
         lblNumeroCuentaOrigen = new javax.swing.JLabel();
@@ -114,10 +119,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
         lblSaldoCuentaDestino = new javax.swing.JLabel();
         txtNumeroCuentaDestino = new javax.swing.JTextField();
         lblNombreCuentaDestino = new javax.swing.JLabel();
-        panMontoTransferencia = new javax.swing.JPanel();
-        lblMonto = new javax.swing.JLabel();
-        txtMonto = new javax.swing.JTextField();
-        btnContinuarTransferencia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -167,7 +168,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
                     .addComponent(btnConsultarOperaciones)
                     .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRetiroSinCuenta))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         panMenuBarLayout.setVerticalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,147 +186,13 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addGap(137, 137, 137))
         );
 
-        lblTrasnferirTitulo.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        lblTrasnferirTitulo.setText("Transferir");
-
-        panCuentaOrigen.setBackground(new java.awt.Color(45, 102, 237));
-        panCuentaOrigen.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
-
-        lblNumeroCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNumeroCuentaOrigen.setText("Numero de cuenta");
-
-        lblCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCuentaOrigen.setForeground(new java.awt.Color(255, 255, 255));
-        lblCuentaOrigen.setText("CUENTA ORIGEN");
-
-        cboCuentasCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnContinuarTransferencia.setText("Continuar");
+        btnContinuarTransferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboCuentasClienteActionPerformed(evt);
+                btnContinuarTransferenciaActionPerformed(evt);
             }
         });
-
-        lblEstadoCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblEstadoCuentaOrigen.setText("Estado : Activa");
-
-        lblSaldoCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblSaldoCuentaOrigen.setForeground(new java.awt.Color(204, 204, 204));
-        lblSaldoCuentaOrigen.setText("Saldo Disponible");
-
-        lblSaldoDisponible.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSaldoDisponible.setForeground(new java.awt.Color(255, 255, 255));
-        lblSaldoDisponible.setText("saldo");
-
-        javax.swing.GroupLayout panCuentaOrigenLayout = new javax.swing.GroupLayout(panCuentaOrigen);
-        panCuentaOrigen.setLayout(panCuentaOrigenLayout);
-        panCuentaOrigenLayout.setHorizontalGroup(
-            panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblEstadoCuentaOrigen)
-                .addContainerGap())
-            .addGroup(panCuentaOrigenLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNumeroCuentaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboCuentasCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblSaldoDisponible)
-                        .addGap(132, 132, 132))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblSaldoCuentaOrigen)
-                        .addGap(105, 105, 105))))
-            .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panCuentaOrigenLayout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(lblCuentaOrigen)
-                    .addContainerGap(591, Short.MAX_VALUE)))
-        );
-        panCuentaOrigenLayout.setVerticalGroup(
-            panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblEstadoCuentaOrigen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblNumeroCuentaOrigen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
-                        .addComponent(lblSaldoDisponible)
-                        .addGap(4, 4, 4)))
-                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCuentasCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSaldoCuentaOrigen))
-                .addGap(24, 24, 24))
-            .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panCuentaOrigenLayout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(lblCuentaOrigen)
-                    .addContainerGap(77, Short.MAX_VALUE)))
-        );
-
-        panCuentaDestino.setBackground(new java.awt.Color(45, 102, 237));
-        panCuentaDestino.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
-
-        lblCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
-        lblCuentaDestino.setText("CUENTA DESTINO");
-
-        lblNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNumeroCuentaDestino.setText("Numero de cuenta");
-
-        lblSaldoCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSaldoCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
-
-        txtNumeroCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroCuentaDestinoActionPerformed(evt);
-            }
-        });
-
-        lblNombreCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblNombreCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreCuentaDestino.setText("destinatario");
-        lblNombreCuentaDestino.setToolTipText("");
-
-        javax.swing.GroupLayout panCuentaDestinoLayout = new javax.swing.GroupLayout(panCuentaDestino);
-        panCuentaDestino.setLayout(panCuentaDestinoLayout);
-        panCuentaDestinoLayout.setHorizontalGroup(
-            panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(lblNumeroCuentaDestino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
-                .addComponent(lblNombreCuentaDestino)
-                .addGap(70, 70, 70)
-                .addComponent(lblSaldoCuentaDestino)
-                .addGap(64, 64, 64))
-            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCuentaDestino)
-                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panCuentaDestinoLayout.setVerticalGroup(
-            panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblCuentaDestino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSaldoCuentaDestino)
-                    .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNumeroCuentaDestino)
-                        .addComponent(lblNombreCuentaDestino)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
 
         panMontoTransferencia.setBackground(new java.awt.Color(45, 102, 237));
         panMontoTransferencia.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -373,54 +240,206 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        btnContinuarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnContinuarTransferencia.setText("Continuar");
-        btnContinuarTransferencia.addActionListener(new java.awt.event.ActionListener() {
+        lblTrasnferirTitulo.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblTrasnferirTitulo.setText("Transferir");
+
+        panCuentaOrigen.setBackground(new java.awt.Color(45, 102, 237));
+        panCuentaOrigen.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+
+        lblNumeroCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNumeroCuentaOrigen.setText("Numero de cuenta");
+
+        lblCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCuentaOrigen.setForeground(new java.awt.Color(255, 255, 255));
+        lblCuentaOrigen.setText("CUENTA ORIGEN");
+
+        cboCuentasCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarTransferenciaActionPerformed(evt);
+                cboCuentasClienteActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(lblTrasnferirTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panCuentaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panCuentaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(237, 237, 237)
-                                .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+        lblEstadoCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblEstadoCuentaOrigen.setText("Estado : Activa");
+
+        lblSaldoCuentaOrigen.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSaldoCuentaOrigen.setForeground(new java.awt.Color(204, 204, 204));
+        lblSaldoCuentaOrigen.setText("Saldo Disponible");
+
+        lblSaldoDisponible.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSaldoDisponible.setForeground(new java.awt.Color(255, 255, 255));
+        lblSaldoDisponible.setText("saldo");
+
+        javax.swing.GroupLayout panCuentaOrigenLayout = new javax.swing.GroupLayout(panCuentaOrigen);
+        panCuentaOrigen.setLayout(panCuentaOrigenLayout);
+        panCuentaOrigenLayout.setHorizontalGroup(
+            panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblEstadoCuentaOrigen)
+                .addContainerGap())
+            .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNumeroCuentaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboCuentasCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblSaldoDisponible)
+                        .addGap(132, 132, 132))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblSaldoCuentaOrigen)
+                        .addGap(105, 105, 105))))
+            .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(lblCuentaOrigen)
+                    .addContainerGap(585, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        panCuentaOrigenLayout.setVerticalGroup(
+            panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTrasnferirTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblEstadoCuentaOrigen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblNumeroCuentaOrigen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panCuentaOrigenLayout.createSequentialGroup()
+                        .addComponent(lblSaldoDisponible)
+                        .addGap(4, 4, 4)))
+                .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboCuentasCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSaldoCuentaOrigen))
+                .addGap(24, 24, 24))
+            .addGroup(panCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panCuentaOrigenLayout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(lblCuentaOrigen)
+                    .addContainerGap(77, Short.MAX_VALUE)))
+        );
+
+        panCuentaDestino.setBackground(new java.awt.Color(45, 102, 237));
+        panCuentaDestino.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 6, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
+
+        lblCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
+        lblCuentaDestino.setText("CUENTA DESTINO");
+
+        lblNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNumeroCuentaDestino.setText("Numero de cuenta");
+
+        lblSaldoCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSaldoCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtNumeroCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroCuentaDestinoActionPerformed(evt);
+            }
+        });
+
+        lblNombreCuentaDestino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombreCuentaDestino.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreCuentaDestino.setText("destinatario");
+        lblNombreCuentaDestino.setToolTipText("");
+
+        javax.swing.GroupLayout panCuentaDestinoLayout = new javax.swing.GroupLayout(panCuentaDestino);
+        panCuentaDestino.setLayout(panCuentaDestinoLayout);
+        panCuentaDestinoLayout.setHorizontalGroup(
+            panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(lblNumeroCuentaDestino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                .addComponent(lblNombreCuentaDestino)
+                .addGap(70, 70, 70)
+                .addComponent(lblSaldoCuentaDestino)
+                .addGap(64, 64, 64))
+            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCuentaDestino)
+                    .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panCuentaDestinoLayout.setVerticalGroup(
+            panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panCuentaDestinoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lblCuentaDestino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSaldoCuentaDestino)
+                    .addGroup(panCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumeroCuentaDestino)
+                        .addComponent(lblNombreCuentaDestino)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumeroCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(297, 297, 297)
+                                .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(342, 342, 342)
+                                .addComponent(lblTrasnferirTitulo)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(317, 317, 317)
+                                    .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(panCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTrasnferirTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(panCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(panMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        panCuentaDestino.setUI(new javax.swing.plaf.basic.BasicPanelUI() {
+            @Override
+            public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
+                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+                g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(c.getBackground()); 
+                g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); 
+                super.paint(g2, c);
+                g2.dispose();
+            }
+        });
         panCuentaOrigen.setUI(new javax.swing.plaf.basic.BasicPanelUI() {
             @Override
             public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
@@ -443,17 +462,19 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 g2.dispose();
             }
         });
-        panCuentaDestino.setUI(new javax.swing.plaf.basic.BasicPanelUI() {
-            @Override
-            public void paint(java.awt.Graphics g, javax.swing.JComponent c) {
-                java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-                g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(c.getBackground()); 
-                g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 30, 30); 
-                super.paint(g2, c);
-                g2.dispose();
-            }
-        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -560,6 +581,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVerCuentas;
     private javax.swing.JComboBox<Cuenta> cboCuentasCliente;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCuentaDestino;
     private javax.swing.JLabel lblCuentaOrigen;
     private javax.swing.JLabel lblEstadoCuentaOrigen;

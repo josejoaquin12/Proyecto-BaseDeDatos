@@ -36,27 +36,27 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
             //sql para restar el saldo de la cuenta origen
             String codigoSQLRestaOrigen = """
-                               UPDATE Cuenta 
+                               UPDATE cuentas 
                                     SET saldo = saldo - ? 
                                WHERE numero_cuenta = ?
                                """;
 
             //sql para sumar al saldo de la cuenta destino
             String codigoSQLSumaDestino = """
-                                UPDATE Cuenta 
+                                UPDATE cuentas 
                                     SET saldo = saldo + ? 
                                 WHERE numero_cuenta = ?
                                 """;
 
             //sql para registrar operacion
             String codigoSQLOperacion = """
-                               INSERT INTO OPERACION (tipo_operacion, fecha_hora, monto, id_cuenta) 
+                               INSERT INTO OPERACIONES (tipo_operacion, fecha_hora, monto, id_cuenta) 
                                VALUES (?,?,?,?);
                                """;
 
             //sql para registrar trasferencia
             String codigoSQLTransferencia = """
-                               INSERT INTO TRANSFERENCIA (id_transaccion,id_cuenta_destino) 
+                               INSERT INTO TRANSFERENCIAS (id_transaccion,id_cuenta_destino) 
                                VALUES (?,?);
                                """;
 

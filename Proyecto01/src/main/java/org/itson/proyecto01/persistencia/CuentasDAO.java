@@ -21,7 +21,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
             String codigoSQL = """
                 select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
-                from  cuenta
+                from  cuentas
                 where id_cliente = ? and estado = 'ACTIVA'
                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
@@ -64,7 +64,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
             String codigoSQL = """
                 select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
-                from cuenta
+                from cuentas
                 where id_cliente = ? 
                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
@@ -107,7 +107,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
 
             String codigoSQL = """
                 select saldo
-                from Cuenta
+                from cuentas
                 where numero_cuenta = ?
                 """;
 
@@ -136,7 +136,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
 //            Connection conexion = ConexionBD.crearConexion();
 //
 //            String codigoSQL = """
-//                insert Integero Cuenta(numero_cuenta, fecha_apertura,
+//                insert Integero Cuentas(numero_cuenta, fecha_apertura,
 //                                   saldo, estado, id_cliente)
 //                values (?, ?, ?, ?, ?)
 //                """;
@@ -196,7 +196,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
             Connection conexion = ConexionBD.crearConexion();
 
             String codigoSQL = """
-                update Cuenta
+                update cuentas
                 set estado = 'CANCELADA'
                 where id_cuenta = ?
                 """;
@@ -219,7 +219,7 @@ public abstract class CuentasDAO implements ICuentasDAO {
 
             String codigoSQL = """
                 select id_cuenta, numero_cuenta, fecha_apertura, saldo, estado, id_cliente
-                from Cuenta
+                from cuentas
                 where numero_cuenta = ?
                 """;
 
