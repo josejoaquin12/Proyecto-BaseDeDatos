@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package org.itson.proyecto01.presentacion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import org.itson.proyecto01.enums.TipoOperacion;
 /**
  *
@@ -15,6 +17,8 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
      */
     public ConsultarOperacionesForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         llenarComboBox();
     }
 
@@ -30,9 +34,9 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnVerCuentas = new javax.swing.JButton();
-        btnRetiroSinCuenta = new javax.swing.JButton();
         btnConsultarOperaciones = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnRetiroSinCuenta1 = new javax.swing.JButton();
         lblTituloOperaciones = new javax.swing.JLabel();
         lblFiltro = new javax.swing.JLabel();
         lblTipoOperacion = new javax.swing.JLabel();
@@ -56,14 +60,6 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
             }
         });
 
-        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin<br>cuenta</html> ");
-        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuentaActionPerformed(evt);
-            }
-        });
-
         btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
         btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -75,37 +71,48 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
 
+        btnRetiroSinCuenta1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnRetiroSinCuenta1.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta1.setToolTipText("");
+        btnRetiroSinCuenta1.setActionCommand("  ");
+        btnRetiroSinCuenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuenta1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
         panMenuBar.setLayout(panMenuBarLayout);
         panMenuBarLayout.setHorizontalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarOperaciones)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRetiroSinCuenta))
+                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnRetiroSinCuenta1)
+                    .addComponent(btnUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerCuentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         panMenuBarLayout.setVerticalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(158, Short.MAX_VALUE)
                 .addComponent(btnUsuario)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(btnVerCuentas)
-                .addGap(18, 18, 18)
-                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(btnCerrarSesion)
-                .addGap(137, 137, 137))
+                .addGap(18, 18, 18)
+                .addComponent(btnRetiroSinCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         lblTituloOperaciones.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTituloOperaciones.setForeground(new java.awt.Color(45, 102, 237));
         lblTituloOperaciones.setText("Operaciones");
 
         lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -174,20 +181,20 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerCuentasActionPerformed
 
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
-
     private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
+
+    private void btnRetiroSinCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuenta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRetiroSinCuenta1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> TipoOperacionComboBox;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnConsultarOperaciones;
-    private javax.swing.JButton btnRetiroSinCuenta;
+    private javax.swing.JButton btnRetiroSinCuenta1;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVerCuentas;
     private javax.swing.JLabel lblFiltro;

@@ -4,6 +4,9 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.control.ControlException;
@@ -23,9 +26,15 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         loginControl = new LoginControl(this);
+        utileriasBoton(btnRetiroSinCuenta);
+        utileriasBoton(btnRegistrarse);
     }
-
+    private void utileriasBoton(JButton btn) {
+        btn.setBackground(Color.WHITE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +52,7 @@ public class LoginForm extends javax.swing.JFrame {
         lblContraseña = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
+        btnRetiroSinCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de sesion");
@@ -87,6 +97,18 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRetiroSinCuenta.setForeground(new java.awt.Color(45, 102, 237));
+        btnRetiroSinCuenta.setText("<html> Retiro sin <br> cuenta </html> ");
+        btnRetiroSinCuenta.setMaximumSize(new java.awt.Dimension(85, 40));
+        btnRetiroSinCuenta.setMinimumSize(new java.awt.Dimension(85, 40));
+        btnRetiroSinCuenta.setPreferredSize(new java.awt.Dimension(85, 40));
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panInicioSesionLayout = new javax.swing.GroupLayout(panInicioSesion);
         panInicioSesion.setLayout(panInicioSesionLayout);
         panInicioSesionLayout.setHorizontalGroup(
@@ -105,10 +127,11 @@ public class LoginForm extends javax.swing.JFrame {
                             .addComponent(lblContraseña)))
                     .addGroup(panInicioSesionLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addGroup(panInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRegistrarse)
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGroup(panInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         panInicioSesionLayout.setVerticalGroup(
             panInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,9 +148,11 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(txtContraseniaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,14 +162,14 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(393, 393, 393)
                 .addComponent(panInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(panInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +194,13 @@ public class LoginForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error al iniciar sesión", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+    public JButton getBtnRetiroSinCuenta() {
+        return btnRetiroSinCuenta;
+    }
     
     public JButton getBtnRegistrar() {
         return btnRegistrarse;
@@ -177,6 +209,7 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnRetiroSinCuenta;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblNombreCompleto;
     private javax.swing.JLabel lblTituloInicioSesion;

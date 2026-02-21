@@ -8,5 +8,6 @@ package org.itson.proyecto01.control;
  *
  * @author joset
  */
-public class OperacionControl {
+public class RetiroSinCuentaControl {
+    
 }

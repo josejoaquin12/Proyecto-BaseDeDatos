@@ -1,13 +1,91 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.proyecto01.entidades;
 
-/**
- *
- * @author 
- */
+import java.time.LocalDateTime;
+
 public class RetiroSinCuenta {
-    
+
+    private Integer numeroCuentaOrigen;
+    private double monto;
+    private LocalDateTime fechaHora;
+    private String tipoOperacion;
+    private String folio;
+    private String estado;
+    private String contrasena;
+    private LocalDateTime fechaExpiracion;
+
+    public RetiroSinCuenta(Integer numeroCuentaOrigen,double monto,String contrasena,LocalDateTime fechaHora,String tipoOperacion,String folio,String estado) {
+        this.numeroCuentaOrigen  = numeroCuentaOrigen;
+        this.contrasena  = contrasena;
+        this.monto = monto;
+        this.fechaHora = fechaHora;
+        this.tipoOperacion = tipoOperacion;
+        this.folio = folio;
+        this.estado = estado;
+        this.fechaExpiracion = this.fechaHora.plusMinutes(10);
+    }
+
+
+
+    public Integer getNumeroCuentaOrigen() {
+        return numeroCuentaOrigen;
+    }
+
+    public void setNumeroCuentaOrigen(Integer numeroCuentaOrigen) {
+        this.numeroCuentaOrigen = numeroCuentaOrigen;
+    }
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getTipoOperacion() {
+        return tipoOperacion;
+    }
+
+    public void setTipoOperacion(String tipoOperacion) {
+        this.tipoOperacion = tipoOperacion;
+    }
+
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaExpiracion() {
+        return fechaExpiracion;
+    }
+
+    public void setFechaExpiracion(LocalDateTime fechaExpiracion) {
+        this.fechaExpiracion = fechaExpiracion;
+    }
 }

@@ -12,6 +12,8 @@ import org.itson.proyecto01.negocio.ITransferenciasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.presentacion.TransferenciaForm;
 import org.itson.proyecto01.presentacion.ConfirmarTransferenciaForm;
+import org.itson.proyecto01.presentacion.MenuPrincipalForm;
+import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 
 public class TransferenciaControl {
 
@@ -32,11 +34,25 @@ public class TransferenciaControl {
         transfrom.getBtnContinuarTransferencia().addActionListener(e -> continuar());
         transfrom.getTxtNumeroCuentaDestino().addActionListener(e -> buscarCuentaDestino());
         transfrom.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
-        transfrom.getTxtMonto().addActionListener(e -> validarBotonContinuar());
+        transfrom.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
+        transfrom.getBtnMostrarMenu().addActionListener(e -> abrirMenuPrincipal(idCliente));
+        
         cargarCuentasCliente();
-        validarBotonContinuar();
     }
-
+    private void abrirMenuPrincipal(int idCliente) {
+        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        transfrom.dispose();
+    }
+    
+    
+    private void abrirRetiroConCuenta() {
+        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm( );
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, cuentasBO, clientesBO, idCliente);
+        RetiroConCuenta.setVisible(true);
+        transfrom.dispose();
+    }
     private void cargarCuentasCliente() {
         try {
             List<Cuenta> cuentas = cuentasBO.consultarCuentasCliente(idCliente);
@@ -63,8 +79,6 @@ public class TransferenciaControl {
         } else {
             transfrom.getLblSaldoDisponible().setText("$ 0.00");
         }
-
-        validarBotonContinuar();
     }
 
     private void buscarCuentaDestino() {
@@ -89,8 +103,6 @@ public class TransferenciaControl {
         } catch (NegocioException ex) {
             transfrom.getLblNombreCuentaDestino().setText("Error al buscar");
         }
-
-        validarBotonContinuar();
     }
 
     private void validarBotonContinuar() {
@@ -98,8 +110,12 @@ public class TransferenciaControl {
         Cuenta cuenta = (Cuenta) transfrom.getCboCuentasCliente().getSelectedItem();
         String destino = transfrom.getTxtNumeroCuentaDestino().getText().trim();
         String monto = transfrom.getTxtMonto().getText().trim();
+        String saldoDisponible = transfrom.getLblSaldoDisponible().getText().trim();
+        int montInt = Integer.parseInt(monto);
+        int saldoDisponibleInt = Integer.parseInt(saldoDisponible);
 
-        if(cuenta != null && cuenta.getId()!= 0 && !destino.isEmpty() && !monto.isEmpty()){
+
+        if(cuenta != null && cuenta.getId()!= 0 && !destino.isEmpty() && !monto.isEmpty()&& saldoDisponibleInt>0 && saldoDisponibleInt <= montInt){
             transfrom.getBtnContinuarTransferencia().setEnabled(true);
         }else{
             transfrom.getBtnContinuarTransferencia().setEnabled(false);
@@ -107,13 +123,8 @@ public class TransferenciaControl {
     }
 
     private void continuar() {
-
+        validarBotonContinuar();
         Cuenta cuentaOrigen = (Cuenta) transfrom.getCboCuentasCliente().getSelectedItem();
-
-        if (cuentaOrigen == null || cuentaOrigen.getId() == 0) {
-            JOptionPane.showMessageDialog(transfrom,"Selecciona una cuenta origen");
-            return;
-        }
 
         String destino= transfrom.getTxtNumeroCuentaDestino().getText().trim();
 
@@ -122,11 +133,6 @@ public class TransferenciaControl {
         try {
 
             double monto = Double.parseDouble(montoTxt);
-
-            if (monto <= 0) {
-                JOptionPane.showMessageDialog(transfrom,"El monto debe ser mayor a 0");
-                return;
-            }
 
             ConfirmarTransferenciaForm confirmar= new ConfirmarTransferenciaForm(cuentaOrigen.getNumeroCuenta(),destino,monto,transfrom.getLblNombreCuentaDestino().getText(),transferenciasBO,cuentaOrigen.getSaldo());
 

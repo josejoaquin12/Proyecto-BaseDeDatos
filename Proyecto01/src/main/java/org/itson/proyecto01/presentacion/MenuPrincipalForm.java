@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -33,6 +35,8 @@ import org.itson.proyecto01.enums.EstadoCuenta;
          */
         public MenuPrincipalForm(int idCliente) {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         menuControl = new MenuControl(this, idCliente);
 
         // Panel que contendrá las cuentas
@@ -72,8 +76,8 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         utileriasBoton(btnCerrarSesion);
         utileriasBoton(btnConsultarOperaciones);
         utileriasBoton(btnMostrarTransferencias);
-        utileriasBoton(btnRetiroSinCuenta);
         utileriasBoton(btnUsuario);
+        utileriasBoton(btnRetiroSinCuenta);
         
         
         panPieDePantalla.setLayout(new BoxLayout(panPieDePantalla, BoxLayout.X_AXIS));
@@ -99,22 +103,23 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnMostrarTransferencias = new javax.swing.JButton();
-        btnRetiroSinCuenta = new javax.swing.JButton();
         btnConsultarOperaciones = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnRetiroSinCuenta = new javax.swing.JButton();
         panPieDePantalla = new javax.swing.JPanel();
         btnAltaCuenta = new javax.swing.JButton();
         btnCancelarCuenta = new javax.swing.JButton();
-        lblBienvenido = new javax.swing.JLabel();
         panCuentas = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblBienvenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1040, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1011, 705));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panMenuBar.setBackground(new java.awt.Color(45, 102, 237));
@@ -137,14 +142,6 @@ import org.itson.proyecto01.enums.EstadoCuenta;
             }
         });
 
-        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin<br>cuenta</html> ");
-        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuentaActionPerformed(evt);
-            }
-        });
-
         btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
         btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -156,41 +153,55 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
 
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnRetiroSinCuenta.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta.setToolTipText("");
+        btnRetiroSinCuenta.setActionCommand("  ");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
         panMenuBar.setLayout(panMenuBarLayout);
         panMenuBarLayout.setHorizontalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMostrarTransferencias)
-                    .addComponent(btnConsultarOperaciones)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panMenuBarLayout.createSequentialGroup()
+                        .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMostrarTransferencias)
+                            .addComponent(btnConsultarOperaciones)
+                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnRetiroSinCuenta))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panMenuBarLayout.setVerticalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
+                .addContainerGap(165, Short.MAX_VALUE)
                 .addComponent(btnUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(btnMostrarTransferencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarSesion)
-                .addGap(177, 177, 177))
+                .addGap(202, 202, 202))
         );
 
-        jPanel1.add(panMenuBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(panMenuBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 730));
 
         panPieDePantalla.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAltaCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 20)); // NOI18N
+        btnAltaCuenta.setForeground(new java.awt.Color(45, 102, 237));
         btnAltaCuenta.setText("Alta de Cuenta");
         btnAltaCuenta.setPreferredSize(new java.awt.Dimension(220, 45));
         btnAltaCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,6 +219,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         });
 
         btnCancelarCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 20)); // NOI18N
+        btnCancelarCuenta.setForeground(new java.awt.Color(45, 102, 237));
         btnCancelarCuenta.setText("Cancelar Cuenta");
         btnCancelarCuenta.setPreferredSize(new java.awt.Dimension(220, 45));
         btnCancelarCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +243,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panPieDePantallaLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(btnCancelarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnAltaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94))
         );
@@ -242,28 +254,34 @@ import org.itson.proyecto01.enums.EstadoCuenta;
                 .addGroup(panPieDePantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAltaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panPieDePantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 618, 790, -1));
-
-        lblBienvenido.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        lblBienvenido.setText("<html><center>!Bienvenido!</center></html>");
-        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 6, -1, -1));
+        jPanel1.add(panPieDePantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 618, 730, 90));
 
         panCuentas.setBackground(new java.awt.Color(255, 255, 255));
         panCuentas.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(panCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 60, 800, 552));
+        jPanel1.add(panCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 60, 720, 552));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblBienvenido.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(45, 102, 237));
+        lblBienvenido.setText("<html><center>!Bienvenido!</center></html>");
+        jPanel2.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 800, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
         );
 
         pack();
@@ -360,10 +378,6 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarTransferenciasActionPerformed
 
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
-
     private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
@@ -395,12 +409,16 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     private void btnCancelarCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarCuentaMouseExited
         btnCancelarCuenta.setBackground(Color.WHITE);
     }//GEN-LAST:event_btnCancelarCuentaMouseExited
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
     // Dentro de MenuPrincipalForm
     public JButton getBtnMostrarTransferencias() {
         return btnMostrarTransferencias;
     }
 
-    public JButton getBtnRetiroSinCuenta() {
+    public JButton getBtnMostrarRetiroSinCuenta() {
         return btnRetiroSinCuenta;
     }
     
@@ -433,6 +451,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     private javax.swing.JButton btnRetiroSinCuenta;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JPanel panCuentas;
     private javax.swing.JPanel panMenuBar;

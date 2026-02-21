@@ -4,6 +4,9 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author elgps
@@ -15,6 +18,8 @@ public class RegistroForm extends javax.swing.JFrame {
      */
     public RegistroForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
     }
 
     /**

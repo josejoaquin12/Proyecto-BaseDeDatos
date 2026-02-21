@@ -1,6 +1,8 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
@@ -32,6 +34,8 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         this.saldoDispnible = saldoDisponible;
         
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         this.txtNumeroCuenta.setText(cuentaSeleccionada);
         this.txtNumeroCuentaDestino.setText(numeroDestino);
         this.txtMonto.setText("$ "+monto);
