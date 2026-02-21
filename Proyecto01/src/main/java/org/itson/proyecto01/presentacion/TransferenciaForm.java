@@ -65,7 +65,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
             }
             cboCuentasCliente.setModel(modeloComboBox);
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this, "Error al consultar las cuentas", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error al consultar las cuentas", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -518,9 +518,9 @@ public class TransferenciaForm extends javax.swing.JFrame {
             String nombreCompleto = cliente.getNombres() + " " + cliente.getApellidoP() + " " + cliente.getApellidoM(); // se crea la cadena con el nombre completo del cliente
             lblNombreCuentaDestino.setText(nombreCompleto); // Cambia el texto de la label por el nombre del propietario de la cuenta
         }catch(NullPointerException ex){
-            JOptionPane.showMessageDialog(this,"La cuenta destino no existe.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,ex.getMessage(),"Erorr al buscar la cuenta",JOptionPane.ERROR_MESSAGE);
         }catch(NegocioException ex){
-            JOptionPane.showMessageDialog(this, "Error. Cuenta no encontrada");
+            JOptionPane.showMessageDialog(this,ex.getMessage(), "Error. Cuenta no encontrada",JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_txtNumeroCuentaDestinoActionPerformed

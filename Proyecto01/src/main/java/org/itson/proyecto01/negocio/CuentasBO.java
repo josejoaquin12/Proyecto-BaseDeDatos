@@ -22,7 +22,7 @@ public class CuentasBO implements ICuentasBO {
     @Override
     public List<Cuenta> consultarCuentasCliente(Integer idCliente) throws NegocioException {
         try {
-            List<Cuenta> listaCuentasCliente = this.cuentasDAO.obtenerCuentasActivas(idCliente);
+            List<Cuenta> listaCuentasCliente = this.cuentasDAO.obtenerCuentas(idCliente);
             return listaCuentasCliente;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al consultar la lista de cliente", ex);

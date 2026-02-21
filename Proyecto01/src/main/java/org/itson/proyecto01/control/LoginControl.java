@@ -7,6 +7,7 @@ import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.presentacion.LoginForm;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
+import org.itson.proyecto01.presentacion.RegistroForm;
 
 public class LoginControl {
 
@@ -18,6 +19,7 @@ public class LoginControl {
         IClientesDAO clienteDAO = new ClientesDAO();
         this.clienteBO = new ClientesBO(clienteDAO);
         this.loginForm = loginForm;
+        inicializarEventos();
     }
 
     public void iniciarSesion(String nombreCompleto, String password) throws ControlException, NegocioException {
@@ -32,18 +34,30 @@ public class LoginControl {
         try{    
             int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
             if (idCliente <= 0) {
-                throw new ControlException("Correo o contraseña incorrectos", null);
+                throw new ControlException("Nombre o contraseña incorrectos", null);
             }
             abrirMenuPrincipal(idCliente);
         }catch(NegocioException ex){ 
             throw new NegocioException("Error, no se encontro el cliente", null);
         }
     }
+    private void inicializarEventos() {
+        loginForm.getBtnRegistrar().addActionListener(e -> abrirPantallaRegistroForm());
+    }
+    
+    
+    
     private void abrirMenuPrincipal(int idCliente) {
         MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        menu.setLocationRelativeTo(null);
         menu.setVisible(true);
-
         loginForm.dispose();
+    }
+    private void abrirPantallaRegistroForm() {
+        RegistroForm RegistroForm = new RegistroForm();
+        RegistroForm.setLocationRelativeTo(null);
+        RegistroForm.setVisible(true);
+        loginForm.dispose(); 
     }
 }
 

@@ -20,10 +20,10 @@ import org.itson.proyecto01.persistencia.TransferenciasDAO;
 
 public class MenuControl {
 
-    private ICuentasBO cuentasBO;
-    private IClientesBO clientesBO;
-    private ITransferenciasBO transferenciasBO;
-    private MenuPrincipalForm menuForm;
+    private final ICuentasBO cuentasBO;
+    private final IClientesBO clientesBO;
+    private final ITransferenciasBO transferenciasBO;
+    private final MenuPrincipalForm menuForm;
     private int idCliente;
 
 
@@ -35,12 +35,12 @@ public class MenuControl {
         ICuentasDAO cuentasDAO = new CuentasDAO(); 
         IClientesDAO clientesDAO = new ClientesDAO();
         ITransferenciasDAO transferenciasDAO = new TransferenciasDAO(cuentasDAO);
+        
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
         this.transferenciasBO = new TransferenciasBO(transferenciasDAO,cuentasDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
-        // Cargar cuentas del cliente en la pantalla
-        cargarCuentasCliente();
+        
         inicializarEventos();
     }
 
@@ -75,7 +75,7 @@ public class MenuControl {
 //    private void abrirPantallaUsuario() {
 //        UsuarioForm usuarioForm = new UsuarioForm(idCliente);
 //        usuarioForm.setVisible(true);
-//        menuForm.dispose(); // opcional: cerrar el menu principal
+//        menuForm.dispose(); 
 //    }
 
     private void abrirTransferenciaForm() {

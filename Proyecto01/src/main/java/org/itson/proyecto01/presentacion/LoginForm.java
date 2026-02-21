@@ -4,6 +4,7 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.control.ControlException;
 import org.itson.proyecto01.control.LoginControl;
@@ -70,6 +71,11 @@ public class LoginForm extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrarse.setForeground(new java.awt.Color(45, 102, 237));
@@ -148,19 +154,24 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreCompletoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
+    
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try {
             String nombreCompleto = txtNombreCompleto.getText();
             char[] contraseniaUsuario = txtContraseniaUsuario.getPassword();
             String password = new String(contraseniaUsuario);
             
             loginControl.iniciarSesion(nombreCompleto, password);
-        }catch(ControlException ex){
-            JOptionPane.showMessageDialog(this, "Error al iniciar sesion", "Error", JOptionPane.ERROR_MESSAGE);
-        }catch(NegocioException ex){
-             JOptionPane.showMessageDialog(this, "Error al iniciar sesion", "Error", JOptionPane.ERROR_MESSAGE);   
+        }catch(ControlException | NegocioException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error al iniciar sesión", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
-
+    }//GEN-LAST:event_btnIngresarActionPerformed
+    
+    public JButton getBtnRegistrar() {
+        return btnRegistrarse;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
