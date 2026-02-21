@@ -4,6 +4,9 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author joset
@@ -15,6 +18,8 @@ public class AltaCuentaForm extends javax.swing.JFrame {
      */
     public AltaCuentaForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         this.setLocationRelativeTo(null);
     }
 
@@ -84,6 +89,7 @@ public class AltaCuentaForm extends javax.swing.JFrame {
         jButton1.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(45, 102, 237));
         jLabel1.setText("Alta de cuenta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

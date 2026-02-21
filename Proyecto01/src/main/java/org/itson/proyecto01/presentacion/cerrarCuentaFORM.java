@@ -4,6 +4,9 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author joset
@@ -15,6 +18,8 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
      */
     public CerrarCuentaForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         this.setLocationRelativeTo(null);
     }
 
@@ -41,6 +46,7 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(45, 102, 237));
         jLabel1.setText("Cerrar cuenta");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

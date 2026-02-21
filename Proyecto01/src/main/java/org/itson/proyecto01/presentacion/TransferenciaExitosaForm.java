@@ -2,8 +2,12 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.itson.proyecto01.control.SesionControl;
+import org.itson.proyecto01.entidades.Cliente;
 
 /**
  *
@@ -16,6 +20,8 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
      */
     public TransferenciaExitosaForm(LocalDateTime fechaHoraOperacion, String cuentaSeleccionada, String numeroDestino, double monto, String nombreCuentaDestino) {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         this.lblNumeroCuentaOrigen.setText(cuentaSeleccionada);
         this.lblNumeroCuentaDestino.setText(numeroDestino);
         this.lblNumeroMonto.setText("$ "+monto);
@@ -26,6 +32,8 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
         btnVolveralMenu.setForeground(Color.WHITE);
         btnVolveralMenu.setFocusPainted(false);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,7 +165,13 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnVolveralMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolveralMenuActionPerformed
-        dispose();
+        Cliente cliente = new Cliente();
+        cliente = SesionControl.getSesion().getCliente();
+                
+        MenuPrincipalForm menu = new MenuPrincipalForm(cliente.getId());
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolveralMenuActionPerformed
 
 

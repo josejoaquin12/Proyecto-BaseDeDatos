@@ -69,9 +69,7 @@ public class MenuControl {
                 Logger.getLogger(MenuControl.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-//
-//         Evento para btnRetiroSinCuenta
-//        menuForm.getBtnRetiroSinCuenta().addActionListener(e -> abrirRetiroSinCuentaForm());
+
 //
 //         Evento para btnConsultarOperaciones
         menuForm.getBtnConsultarOperaciones().addActionListener(e -> abrirConsultarOperacionesForm());
@@ -79,11 +77,14 @@ public class MenuControl {
 //         Evento para btnCerrarSesion
         menuForm.getBtnCerrarSesion().addActionListener(e -> cerrarSesion());
         
-        // Evento para btnCerrarCuenta
+        // Evento para btnCancelarCuenta
         menuForm.getBtnCancelarCuenta().addActionListener(e -> abrirCerrarCuentaForm());
         
-        // Evento para btnCerrarCuenta
+        // Evento para btnAltaCuenta
         menuForm.getBtnAltaCuenta().addActionListener(e -> abrirAltaCuentaForm());
+        
+        //Evento para btnRetiroConCuenta
+        menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
 //
 //    private void abrirPantallaUsuario() {
 //        UsuarioForm usuarioForm = new UsuarioForm(idCliente);
@@ -99,12 +100,12 @@ public class MenuControl {
         form.setVisible(true);
         menuForm.dispose();
     }
-
-//    private void abrirRetiroSinCuentaForm() {
-//        RetiroSinCuentaForm retiroForm = new RetiroSinCuentaForm(idCliente);
-//        retiroForm.setVisible(true);
-//        menuForm.dispose();
-//    }
+    private void abrirRetiroConCuenta() {
+        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm( );
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, cuentasBO, clientesBO, idCliente);
+        RetiroConCuenta.setVisible(true);
+        menuForm.dispose();
+    }
     
     private void abrirAltaCuentaForm() {
         AltaCuentaForm altaCuentaForm = new AltaCuentaForm( );

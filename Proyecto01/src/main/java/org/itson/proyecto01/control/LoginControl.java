@@ -9,6 +9,7 @@ import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.presentacion.LoginForm;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RegistroForm;
+import org.itson.proyecto01.presentacion.RetiroSinCuentaForm;
 
 public class LoginControl {
 
@@ -49,6 +50,7 @@ public class LoginControl {
     }
     private void inicializarEventos() {
         loginForm.getBtnRegistrar().addActionListener(e -> abrirPantallaRegistroForm());
+        loginForm.getBtnRetiroSinCuenta().addActionListener(e -> abrirRetiroSinCuenta());    
     }
     
     
@@ -63,6 +65,12 @@ public class LoginControl {
         RegistroForm RegistroForm = new RegistroForm();
         RegistroForm.setLocationRelativeTo(null);
         RegistroForm.setVisible(true);
+        loginForm.dispose(); 
+    }
+    private void abrirRetiroSinCuenta() {
+        RetiroSinCuentaForm RetiroSinCuenta = new RetiroSinCuentaForm();
+        RetiroSinCuenta.setLocationRelativeTo(null);
+        RetiroSinCuenta.setVisible(true);
         loginForm.dispose(); 
     }
 }

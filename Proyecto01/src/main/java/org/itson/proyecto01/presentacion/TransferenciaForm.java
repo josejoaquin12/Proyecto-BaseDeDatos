@@ -1,6 +1,8 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -26,23 +28,21 @@ public class TransferenciaForm extends javax.swing.JFrame {
      */
     public TransferenciaForm() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
+        setIconImage(icon);
         setLocationRelativeTo(null);
 
         txtMonto.setText("Monto $");
         txtMonto.setForeground(Color.GRAY);
 
-        btnContinuarTransferencia.setBackground(Color.WHITE);
         btnContinuarTransferencia.setForeground(Color.BLACK);
-        btnContinuarTransferencia.setFocusPainted(false);
-        btnContinuarTransferencia.setBorder(
-            new javax.swing.border.LineBorder(new Color(12,140,233), 6, true)
-        );
-
+        btnContinuarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12,140,233), 6, true));
+        
         utileriasBoton(btnUsuario);
         utileriasBoton(btnCerrarSesion);
         utileriasBoton(btnConsultarOperaciones);
-        utileriasBoton(btnRetiroSinCuenta);
         utileriasBoton(btnVerCuentas);
+        utileriasBoton(btnRetiroSinCuenta);
     }
 
     /**
@@ -54,10 +54,8 @@ public class TransferenciaForm extends javax.swing.JFrame {
     private void utileriasBoton(JButton btn) {
         btn.setBackground(Color.WHITE);
         btn.setOpaque(true);
-        btn.setBorderPainted(false);
-        btn.setFocusPainted(false);
         btn.setContentAreaFilled(true);
-        btn.setBorder(new javax.swing.border.LineBorder(new Color(12, 140, 233), 6, true));
+        btn.setBorder(new javax.swing.border.LineBorder(new Color(12, 140, 233), 2, true));
     }
 
 
@@ -68,9 +66,9 @@ public class TransferenciaForm extends javax.swing.JFrame {
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnVerCuentas = new javax.swing.JButton();
-        btnRetiroSinCuenta = new javax.swing.JButton();
         btnConsultarOperaciones = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnRetiroSinCuenta = new javax.swing.JButton();
         btnContinuarTransferencia = new javax.swing.JButton();
         panMontoTransferencia = new javax.swing.JPanel();
         lblMonto = new javax.swing.JLabel();
@@ -111,14 +109,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
             }
         });
 
-        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin<br>cuenta</html> ");
-        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuentaActionPerformed(evt);
-            }
-        });
-
         btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
         btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -130,18 +120,28 @@ public class TransferenciaForm extends javax.swing.JFrame {
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
 
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnRetiroSinCuenta.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta.setToolTipText("");
+        btnRetiroSinCuenta.setActionCommand("  ");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
         panMenuBar.setLayout(panMenuBarLayout);
         panMenuBarLayout.setHorizontalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarOperaciones)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRetiroSinCuenta))
+                .addGroup(panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnRetiroSinCuenta)
+                    .addComponent(btnUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerCuentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConsultarOperaciones))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         panMenuBarLayout.setVerticalGroup(
@@ -153,11 +153,11 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addComponent(btnVerCuentas)
                 .addGap(18, 18, 18)
                 .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarSesion)
-                .addGap(137, 137, 137))
+                .addGap(142, 142, 142))
         );
 
         btnContinuarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
@@ -215,6 +215,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         );
 
         lblTrasnferirTitulo.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblTrasnferirTitulo.setForeground(new java.awt.Color(45, 102, 237));
         lblTrasnferirTitulo.setText("Transferir");
 
         panCuentaOrigen.setBackground(new java.awt.Color(45, 102, 237));
@@ -366,27 +367,23 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(317, 317, 317)
-                                    .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(panCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(317, 317, 317)
+                        .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(297, 297, 297)
-                                .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(326, 326, 326)
-                                .addComponent(lblTrasnferirTitulo)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(panCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(502, 502, 502)
+                        .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(531, 531, 531)
+                        .addComponent(lblTrasnferirTitulo)))
+                .addGap(0, 290, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,7 +444,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -460,10 +457,6 @@ public class TransferenciaForm extends javax.swing.JFrame {
     private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
-
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     private void cboCuentasClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCuentasClienteActionPerformed
 
@@ -478,16 +471,26 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void txtMontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusGained
-
+        if (txtMonto.getText().equals("Monto $")) {
+            txtMonto.setText("");
+            txtMonto.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_txtMontoFocusGained
 
     private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
-//TODO
+        if (txtMonto.getText().isEmpty()) {
+            txtMonto.setForeground(Color.GRAY);
+            txtMonto.setText("Monto $");
+        }
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void btnContinuarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTransferenciaActionPerformed
  
     }//GEN-LAST:event_btnContinuarTransferenciaActionPerformed
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
     public JButton getBtnContinuarTransferencia() {
         return btnContinuarTransferencia;
     }
@@ -510,6 +513,12 @@ public class TransferenciaForm extends javax.swing.JFrame {
 
     public JLabel getLblSaldoDisponible() {
         return lblSaldoDisponible;
+    }
+    public JButton getBtnMostrarRetiroSinCuenta() {
+        return btnRetiroSinCuenta;
+    }
+    public JButton getBtnMostrarMenu() {
+        return btnVerCuentas;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
