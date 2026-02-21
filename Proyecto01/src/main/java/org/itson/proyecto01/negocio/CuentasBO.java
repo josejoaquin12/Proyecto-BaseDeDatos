@@ -68,6 +68,7 @@ public class CuentasBO implements ICuentasBO {
             }
 
             Cuenta cuenta = cuentasDAO.obtenerCuentaporNumeroCuenta(numeroCuenta);
+            
             if (cuenta == null) {
                 throw new NegocioException("La cuenta no existe.", null);
             }
@@ -79,7 +80,7 @@ public class CuentasBO implements ICuentasBO {
                 throw new NegocioException("La cuenta ya está cancelada.", null);
             }
             if (cuenta.getSaldo() != 0.0) {
-                throw new NegocioException("No se puede cancelar una cuenta con saldo distinto de cero.", null);
+                throw new NegocioException("No se puede cancelar una cuenta con saldo.", null);
             }
 
             cuentasDAO.cancelarCuenta(cuenta.getId());
