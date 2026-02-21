@@ -1,5 +1,6 @@
 package org.itson.proyecto01.control;
 
+import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.negocio.ClientesBO;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.NegocioException;
@@ -11,7 +12,7 @@ import org.itson.proyecto01.presentacion.RegistroForm;
 
 public class LoginControl {
 
-    private IClientesBO clienteBO;
+    private final IClientesBO clienteBO;
     private LoginForm loginForm;
 
     public LoginControl(LoginForm loginForm) {
@@ -31,13 +32,19 @@ public class LoginControl {
         if (password == null || password.isBlank()) {
             throw new ControlException("La contraseña es obligatoria", null);
         }
-        try{    
+        try{
             int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
             if (idCliente <= 0) {
                 throw new ControlException("Nombre o contraseña incorrectos", null);
             }
+            // Obtiene el cliente que inicio sesion por su id
+            Cliente cliente = clienteBO.obtenerClientePorId(idCliente);
+            // Guarda la sesion
+            SesionControl.getSesion().guardarSesion(cliente);
+            // Manda al usuario al menu principal
             abrirMenuPrincipal(idCliente);
-        }catch(NegocioException ex){ 
+            abrirMenuPrincipal(idCliente);
+        } catch (NegocioException ex) {
             throw new NegocioException("Error, no se encontro el cliente", null);
         }
     }
