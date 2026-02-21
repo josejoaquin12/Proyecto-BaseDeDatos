@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -13,18 +13,12 @@ import org.itson.proyecto01.enums.TipoOperacion;
  */
 public class NuevaOperacionDTO {
 
-    private int idOperacion;
     private LocalDateTime fechaHoraOperacion;
     private TipoOperacion tipoOperacion;
 
-    public NuevaOperacionDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
-        this.idOperacion = idOperacion;
+    public NuevaOperacionDTO(LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;
-    }
-
-    public int getIdOperacion() {
-        return idOperacion;
     }
 
     public LocalDateTime getFechaHoraOperacion() {
@@ -35,6 +29,4 @@ public class NuevaOperacionDTO {
         return tipoOperacion;
     }
 
-    
-    
 }
