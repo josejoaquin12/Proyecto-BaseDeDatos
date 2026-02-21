@@ -27,8 +27,8 @@ public class Cliente {
         
     }
 
-    public Cliente(Integer id, String nombres, String apellidoP, String apellidoM, LocalDate fechaNacimiento, String contrasenia, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
-        this.id = id;
+    public Cliente( Integer id,String nombres, String apellidoP, String apellidoM, LocalDate fechaNacimiento, String contrasenia, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
+        this.id=id;
         this.nombres = nombres;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -39,14 +39,13 @@ public class Cliente {
         this.idDomicilio = idDomicilio;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
+    public Integer getId() {
+        return id;
+    }
     public String getNombres() {
         return nombres;
     }

@@ -40,6 +40,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         rangoFechasComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Historial de Operaciones");
 
         panMenuBar.setBackground(new java.awt.Color(45, 102, 237));
 

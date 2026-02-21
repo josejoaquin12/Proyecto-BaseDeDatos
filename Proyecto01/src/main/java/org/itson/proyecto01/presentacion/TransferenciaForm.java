@@ -3,6 +3,7 @@ package org.itson.proyecto01.presentacion;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Cuenta;
@@ -45,7 +46,11 @@ public class TransferenciaForm extends javax.swing.JFrame {
         btnContinuarTransferencia.setForeground(Color.BLACK);
         btnContinuarTransferencia.setFocusPainted(false);
         btnContinuarTransferencia.setBorder(new javax.swing.border.LineBorder(new Color(12, 140, 233), 6, true));
-
+        utileriasBoton(btnUsuario);
+        utileriasBoton(btnCerrarSesion);
+        utileriasBoton(btnConsultarOperaciones);
+        utileriasBoton(btnRetiroSinCuenta);
+        utileriasBoton(btnVerCuentas);
         validarBotonContinuar();
     }
 
@@ -89,6 +94,14 @@ public class TransferenciaForm extends javax.swing.JFrame {
             btnContinuarTransferencia.setEnabled(false);
         }
     }
+    private void utileriasBoton(JButton btn) {
+        btn.setBackground(Color.WHITE);
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(true);
+        btn.setBorder(new javax.swing.border.LineBorder(new Color(12, 140, 233), 6, true));
+    }
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -121,6 +134,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         lblNombreCuentaDestino = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transferencia ");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -428,7 +442,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
                 .addComponent(panMontoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnContinuarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(panMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -474,9 +488,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -498,7 +510,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         Cuenta cuentaSeleccionada = (Cuenta) cboCuentasCliente.getSelectedItem();
 
         if (cuentaSeleccionada != null) {
-            lblSaldoDisponible.setText("$ " + cuentaSeleccionada.getSaldo());
+            lblSaldoDisponible.setText(String.format("$%,.2f", cuentaSeleccionada.getSaldo()));
         }
         validarBotonContinuar();
     }//GEN-LAST:event_cboCuentasClienteActionPerformed
@@ -552,7 +564,11 @@ public class TransferenciaForm extends javax.swing.JFrame {
         String numeroDestino = txtNumeroCuentaDestino.getText().trim();
         String montoTexto = txtMonto.getText().trim();
         String nombreCuentaDestino = lblNombreCuentaDestino.getText().trim();
-        String saldoDisponible = lblSaldoDisponible.getText().trim();
+        String saldoDisponibletxt = lblSaldoDisponible.getText().trim();
+        //Quitar signo de peso coma y punto al texto para convertirlo en double
+        saldoDisponibletxt = saldoDisponibletxt.replace("$","").replace(",","").replace(".", "");
+        double saldoDisponible = Double.parseDouble(saldoDisponibletxt);
+        
         if (cuentaSeleccionada == null) {
             JOptionPane.showMessageDialog(this, "Selecciona una cuenta origen", "Error", JOptionPane.ERROR_MESSAGE);
             return;
