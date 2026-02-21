@@ -30,20 +30,23 @@ public class LoginControl {
         if (password == null || password.isBlank()) {
             throw new ControlException("La contraseña es obligatoria", null);
         }
-
-        int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
-
-        if (idCliente <= 0) {
-            throw new ControlException("Correo o contraseña incorrectos", null);
+        try {
+            int idCliente = clienteBO.autenticarNombreCompletoPassword(nombreCompleto, password);
+            if (idCliente <= 0) {
+                throw new ControlException("Correo o contraseña incorrectos", null);
+            }
+            // Obtiene el cliente que inicio sesion por su id
+            Cliente cliente = clienteBO.obtenerClientePorId(idCliente);
+            // Guarda la sesion
+            SesionControl.getSesion().guardarSesion(cliente);
+            // Manda al usuario al menu principal
+            abrirMenuPrincipal(idCliente);
+            abrirMenuPrincipal(idCliente);
+        } catch (NegocioException ex) {
+            throw new NegocioException("Error, no se encontro el cliente", null);
         }
-        
-        // Obtiene el cliente que inicio sesion por su id
-        Cliente cliente = clienteBO.obtenerClientePorId(idCliente);
-        // Guarda la sesion
-        SesionControl.getSesion().guardarSesion(cliente);
-        // Manda al usuario al menu principal
-        abrirMenuPrincipal(idCliente);
     }
+
     private void abrirMenuPrincipal(int idCliente) {
         MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
         menu.setVisible(true);
@@ -51,4 +54,3 @@ public class LoginControl {
         loginForm.dispose();
     }
 }
-
