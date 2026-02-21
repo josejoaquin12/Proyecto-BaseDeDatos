@@ -18,7 +18,7 @@ public interface ICuentasBO {
 
     public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws NegocioException;
 
-    public Cuenta altaCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException;
+    public Cuenta altaCuenta() throws NegocioException;
 
-    public void cancelarCuenta(NuevaCuentaDTO nuevaCuenta) throws NegocioException;
+    public Cuenta cancelarCuenta(String numeroCuenta) throws NegocioException;
 }

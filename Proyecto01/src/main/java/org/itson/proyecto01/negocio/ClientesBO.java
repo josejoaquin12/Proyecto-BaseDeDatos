@@ -9,6 +9,7 @@ import org.itson.proyecto01.dtos.NuevoClienteDTO;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.persistencia.PersistenciaException;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -57,9 +58,19 @@ public class ClientesBO implements IClientesBO {
         if(nuevoCliente.getContrasenia().length() < 6){
             throw new NegocioException("La contrasena debe contener minimo 6 caracteres", null);
         }
-        
+        String passwordHasheada = BCrypt.hashpw(nuevoCliente.getContrasenia(), BCrypt.gensalt());
+        Cliente cliente = new Cliente(null,
+            nuevoCliente.getNombres(),
+            nuevoCliente.getApellidoP(),
+            nuevoCliente.getApelidoM(),
+            nuevoCliente.getFechaNacimiento(),
+            passwordHasheada, // se guarda contraseña hasheada
+            nuevoCliente.getFechaRegistro(),
+            nuevoCliente.getEdad(),    
+            idDomicilio
+        );
         try{
-            Cliente cliente = this.clientesDAO.crearCliente(nuevoCliente, idDomicilio);
+            cliente = this.clientesDAO.crearCliente(nuevoCliente, idDomicilio);
             return cliente;
         }catch(PersistenciaException ex){
             throw new NegocioException("Error al registrarse", null);

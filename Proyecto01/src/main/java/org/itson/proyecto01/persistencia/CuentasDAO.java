@@ -157,8 +157,9 @@ public class CuentasDAO implements ICuentasDAO {
 
             PreparedStatement comandoCuenta = conexion.prepareStatement(codigoSQLCuenta, Statement.RETURN_GENERATED_KEYS);
 
+            String numeroCuentaGenerado = generarNumeroCuenta(conexion);
             //insertar la nueva cuenta en la tabla cuentas
-            comandoCuenta.setString(1, generarNumeroCuenta(conexion));
+            comandoCuenta.setString(1, numeroCuentaGenerado);
             comandoCuenta.setTimestamp(2, Timestamp.valueOf(nuevaCuenta.getFechaApertura()));
             comandoCuenta.setDouble(3, nuevaCuenta.getSaldo());
             comandoCuenta.setString(4, nuevaCuenta.getEstado().name());
@@ -188,7 +189,7 @@ public class CuentasDAO implements ICuentasDAO {
             // cear objeto Cuenta 
             return new Cuenta(
                     idCuentaGenerada,
-                    nuevaCuenta.getNumeroCuenta(),
+                    numeroCuentaGenerado,
                     nuevaCuenta.getFechaApertura(),
                     nuevaCuenta.getSaldo(),
                     nuevaCuenta.getEstado(),
@@ -330,4 +331,5 @@ public class CuentasDAO implements ICuentasDAO {
         return numeroCuenta;
     }
 
+     
 }
