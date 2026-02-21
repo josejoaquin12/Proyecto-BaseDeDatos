@@ -309,7 +309,7 @@ public class RegistroForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
 
