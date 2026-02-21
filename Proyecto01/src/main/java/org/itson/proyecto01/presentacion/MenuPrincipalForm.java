@@ -24,18 +24,15 @@ import org.itson.proyecto01.enums.EstadoCuenta;
  */
     public class MenuPrincipalForm extends javax.swing.JFrame {
 
-        private int idCliente;
-        private JPanel contenedorCuentas;
-        private JScrollPane scrollCuentas;
-        private MenuControl menuControl;
+        private final JPanel contenedorCuentas;
+        private final JScrollPane scrollCuentas;
+        private final MenuControl menuControl;
 
         /**
          * Creates new form menuPrincipal
          */
         public MenuPrincipalForm(int idCliente) {
-        this.idCliente = idCliente;
         initComponents();
-
         menuControl = new MenuControl(this, idCliente);
 
         // Panel que contendrá las cuentas
@@ -114,9 +111,11 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(996, 666));
+        setPreferredSize(new java.awt.Dimension(1040, 720));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panMenuBar.setBackground(new java.awt.Color(45, 102, 237));
 
@@ -187,9 +186,10 @@ import org.itson.proyecto01.enums.EstadoCuenta;
                 .addGap(177, 177, 177))
         );
 
+        jPanel1.add(panMenuBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         panPieDePantalla.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAltaCuenta.setBackground(new java.awt.Color(204, 204, 204));
         btnAltaCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 20)); // NOI18N
         btnAltaCuenta.setText("Alta de Cuenta");
         btnAltaCuenta.setPreferredSize(new java.awt.Dimension(220, 45));
@@ -207,7 +207,6 @@ import org.itson.proyecto01.enums.EstadoCuenta;
             }
         });
 
-        btnCancelarCuenta.setBackground(new java.awt.Color(204, 204, 204));
         btnCancelarCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 20)); // NOI18N
         btnCancelarCuenta.setText("Cancelar Cuenta");
         btnCancelarCuenta.setPreferredSize(new java.awt.Dimension(220, 45));
@@ -246,48 +245,21 @@ import org.itson.proyecto01.enums.EstadoCuenta;
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        jPanel1.add(panPieDePantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 618, 790, -1));
+
         lblBienvenido.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
         lblBienvenido.setText("<html><center>!Bienvenido!</center></html>");
+        jPanel1.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 6, -1, -1));
 
         panCuentas.setBackground(new java.awt.Color(255, 255, 255));
         panCuentas.setLayout(new java.awt.BorderLayout());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panPieDePantalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(lblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(302, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panCuentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panPieDePantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(panMenuBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(panCuentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 60, 800, 552));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,6 +402,14 @@ import org.itson.proyecto01.enums.EstadoCuenta;
 
     public JButton getBtnRetiroSinCuenta() {
         return btnRetiroSinCuenta;
+    }
+    
+    public JButton getBtnCancelarCuenta() {
+        return btnCancelarCuenta;
+    }
+    
+     public JButton getBtnAltaCuenta() {
+        return btnAltaCuenta;
     }
 
     public JButton getBtnConsultarOperaciones() {

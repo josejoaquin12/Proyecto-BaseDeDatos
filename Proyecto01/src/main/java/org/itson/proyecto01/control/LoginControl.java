@@ -43,7 +43,6 @@ public class LoginControl {
             SesionControl.getSesion().guardarSesion(cliente);
             // Manda al usuario al menu principal
             abrirMenuPrincipal(idCliente);
-            abrirMenuPrincipal(idCliente);
         } catch (NegocioException ex) {
             throw new NegocioException("Error, no se encontro el cliente", null);
         }
