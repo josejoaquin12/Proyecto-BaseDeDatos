@@ -1,5 +1,6 @@
 package org.itson.proyecto01.control;
 
+import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.negocio.ClientesBO;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.NegocioException;
@@ -10,7 +11,7 @@ import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 
 public class LoginControl {
 
-    private IClientesBO clienteBO;
+    private final IClientesBO clienteBO;
     private LoginForm loginForm;
 
     public LoginControl(LoginForm loginForm) {
@@ -35,6 +36,12 @@ public class LoginControl {
         if (idCliente <= 0) {
             throw new ControlException("Correo o contraseña incorrectos", null);
         }
+        
+        // Obtiene el cliente que inicio sesion por su id
+        Cliente cliente = clienteBO.obtenerClientePorId(idCliente);
+        // Guarda la sesion
+        SesionControl.getSesion().guardarSesion(cliente);
+        // Manda al usuario al menu principal
         abrirMenuPrincipal(idCliente);
     }
     private void abrirMenuPrincipal(int idCliente) {
