@@ -5,10 +5,13 @@
 package org.itson.proyecto01.presentacion;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
 import org.itson.proyecto01.enums.TipoOperacion;
 /**
  *
- * @author elgps
+ * @author Jesus Omar
  */
 public class ConsultarOperacionesForm extends javax.swing.JFrame {
 
@@ -42,6 +45,9 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         lblTipoOperacion = new javax.swing.JLabel();
         TipoOperacionComboBox = new javax.swing.JComboBox<>();
         rangoFechasComboBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaOperaciones = new javax.swing.JTable();
+        lblFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Historial de Operaciones");
@@ -98,7 +104,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         panMenuBarLayout.setVerticalGroup(
             panMenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panMenuBarLayout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
+                .addContainerGap(167, Short.MAX_VALUE)
                 .addComponent(btnUsuario)
                 .addGap(26, 26, 26)
                 .addComponent(btnVerCuentas)
@@ -125,6 +131,42 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
 
         rangoFechasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        tablaOperaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tipo", "Fecha y hora", "Monto", "Numero de cuenta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaOperaciones);
+        if (tablaOperaciones.getColumnModel().getColumnCount() > 0) {
+            tablaOperaciones.getColumnModel().getColumn(0).setResizable(false);
+            tablaOperaciones.getColumnModel().getColumn(1).setResizable(false);
+            tablaOperaciones.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFecha.setText("Fecha");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,33 +175,40 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
                 .addComponent(panMenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTipoOperacion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TipoOperacionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(234, 234, 234)
-                                .addComponent(rangoFechasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblFiltro)))
+                            .addComponent(lblFiltro)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblTipoOperacion)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(TipoOperacionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblFecha)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rangoFechasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
+                        .addGap(301, 301, 301)
                         .addComponent(lblTituloOperaciones)))
-                .addGap(0, 263, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panMenuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(21, 21, 21)
                 .addComponent(lblTituloOperaciones)
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(lblFiltro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoOperacion)
                     .addComponent(TipoOperacionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rangoFechasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rangoFechasComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFecha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,6 +224,38 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         for(TipoOperacion tipo : TipoOperacion.values()){
             TipoOperacionComboBox.addItem(tipo.toString());
         }
+    }
+
+    public JComboBox<String> getTipoOperacionComboBox() {
+        return TipoOperacionComboBox;
+    }
+
+    public JButton getBtnCerrarSesion() {
+        return btnCerrarSesion;
+    }
+
+    public JButton getBtnConsultarOperaciones() {
+        return btnConsultarOperaciones;
+    }
+
+    public JButton getBtnRetiroSinCuenta1() {
+        return btnRetiroSinCuenta1;
+    }
+
+    public JButton getBtnUsuario() {
+        return btnUsuario;
+    }
+
+    public JButton getBtnVerCuentas() {
+        return btnVerCuentas;
+    }
+
+    public JComboBox<String> getRangoFechasComboBox() {
+        return rangoFechasComboBox;
+    }
+
+    public JTable getTablaOperaciones() {
+        return tablaOperaciones;
     }
     
     private void btnVerCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCuentasActionPerformed
@@ -197,10 +278,13 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
     private javax.swing.JButton btnRetiroSinCuenta1;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVerCuentas;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFiltro;
     private javax.swing.JLabel lblTipoOperacion;
     private javax.swing.JLabel lblTituloOperaciones;
     private javax.swing.JPanel panMenuBar;
     private javax.swing.JComboBox<String> rangoFechasComboBox;
+    private javax.swing.JTable tablaOperaciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,24 +5,29 @@
 package org.itson.proyecto01.entidades;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
  *
- * @author elgps
+ * @author Jesus Omar
  */ 
-public abstract class Operacion {
+public class Operacion {
     private int idOperacion;
     private LocalDateTime fechaHoraOperacion; 
     private TipoOperacion tipoOperacion; 
+    private double monto;
+    private String numeroCuenta;
 
     public Operacion() {
     }
 
-    public Operacion( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
+    public Operacion( int idOperacion, LocalDateTime fechaHoraOperacion,
+            TipoOperacion tipoOperacion, double monto, String numeroCuenta) {
+        this.idOperacion = idOperacion;
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;
+        this.monto = monto;
+        this.numeroCuenta = numeroCuenta;
     }
 
     public int getIdOperacion() {
@@ -48,6 +53,21 @@ public abstract class Operacion {
     public void setTipoOperacion(TipoOperacion tipoOperacion) {
         this.tipoOperacion = tipoOperacion;
     }
-    
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
     
 }

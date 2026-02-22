@@ -15,10 +15,12 @@ public class NuevaOperacionDTO {
 
     private LocalDateTime fechaHoraOperacion;
     private TipoOperacion tipoOperacion;
+    private double montoTransaccion;
 
-    public NuevaOperacionDTO(LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion) {
+    public NuevaOperacionDTO(LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, double montoTransaccion) {
         this.fechaHoraOperacion = fechaHoraOperacion;
         this.tipoOperacion = tipoOperacion;
+        this.montoTransaccion = montoTransaccion;
     }
 
     public LocalDateTime getFechaHoraOperacion() {
@@ -29,4 +31,8 @@ public class NuevaOperacionDTO {
         return tipoOperacion;
     }
 
+    public double getMontoTransaccion(){
+        return montoTransaccion;
+    }
+    
 }

@@ -6,6 +6,9 @@ package org.itson.proyecto01.presentacion;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -315,9 +318,66 @@ public class RegistroForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
+    public JButton getBtnRegistrarse() {
+        return btnRegistrarse;
+    }
+
+    public JTextField getTxtApellidoM() {
+        return txtApellidoM;
+    }
+
+    public JTextField getTxtApellidoP() {
+        return txtApellidoP;
+    }
+
+    public JTextField getTxtCalle() {
+        return txtCalle;
+    }
+
+    public JTextField getTxtCiudad() {
+        return txtCiudad;
+    }
+
+    public JTextField getTxtCodigoPostal() {
+        return txtCodigoPostal;
+    }
+
+    public JTextField getTxtColonia() {
+        return txtColonia;
+    }
+
+    public JPasswordField getTxtConfirmarContrasenia() {
+        return txtConfirmarContrasenia;
+    }
+
+    public JPasswordField getTxtContrasenia() {
+        return txtContrasenia;
+    }
+
+    public JTextField getTxtEstado() {
+        return txtEstado;
+    }
+
+    public JTextField getTxtFechaNacimiento() {
+        return txtFechaNacimiento;
+    }
+
+    public JTextField getTxtFechaNacimiento1() {
+        return txtFechaNacimiento1;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public JTextField getTxtNumero() {
+        return txtNumero;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarse;

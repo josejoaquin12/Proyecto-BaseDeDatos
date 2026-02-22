@@ -19,7 +19,7 @@ public class NuevaTransferenciaDTO extends NuevaOperacionDTO {
     private double monto;
 
     public NuevaTransferenciaDTO( LocalDateTime fechaHoraOperacion, TipoOperacion tipoOperacion, String cuentaOrigen, String cuentaDestino, double monto) {
-        super( fechaHoraOperacion, tipoOperacion);
+        super( fechaHoraOperacion, tipoOperacion, monto);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.monto = monto;

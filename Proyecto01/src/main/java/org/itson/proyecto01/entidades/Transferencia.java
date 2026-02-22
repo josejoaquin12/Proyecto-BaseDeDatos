@@ -13,6 +13,7 @@ import org.itson.proyecto01.enums.TipoOperacion;
  */
 public class Transferencia extends Operacion{
     
+    private Integer idTransaccion;
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;
     private double monto;
@@ -22,9 +23,8 @@ public class Transferencia extends Operacion{
         this.setTipoOperacion(TipoOperacion.TRANSFERENCIA);    
     }
 
-    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double monto, LocalDateTime fechaHoraOperacion, Object tipoOperacion) {
-        super( fechaHoraOperacion, TipoOperacion.TRANSFERENCIA);
-
+    public Transferencia(Integer idTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, double monto, LocalDateTime fechaHoraOperacion, Object tipoOperacion) {
+        super(idTransaccion, fechaHoraOperacion, TipoOperacion.TRANSFERENCIA, monto, cuentaOrigen.getNumeroCuenta());
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.monto = monto;
