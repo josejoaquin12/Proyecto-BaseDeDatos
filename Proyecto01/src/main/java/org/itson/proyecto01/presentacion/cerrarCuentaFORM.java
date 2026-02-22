@@ -4,8 +4,11 @@
  */
 package org.itson.proyecto01.presentacion;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import org.itson.proyecto01.entidades.Cuenta;
 
 /**
@@ -22,8 +25,10 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         this.setLocationRelativeTo(null);
+        utileriasBoton(btnCancelar);
+        utileriasBoton(btnConfirmarCerrarCuenta);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +64,7 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
         btnConfirmarCerrarCuenta.setText("Confirmar");
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnCancelar.setText("Confirmar");
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +107,14 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void utileriasBoton(JButton btn) {
+        btn.setBackground(Color.WHITE);
+        btn.setOpaque(true);
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(true);
+        btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+    }
+    
     /**
      * @param args the command line arguments
      */

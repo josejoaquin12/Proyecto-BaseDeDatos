@@ -62,13 +62,7 @@ public class MenuControl {
         menuForm.getBtnUsuario().addActionListener(e -> abrirPantallaUsuario());
 
 //         Evento para btnRealizarTransferencia
-        menuForm.getBtnMostrarTransferencias().addActionListener(e -> {
-            try {
-                abrirTransferenciaForm();
-            } catch (NegocioException ex) {
-                Logger.getLogger(MenuControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        menuForm.getBtnMostrarTransferencias().addActionListener(e -> abrirTransferenciaForm());
 
 //
 //         Evento para btnConsultarOperaciones
@@ -102,18 +96,18 @@ public class MenuControl {
         }
     }
 
-    private void abrirTransferenciaForm() throws NegocioException {
+    private void abrirTransferenciaForm(){
 
         TransferenciaForm form = new TransferenciaForm();
-
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(form, cuentasBO, transferenciasBO, clientesBO, idCliente);
+        TransferenciaControl TransferenciaControl = new TransferenciaControl(form, idCliente);
         form.setVisible(true);
         menuForm.dispose();
+
     }
 
     private void abrirRetiroConCuenta() {
         RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, cuentasBO, clientesBO, idCliente);
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, idCliente);
         RetiroConCuenta.setVisible(true);
         menuForm.dispose();
     }
@@ -135,6 +129,7 @@ public class MenuControl {
     private void abrirConsultarOperacionesForm() {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
         //OperacionControl operacionesControl = new OperacionControl();
+        operacionesForm.setLocationRelativeTo(null);
         operacionesForm.setVisible(true);
         menuForm.dispose();
     }
