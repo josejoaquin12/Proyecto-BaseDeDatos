@@ -116,6 +116,7 @@ public class MenuControl {
     private void abrirCerrarCuentaForm() {
         CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm( );
         CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl();
+        
         cerrarCuentaForm.setVisible(true);
         menuForm.dispose();
     }
@@ -130,6 +131,7 @@ public class MenuControl {
     private void cerrarSesion() {
         menuForm.dispose(); // cierra menu principal
         LoginForm loginForm = new LoginForm();
+        loginForm.setLocationRelativeTo(null);
         loginForm.setVisible(true);
     }
 }

@@ -44,6 +44,7 @@ CREATE TABLE Transferencias (
  FOREIGN KEY (id_transaccion) REFERENCES Operaciones(id_transaccion),
  FOREIGN KEY (id_cuenta_destino) REFERENCES Cuentas(id_cuenta)
 );
+
 CREATE TABLE RetirosSinCuenta (
  id_transaccion INT PRIMARY KEY AUTO_INCREMENT,
  folio VARCHAR(20) UNIQUE NOT NULL,
@@ -52,3 +53,38 @@ CREATE TABLE RetirosSinCuenta (
  estado ENUM('PENDIENTE','COBRADO','NO_COBRADO') NOT NULL,
  FOREIGN KEY (id_transaccion) REFERENCES Operaciones(id_transaccion)
 );
+
+DELIMITER $$
+
+CREATE PROCEDURE CobrarRetiroSinCuenta(
+    IN p_folio VARCHAR(20)
+)
+BEGIN
+    DECLARE v_monto DECIMAL(15,2);
+    DECLARE v_idCuenta INT;
+
+    START TRANSACTION;
+
+    -- Obtener monto y cuenta origen
+    SELECT o.monto, o.id_cuenta
+    INTO v_monto, v_idCuenta
+    FROM RetirosSinCuenta r
+    JOIN Operaciones o ON r.id_transaccion = o.id_transaccion
+    WHERE r.folio = p_folio
+      AND r.estado = 'PENDIENTE'
+    FOR UPDATE;
+
+    -- Descontar saldo
+    UPDATE Cuentas
+    SET saldo = saldo - v_monto
+    WHERE id_cuenta = v_idCuenta;
+
+    -- Marcar retiro como cobrado
+    UPDATE RetirosSinCuenta
+    SET estado = 'COBRADO'
+    WHERE folio = p_folio;
+
+    COMMIT;
+END$$
+
+DELIMITER ;

@@ -301,7 +301,7 @@ public class CuentasDAO implements ICuentasDAO {
             }
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
-            throw new PersistenciaException("No se pudo obtener el saldo", ex);
+            throw new PersistenciaException("No se pudo obtener la cuenta", ex);
         }
     }
 

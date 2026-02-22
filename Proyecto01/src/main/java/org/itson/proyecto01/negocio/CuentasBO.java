@@ -28,7 +28,16 @@ public class CuentasBO implements ICuentasBO {
             List<Cuenta> listaCuentasCliente = this.cuentasDAO.obtenerCuentas(idCliente);
             return listaCuentasCliente;
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al consultar la lista de cliente", ex);
+            throw new NegocioException(" :Error al consultar la lista de cliente", ex);
+        }
+    }
+    @Override
+    public List<Cuenta> consultarCuentasClienteActivas(Integer idCliente) throws NegocioException {
+        try {
+            List<Cuenta> listaCuentasCliente = this.cuentasDAO.obtenerCuentasActivas(idCliente);
+            return listaCuentasCliente;
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(" :Error al consultar la lista de cliente", ex);
         }
     }
 
@@ -38,7 +47,7 @@ public class CuentasBO implements ICuentasBO {
             Cuenta cuenta = this.cuentasDAO.obtenerCuentaporNumeroCuenta(numeroCuenta);
             return cuenta;
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error, no se encontro la cuenta", null);
+            throw new NegocioException(" :Error, no se encontro la cuenta", null);
         }
     }
 
@@ -47,7 +56,7 @@ public class CuentasBO implements ICuentasBO {
         try {
             Cliente clienteSesion = SesionControl.getSesion().getCliente();
             if (clienteSesion == null) {
-                throw new NegocioException("No hay cliente activo.", null);
+                throw new NegocioException(" :No hay cliente activo.", null);
             }
 
             NuevaCuentaDTO nuevaCuenta = new NuevaCuentaDTO(LocalDateTime.now(), clienteSesion.getId());
@@ -55,7 +64,7 @@ public class CuentasBO implements ICuentasBO {
             return cuentasDAO.altaCuenta(nuevaCuenta);
 
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al crear la cuenta.", ex);
+            throw new NegocioException(" :Error al crear la cuenta.", ex);
         }
     }
 
@@ -64,23 +73,23 @@ public class CuentasBO implements ICuentasBO {
         try {
             Cliente clienteSesion = SesionControl.getSesion().getCliente();
             if (clienteSesion == null) {
-                throw new NegocioException("No hay cliente en sesión.", null);
+                throw new NegocioException(" :No hay cliente en sesión.", null);
             }
 
             Cuenta cuenta = cuentasDAO.obtenerCuentaporNumeroCuenta(numeroCuenta);
             
             if (cuenta == null) {
-                throw new NegocioException("La cuenta no existe.", null);
+                throw new NegocioException(" :La cuenta no existe.", null);
             }
 
             if (!cuenta.getIdCliente().equals(clienteSesion.getId())) {
-                throw new NegocioException("La cuenta no pertenece al cliente en sesión.", null);
+                throw new NegocioException(" :La cuenta no pertenece al cliente en sesión.", null);
             }
             if (cuenta.getEstado() == EstadoCuenta.CANCELADA) {
-                throw new NegocioException("La cuenta ya está cancelada.", null);
+                throw new NegocioException(" :La cuenta ya está cancelada.", null);
             }
             if (cuenta.getSaldo() != 0.0) {
-                throw new NegocioException("No se puede cancelar una cuenta con saldo.", null);
+                throw new NegocioException(" :No se puede cancelar una cuenta con saldo.", null);
             }
 
             cuentasDAO.cancelarCuenta(cuenta.getId());
@@ -89,7 +98,7 @@ public class CuentasBO implements ICuentasBO {
             return cuenta;
 
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al cancelar la cuenta.", ex);
+            throw new NegocioException(" :Error al cancelar la cuenta.", ex);
         }
     }
 
