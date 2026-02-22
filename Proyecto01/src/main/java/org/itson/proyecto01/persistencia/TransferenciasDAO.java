@@ -97,6 +97,7 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
             //Creacion del objeto transferencia
             Transferencia transferencia = new Transferencia(
+                    idTransaccion,
                     cuentasDAO.obtenerCuentaporNumeroCuenta(nuevaTransferencia.getCuentaOrigen()),
                     cuentasDAO.obtenerCuentaporNumeroCuenta(nuevaTransferencia.getCuentaDestino()),
                     nuevaTransferencia.getMonto(),
