@@ -64,7 +64,7 @@ public class AltaCuentaControl {
 
         try {
             NuevaCuentaDTO nuevaCuenta = new NuevaCuentaDTO(LocalDateTime.now(), idCliente);
-            Cuenta cuentaCreada = cuentasBO.altaCuenta(nuevaCuenta);
+            Cuenta cuentaCreada = cuentasBO.altaCuenta();
 
             JOptionPane.showMessageDialog(altaForm,
                     "Cuenta creada exitosamente.\nNúmero de cuenta: " + cuentaCreada.getNumeroCuenta(),

@@ -127,8 +127,7 @@ public class MenuControl {
 
     private void abrirCerrarCuentaForm() {
         CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl();
-
+        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO,  clientesBO,  idCliente);
         cerrarCuentaForm.setVisible(true);
         menuForm.dispose();
     }
