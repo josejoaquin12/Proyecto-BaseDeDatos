@@ -4,7 +4,6 @@
  */
 package org.itson.proyecto01.persistencia;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +16,7 @@ import java.time.Period;
 import java.util.logging.Logger;
 import org.itson.proyecto01.dtos.NuevoClienteDTO;
 import org.itson.proyecto01.entidades.Cliente;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -31,41 +31,52 @@ public class ClientesDAO implements IClientesDAO {
 
         try {
             String codigoSQL = """
-                               insert into clientes(nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio)
-                               values(?,?,?,?,?,?,?,?);
-                               """;
+                   insert into clientes(nombres, apellido_paterno, apellido_materno, fecha_nacimiento, contrasena, fecha_registro, edad, id_domicilio)
+                   values(?,?,?,?,?,?,?,?);
+                   """;
             Connection conexion = ConexionBD.crearConexion();
-            PreparedStatement comando = conexion.prepareStatement(codigoSQL);
-            // Fecha en la que se registro el cliente
-            LocalDateTime fechaRegistro = LocalDateTime.now();
-            // Calculo de la edad del cliente
-            LocalDate fechaActual = LocalDate.now();
-            Integer edadCliente = Period.between(nuevoCliente.getFechaNacimiento(), fechaActual).getYears();
-            // Agregar los datos del cliente
-            comando.setString(1, nuevoCliente.getNombres());
-            comando.setString(2, nuevoCliente.getApellidoP());
-            comando.setString(3, nuevoCliente.getApelidoM());
-            comando.setDate(4, Date.valueOf(nuevoCliente.getFechaNacimiento()));
-            comando.setString(5, nuevoCliente.getContrasenia());
-            comando.setTimestamp(6, Timestamp.valueOf(fechaRegistro));
-            comando.setInt(7, edadCliente);
+
+            PreparedStatement comando = conexion.prepareStatement(codigoSQL, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            LocalDateTime fechaRegistro = LocalDateTime.now(); 
+
+            LocalDate fechaActual = LocalDate.now(); 
+            Integer edadCliente = Period.between(nuevoCliente.getFechaNacimiento(), fechaActual).getYears(); 
+            
+            //HASH
+            String passwordPlano = nuevoCliente.getContrasenia();
+            String hashed = BCrypt.hashpw(passwordPlano, BCrypt.gensalt());
+            
+            comando.setString(1, nuevoCliente.getNombres()); 
+            comando.setString(2, nuevoCliente.getApellidoP()); 
+            comando.setString(3, nuevoCliente.getApelidoM()); 
+            comando.setDate(4, Date.valueOf(nuevoCliente.getFechaNacimiento())); 
+            comando.setString(5, hashed); 
+            comando.setTimestamp(6, Timestamp.valueOf(fechaRegistro)); 
+            comando.setInt(7, edadCliente); 
             comando.setInt(8, idDomicilio);
 
-            boolean resultado = comando.execute();
+            comando.executeUpdate();
 
-            LOGGER.fine("Se ha registrado correctamente");
+            ResultSet rs = comando.getGeneratedKeys();
+            Integer idCliente = null;
+            if (rs.next()) {
+                idCliente = rs.getInt(1);
+            }
+
             conexion.close();
 
             return new Cliente(
-                    null,
+                    idCliente, 
                     nuevoCliente.getNombres(),
                     nuevoCliente.getApellidoP(),
                     nuevoCliente.getApelidoM(),
                     nuevoCliente.getFechaNacimiento(),
                     nuevoCliente.getContrasenia(),
-                    fechaRegistro,
+                    LocalDateTime.now(),
                     edadCliente,
-                    idDomicilio);
+                    idDomicilio
+            );
 
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
@@ -163,6 +174,8 @@ public class ClientesDAO implements IClientesDAO {
             return null;
 
         } catch (SQLException ex) {
+            throw new PersistenciaException("Error al obtener contraseña", ex);
+        } catch (IllegalArgumentException ex) {
             throw new PersistenciaException("Error al obtener contraseña", ex);
         }
     }

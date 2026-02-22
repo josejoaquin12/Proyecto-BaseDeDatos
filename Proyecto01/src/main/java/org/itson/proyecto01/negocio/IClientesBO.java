@@ -18,5 +18,6 @@ public interface IClientesBO {
     public abstract Cliente obtenerClientePorId(Integer idCliente)throws NegocioException;
     
     public abstract  int autenticarNombreCompletoPassword(String nombreCompleto, String password)throws NegocioException;
+
    
 }

@@ -278,11 +278,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="66" red="2d" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;!Bienvenido!&lt;/center&gt;&lt;/html&gt;"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="280" y="0" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="0" y="0" width="730" height="100"/>
                 </Constraint>
               </Constraints>
             </Component>

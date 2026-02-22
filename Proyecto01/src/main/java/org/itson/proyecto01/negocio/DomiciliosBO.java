@@ -6,7 +6,8 @@ package org.itson.proyecto01.negocio;
 
 import org.itson.proyecto01.dtos.NuevoDomicilioDTO;
 import org.itson.proyecto01.entidades.Domicilio;
-import org.itson.proyecto01.persistencia.IDomciliosDAO;
+import org.itson.proyecto01.persistencia.IDomiciliosDAO;
+import org.itson.proyecto01.persistencia.PersistenciaException;
 
 /**
  *
@@ -14,9 +15,9 @@ import org.itson.proyecto01.persistencia.IDomciliosDAO;
  */
 public class DomiciliosBO implements IDomiciliosBO{
     
-    private final IDomciliosDAO domiciliosDAO;
+    private final IDomiciliosDAO domiciliosDAO;
     
-    public DomiciliosBO (IDomciliosDAO domiciliosDAO){
+    public DomiciliosBO (IDomiciliosDAO domiciliosDAO){
         this.domiciliosDAO = domiciliosDAO;
     }
     
@@ -60,7 +61,15 @@ public class DomiciliosBO implements IDomiciliosBO{
         if(nuevoDomicilio.getCodigoPostal().length() > 10){
             throw new NegocioException("El codigo postal es demasiado largo", null);
         }
-        return null;
+        try {
+            int numdomicilio = Integer.parseInt(nuevoDomicilio.getNumero());
+            int codigoPostal = Integer.parseInt(nuevoDomicilio.getCodigoPostal());
+            return domiciliosDAO.registrarDomicilio(nuevoDomicilio);
+        } catch (PersistenciaException ex  ) {
+            throw new NegocioException("Error al crear domicilio", ex);
+        }catch (NumberFormatException ex  ) {
+            throw new NegocioException("Error al crear domicilio: numero domicilio o codigo postal invalido ", ex);
+        }
     }
     
 }

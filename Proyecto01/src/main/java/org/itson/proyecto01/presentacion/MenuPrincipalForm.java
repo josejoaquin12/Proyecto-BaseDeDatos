@@ -69,6 +69,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
 
         // Cargar cuentas desde el control
         menuControl.cargarCuentasCliente();
+        menuControl.cargarNombreCliente();
         
         // Cargar los estilos de los botones
         utileriasBoton(btnAltaCuenta);
@@ -268,8 +269,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
 
         lblBienvenido.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
         lblBienvenido.setForeground(new java.awt.Color(45, 102, 237));
-        lblBienvenido.setText("<html><center>!Bienvenido!</center></html>");
-        jPanel2.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
+        jPanel2.add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 100));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 800, -1));
 
@@ -441,7 +441,12 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     public JButton getBtnUsuario() {
         return btnUsuario;
     }
-
+    public void actualizarBienvenida(String nombreCliente) {
+        lblBienvenido.setText("<html><center>¡Bienvenido, <b>" + nombreCliente + "</b>!</center></html>");
+        lblBienvenido.setFont(new Font("Segoe UI", Font.BOLD, 36));
+        lblBienvenido.setForeground(new Color(45, 102, 237)); 
+        lblBienvenido.setHorizontalAlignment(JLabel.CENTER);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaCuenta;
     private javax.swing.JButton btnCancelarCuenta;
