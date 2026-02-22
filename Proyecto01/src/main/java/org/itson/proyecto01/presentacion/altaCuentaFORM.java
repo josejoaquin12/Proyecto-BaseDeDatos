@@ -36,12 +36,13 @@ public class AltaCuentaForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtNombreCliente1 = new javax.swing.JTextField();
+        txtNumeroCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNombreCliente2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        txtFecha = new javax.swing.JTextField();
+        chbTyC = new javax.swing.JCheckBox();
+        BtnConfirmarAlta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BtnMostrarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,6 +54,7 @@ public class AltaCuentaForm extends javax.swing.JFrame {
         jLabel2.setText("Nombre del cliente:");
         jLabel2.setToolTipText("");
 
+        txtNombreCliente.setEditable(false);
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -61,65 +63,74 @@ public class AltaCuentaForm extends javax.swing.JFrame {
         jLabel3.setText("Numero de Cliente: ");
         jLabel3.setToolTipText("");
 
-        txtNombreCliente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombreCliente1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNumeroCliente.setEditable(false);
+        txtNumeroCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNumeroCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Fecha:");
         jLabel4.setToolTipText("");
 
-        txtNombreCliente2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombreCliente2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtFecha.setEditable(false);
+        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFecha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jCheckBox1.setBackground(new java.awt.Color(241, 241, 241));
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jCheckBox1.setText("Acepto los Terminos y Condiciones");
-        jCheckBox1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        chbTyC.setBackground(new java.awt.Color(241, 241, 241));
+        chbTyC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        chbTyC.setText("Acepto los Terminos y Condiciones");
+        chbTyC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        chbTyC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                chbTyCActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Continuar");
-        jButton1.setToolTipText("");
+        BtnConfirmarAlta.setBackground(new java.awt.Color(0, 102, 255));
+        BtnConfirmarAlta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BtnConfirmarAlta.setForeground(new java.awt.Color(255, 255, 255));
+        BtnConfirmarAlta.setText("Continuar");
+        BtnConfirmarAlta.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(45, 102, 237));
         jLabel1.setText("Alta de cuenta");
+
+        BtnMostrarMenu.setBackground(new java.awt.Color(0, 102, 255));
+        BtnMostrarMenu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BtnMostrarMenu.setForeground(new java.awt.Color(255, 255, 255));
+        BtnMostrarMenu.setText("Cancelar");
+        BtnMostrarMenu.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jCheckBox1)))
-                .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(170, 170, 170))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(122, 122, 122))))
+                        .addContainerGap(146, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BtnMostrarMenu)
+                                .addGap(55, 55, 55)
+                                .addComponent(BtnConfirmarAlta))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(60, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chbTyC)
+                .addGap(101, 101, 101))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,15 +144,17 @@ public class AltaCuentaForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jCheckBox1)
+                .addComponent(chbTyC)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnConfirmarAlta)
+                    .addComponent(BtnMostrarMenu))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -161,24 +174,25 @@ public class AltaCuentaForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void chbTyCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbTyCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_chbTyCActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    public javax.swing.JButton BtnConfirmarAlta;
+    public javax.swing.JButton BtnMostrarMenu;
+    public javax.swing.JCheckBox chbTyC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtNombreCliente;
-    private javax.swing.JTextField txtNombreCliente1;
-    private javax.swing.JTextField txtNombreCliente2;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JTextField txtFecha;
+    public javax.swing.JTextField txtNombreCliente;
+    public javax.swing.JTextField txtNumeroCliente;
     // End of variables declaration//GEN-END:variables
 }

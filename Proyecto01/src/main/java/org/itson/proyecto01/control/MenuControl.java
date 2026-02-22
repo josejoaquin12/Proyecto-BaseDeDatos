@@ -1,6 +1,7 @@
 package org.itson.proyecto01.control;
 
 import org.itson.proyecto01.presentacion.*;
+import org.itson.proyecto01.presentacion.AltaCuentaForm;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
@@ -85,7 +86,7 @@ public class MenuControl {
         //Evento para btnRetiroConCuenta
         menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
     }
-    
+
     private void abrirPantallaUsuario() {
         PerfilUsuarioForm usuarioForm = new PerfilUsuarioForm();
         usuarioForm.setVisible(true);
@@ -119,7 +120,7 @@ public class MenuControl {
 
     private void abrirAltaCuentaForm() {
         AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
-        AltaCuentaControl altaCuentaControl = new AltaCuentaControl();
+        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO, idCliente);
         altaCuentaForm.setVisible(true);
         menuForm.dispose();
     }
