@@ -113,20 +113,19 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     @Override
-    public int verificarCredenciales(String nombreCompleto, String password) throws PersistenciaException {
+    public int verificarCredenciales(String nombreCompleto) throws PersistenciaException {
         try {
 
             String codigoSQL = """
                     select id_cliente
                     from clientes
-                    where concat(nombres, ' ', apellido_paterno, ' ', apellido_materno) = ? and contrasena = ?
+                    where concat(nombres, ' ', apellido_paterno, ' ', apellido_materno) = ?
                     """;
 
             Connection conexion = ConexionBD.crearConexion();
             PreparedStatement comando = conexion.prepareStatement(codigoSQL);
 
             comando.setString(1, nombreCompleto);
-            comando.setString(2, password);
 
             ResultSet resultado = comando.executeQuery();
 
@@ -142,5 +141,29 @@ public class ClientesDAO implements IClientesDAO {
             throw new PersistenciaException("No se encontro al cliente, contraseña o nombre incorrectos", null);
         }
     }
+    @Override
+    public String obtenerHashPorNombreCompleto(String nombreCompleto)throws PersistenciaException {
 
+        try {
+            String sql = """
+                select contrasena
+                from clientes
+                where concat(nombres, ' ', apellido_paterno, ' ', apellido_materno) = ?
+            """;
+
+            Connection con = ConexionBD.crearConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombreCompleto);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("contrasena");
+            }
+            return null;
+
+        } catch (SQLException ex) {
+            throw new PersistenciaException("Error al obtener contraseña", ex);
+        }
+    }
 }

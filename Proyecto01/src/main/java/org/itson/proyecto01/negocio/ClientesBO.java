@@ -77,6 +77,31 @@ public class ClientesBO implements IClientesBO {
         }
            
     }
+    @Override
+    public int autenticarNombreCompletoPassword(String nombreCompleto, String password)
+            throws NegocioException {
+
+        if (nombreCompleto == null || password == null) {
+            throw new NegocioException("Datos inválidos", null);
+        }
+
+        try {
+            String hashBD = clientesDAO.obtenerHashPorNombreCompleto(nombreCompleto);
+
+            if (hashBD == null) {
+                return -1;
+            }
+
+            if (!BCrypt.checkpw(password, hashBD)) {
+                return -1;
+            }
+
+            return clientesDAO.verificarCredenciales(nombreCompleto);
+
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al autenticar", ex);
+        }
+    }
 
     @Override
     public Cliente obtenerClientePorId(Integer idCliente) throws NegocioException {
@@ -91,20 +116,5 @@ public class ClientesBO implements IClientesBO {
         }catch(PersistenciaException ex){
             throw new NegocioException("Error, no se encontro el cliente", null);
         }
-    }
-    
-    @Override
-    public int autenticarNombreCompletoPassword(String nombreCompleto, String password) throws NegocioException {
-        
-        if (nombreCompleto == null || password == null) {
-            throw new NegocioException("Datos inválidos",null);
-        }
-        
-        try{
-         return clientesDAO.verificarCredenciales(nombreCompleto, password);   
-        }catch(PersistenciaException ex){
-            throw new NegocioException("Error, no se encontro el cliente", null);
-        }
-    }
-    
+    }   
 }

@@ -17,6 +17,7 @@ public interface IClientesDAO {
     
     public Cliente obtenerClientePorId(Integer idCliente) throws PersistenciaException;
     
-    public int verificarCredenciales(String NombreCompleto, String password) throws PersistenciaException ;
+    public int verificarCredenciales(String NombreCompleto) throws PersistenciaException ;
     
+    public String obtenerHashPorNombreCompleto(String nombreCompleto)throws PersistenciaException;
 }
