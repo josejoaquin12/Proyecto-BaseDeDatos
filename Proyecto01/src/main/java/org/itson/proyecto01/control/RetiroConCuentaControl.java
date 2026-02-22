@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cuenta;
-import org.itson.proyecto01.entidades.RetiroSinCuenta;
+import org.itson.proyecto01.entidades.Retiro;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
@@ -34,7 +34,6 @@ public class RetiroConCuentaControl {
         this.cuentasBO = cuentasBO;
         this.clientesBO = clientesBO;
         this.idCliente = idCliente;
-        retiroCForm.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
         cargarCuentasCliente();
         inicializarEventos();
 
@@ -53,7 +52,7 @@ public class RetiroConCuentaControl {
     private void cargarCuentasCliente() {
 
         try {
-            List<Cuenta> cuentas = cuentasBO.consultarCuentasCliente(idCliente);
+            List<Cuenta> cuentas = cuentasBO.consultarCuentasClienteActivas(idCliente);
 
             DefaultComboBoxModel<Cuenta> modelo = new DefaultComboBoxModel<>();
             modelo.addElement(new Cuenta(0, "Seleccione una cuenta...", null, 0.0, null, 0));
@@ -71,7 +70,8 @@ public class RetiroConCuentaControl {
 
     private void inicializarEventos() {
         retiroCForm.getBtnCancelarRetiro().addActionListener(e -> abrirMenuPrincipal(idCliente));
-        retiroCForm.getBtnGenerarRetiro().addActionListener(e -> generarRegistroConCuenta());
+        retiroCForm.getBtnGenerarRetiro().addActionListener(e -> generarRetiroConCuenta());
+        retiroCForm.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
     }
 
     private boolean validarBotonGenerarRetiro() {
@@ -86,11 +86,16 @@ public class RetiroConCuentaControl {
                 .replace("$", "")
                 .replace(",", "")
                 .trim();
-        if(cuenta == null || cuenta.getId() == 0 || textoMonto.isEmpty()) {
-            retiroCForm.getBtnGenerarRetiro().setEnabled(false);
-            return false;
-        }
+        
+        
         try {
+            if(cuenta == null || cuenta.getId() == 0 || textoMonto.isEmpty()) {
+                retiroCForm.getBtnGenerarRetiro().setEnabled(false);
+                retiroCForm.getBtnGenerarRetiro().setEnabled(true);
+                JOptionPane.showMessageDialog(retiroCForm,"Error: cuenta o monto invalidos");
+                return false;
+                
+            }
             double monto = Double.parseDouble(textoMonto);
             double saldoDisponible = Double.parseDouble(textoSaldo);
 
@@ -101,11 +106,10 @@ public class RetiroConCuentaControl {
 
         } catch (NumberFormatException e) {
             retiroCForm.getBtnGenerarRetiro().setEnabled(false);
+            JOptionPane.showMessageDialog(retiroCForm,"Error: cuenta o monto invalidos");
             return false;
         }
-
-        retiroCForm.getBtnGenerarRetiro().setEnabled(false);
-        return false;
+        return true;
     }
 
     private void abrirMenuPrincipal(int idCliente) {
@@ -115,20 +119,25 @@ public class RetiroConCuentaControl {
         retiroCForm.dispose();
     }
 
-    private void generarRegistroConCuenta() {
-        try {
+    private void generarRetiroConCuenta() {
+        try { 
             if (validarBotonGenerarRetiro()) {
 
-                Cuenta cuentaNueva = cuentasBO.obtenerCuentaporNumeroCuenta(retiroCForm.getCboCuentasCliente().getSelectedItem().toString());
-                double monto =Double.parseDouble(retiroCForm.getTxtMonto().getText());
+                Cuenta cuentaSeleccionada = (Cuenta) retiroCForm.getCboCuentasCliente().getSelectedItem();
+
+                String numeroCuenta = cuentaSeleccionada.getNumeroCuenta().trim();
+                System.out.println(numeroCuenta);
+                Cuenta cuentaNueva = cuentasBO.obtenerCuentaporNumeroCuenta(numeroCuenta);
+                System.out.println(cuentaNueva);
+                double monto = Double.parseDouble(retiroCForm.getTxtMonto().getText());
+                
                 RetiroBO retiroBO = new RetiroBO();
-                RetiroSinCuenta retiroGenerado = retiroBO.generarRetiro(cuentaNueva, monto);
-                retiroCForm.getLblSaldoDisponible().setText(String.valueOf(cuentaNueva.getSaldo()));
-                JOptionPane.showMessageDialog(
-                        retiroCForm,
-                        "Retiro generado correctamente\n\n" +
-                        "Folio: " + retiroGenerado.getFolio() + "\n" +
-                        "Contraseña: " + retiroGenerado.getContrasena(),
+                Retiro retiroGenerado = retiroBO.generarRetiro(cuentaNueva, monto);
+                
+                JOptionPane.showMessageDialog(retiroCForm,
+                        "Retiro generado correctamente\n\n"
+                        + "Folio: " + retiroGenerado.getFolio() + "\n"
+                        + "Contraseña: " + retiroGenerado.getContrasena(),
                         "Retiro sin cuenta",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -136,12 +145,8 @@ public class RetiroConCuentaControl {
             }
         } catch (NegocioException ex) {
             LOGGER.severe(ex.getMessage());
-            JOptionPane.showMessageDialog(
-                    retiroCForm,
-                    ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
+            JOptionPane.showMessageDialog(retiroCForm, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 }

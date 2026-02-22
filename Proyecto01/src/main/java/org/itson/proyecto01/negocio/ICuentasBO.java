@@ -13,7 +13,8 @@ import org.itson.proyecto01.entidades.Cuenta;
  * @author joset
  */
 public interface ICuentasBO {
-
+    public List<Cuenta> consultarCuentasClienteActivas(Integer idCliente) throws NegocioException;
+    
     public List<Cuenta> consultarCuentasCliente(Integer idCliente) throws NegocioException;
 
     public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws NegocioException;

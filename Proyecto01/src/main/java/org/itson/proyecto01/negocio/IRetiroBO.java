@@ -5,12 +5,14 @@
 package org.itson.proyecto01.negocio;
 
 import org.itson.proyecto01.entidades.Cuenta;
-import org.itson.proyecto01.entidades.RetiroSinCuenta;
+import org.itson.proyecto01.entidades.Retiro;
 
 /**
  *
  * @author joset
  */
 public interface IRetiroBO {
-  public RetiroSinCuenta generarRetiro(Cuenta cuenta, double monto);
+  public Retiro generarRetiro(Cuenta cuenta, double monto)throws NegocioException;
+  public Retiro compararRetiro(String numeroFolio , String contrasenia) throws NegocioException;
+  public void cobrarRetiro(Retiro retiro)throws NegocioException;
 }

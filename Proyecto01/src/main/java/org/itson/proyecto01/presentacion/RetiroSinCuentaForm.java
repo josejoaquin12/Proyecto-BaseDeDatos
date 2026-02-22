@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,9 +22,11 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
      */
     public RetiroSinCuentaForm() {
         initComponents();
+        setLocationRelativeTo(null);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         utileriasBoton(btnRetirar);
+        utileriasBoton(btnCancelarRetiro);
     }
 
     /**
@@ -49,6 +53,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         lblFechaExpiracion = new javax.swing.JLabel();
         lblFechaExpiracionRetiro = new javax.swing.JLabel();
         panPanelPie = new javax.swing.JPanel();
+        btnCancelarRetiro = new javax.swing.JButton();
         btnRetirar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +77,15 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         lblFolio.setText("Folio: ");
         PanCentro.add(lblFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 61, -1, -1));
 
-        txtNumeroFolio.setText("Ingrese numero de Folio");
+        txtNumeroFolio.setToolTipText("");
+        txtNumeroFolio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNumeroFolioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNumeroFolioFocusLost(evt);
+            }
+        });
         txtNumeroFolio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroFolioActionPerformed(evt);
@@ -85,7 +98,14 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         lblContrasenia.setText("Contraseña:");
         PanCentro.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 123, -1, -1));
 
-        txtContrasenia.setText("Ingrese la contraseña");
+        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContraseniaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContraseniaFocusLost(evt);
+            }
+        });
         PanCentro.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 145, 233, -1));
 
         lblNombre.setText("Nombre:");
@@ -103,6 +123,16 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         panPanelPie.setBackground(new java.awt.Color(255, 255, 255));
         panPanelPie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnCancelarRetiro.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnCancelarRetiro.setForeground(new java.awt.Color(45, 102, 237));
+        btnCancelarRetiro.setText("Cancelar");
+        btnCancelarRetiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarRetiroActionPerformed(evt);
+            }
+        });
+        panPanelPie.add(btnCancelarRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, 50));
+
         btnRetirar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRetirar.setForeground(new java.awt.Color(45, 102, 237));
         btnRetirar.setText("Retirar");
@@ -111,7 +141,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
                 btnRetirarActionPerformed(evt);
             }
         });
-        panPanelPie.add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 100, 50));
+        panPanelPie.add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 100, 50));
 
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -154,17 +184,71 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         btn.setContentAreaFilled(true);
         btn.setBorder(new javax.swing.border.LineBorder(new Color(45,102,237), 2, true));
     }
-    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetirarActionPerformed
-
     private void txtNumeroFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroFolioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroFolioActionPerformed
 
+    private void btnCancelarRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRetiroActionPerformed
+
+    }//GEN-LAST:event_btnCancelarRetiroActionPerformed
+
+    private void txtNumeroFolioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumeroFolioFocusGained
+        if (txtNumeroFolio.getText().equals("Ingrese numero de Folio")) {
+            txtNumeroFolio.setText("");
+            txtNumeroFolio.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtNumeroFolioFocusGained
+
+    private void txtNumeroFolioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumeroFolioFocusLost
+        if (txtNumeroFolio.getText().equals("")) {
+            txtNumeroFolio.setText("Ingrese numero de Folio");
+            txtNumeroFolio.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtNumeroFolioFocusLost
+
+    private void txtContraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusGained
+        if (txtContrasenia.getText().equals("Ingrese la contraseña")) {
+            txtContrasenia.setText("");
+            txtContrasenia.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtContraseniaFocusGained
+
+    private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
+        if (txtContrasenia.getText().equals("")) {
+            txtContrasenia.setText("Ingrese la contraseña");
+            txtContrasenia.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtContraseniaFocusLost
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRetirarActionPerformed
+    public JButton getBtnRetirar(){
+        return btnRetirar;
+    }
+    public JButton getBtnCancelar(){
+        return btnCancelarRetiro;
+    }
+    public JTextField getTxtContrasenia(){
+        return txtContrasenia;
+    }
+    public JTextField getTxtFolio(){
+        return txtNumeroFolio;
+    }
+    public JLabel getLblNombreCuenta(){
+        return lblNombreCuenta;
+    }
+    public JLabel getLblMontoRetiro(){
+        return lblMontoRetiro;
+    }
+     public JLabel getLblFechaExpiracion(){
+        return lblFechaExpiracionRetiro;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanCentro;
+    private javax.swing.JButton btnCancelarRetiro;
     private javax.swing.JButton btnRetirar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblContrasenia;

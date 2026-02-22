@@ -55,7 +55,7 @@ public class TransferenciaControl {
     }
     private void cargarCuentasCliente() {
         try {
-            List<Cuenta> cuentas = cuentasBO.consultarCuentasCliente(idCliente);
+            List<Cuenta> cuentas = cuentasBO.consultarCuentasClienteActivas(idCliente);
 
             DefaultComboBoxModel<Cuenta> modelo = new DefaultComboBoxModel<>();
             modelo.addElement(new Cuenta(0, "Seleccione una cuenta...", null, 0.0, null, 0));
@@ -111,11 +111,17 @@ public class TransferenciaControl {
         String destino = transfrom.getTxtNumeroCuentaDestino().getText().trim();
         String monto = transfrom.getTxtMonto().getText().trim();
         String saldoDisponible = transfrom.getLblSaldoDisponible().getText().trim();
-        int montInt = Integer.parseInt(monto);
-        int saldoDisponibleInt = Integer.parseInt(saldoDisponible);
+        
+        String textosaldoDisponible = saldoDisponible
+            .replace("$", "")
+            .replace(",", "")
+            .trim();
+
+        double montInt = Double.parseDouble(monto);
+        double saldoDisponibleInt = Double.parseDouble(textosaldoDisponible);
 
 
-        if(cuenta != null && cuenta.getId()!= 0 && !destino.isEmpty() && !monto.isEmpty()&& saldoDisponibleInt>0 && saldoDisponibleInt <= montInt){
+        if(cuenta != null && cuenta.getId()!= 0 && !destino.isEmpty() && !monto.isEmpty()&& saldoDisponibleInt> 0 && saldoDisponibleInt <= montInt){
             transfrom.getBtnContinuarTransferencia().setEnabled(true);
         }else{
             transfrom.getBtnContinuarTransferencia().setEnabled(false);

@@ -34,6 +34,7 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
         this.saldoDispnible = saldoDisponible;
         
         initComponents();
+        setLocationRelativeTo(null);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         this.txtNumeroCuenta.setText(cuentaSeleccionada);
@@ -323,7 +324,12 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
 
             this.dispose(); // cerrar ventana actual
         }catch(NegocioException ex){
-            
+            JOptionPane.showMessageDialog(
+                this,
+                ex.getMessage(),
+                " :Error en la transferencia",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }//GEN-LAST:event_btnConfirmarTransferenciaActionPerformed
 

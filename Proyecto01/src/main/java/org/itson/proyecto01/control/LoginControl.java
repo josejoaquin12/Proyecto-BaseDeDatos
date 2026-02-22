@@ -68,9 +68,11 @@ public class LoginControl {
         loginForm.dispose(); 
     }
     private void abrirRetiroSinCuenta() {
-        RetiroSinCuentaForm RetiroSinCuenta = new RetiroSinCuentaForm();
-        RetiroSinCuenta.setLocationRelativeTo(null);
-        RetiroSinCuenta.setVisible(true);
+        
+        RetiroSinCuentaForm retiroSinCuenta = new RetiroSinCuentaForm();
+        RetiroSinCuentaControl retiroSinCuentaControl = new RetiroSinCuentaControl(retiroSinCuenta);
+        retiroSinCuenta.setLocationRelativeTo(null);
+        retiroSinCuenta.setVisible(true);
         loginForm.dispose(); 
     }
 }
