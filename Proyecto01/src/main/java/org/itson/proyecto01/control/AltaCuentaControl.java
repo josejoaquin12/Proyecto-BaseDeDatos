@@ -35,13 +35,10 @@ public class AltaCuentaControl {
         this.clientesBO = clientesBO;
         this.idCliente = idCliente;
 
-        // Botón confirmar alta
         altaForm.BtnConfirmarAlta.addActionListener(e -> confirmarAlta());
 
-        // Botón cancelar (volver al menú)
         altaForm.BtnMostrarMenu.addActionListener(e -> abrirMenuPrincipal());
 
-        // Cargar datos del cliente en los textfields
         cargarDatosCliente();
     }
 

@@ -13,6 +13,7 @@ import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.presentacion.CerrarCuentaForm;
+import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 
 /**
  *
@@ -31,6 +32,8 @@ public class CerrarCuentaControl {
         this.cuentasBO = cuentasBO;
         this.clientesBO = clientesBO;
         this.idCliente = idCliente;
+
+        cerrarForm.btnCancelar.addActionListener(e -> abrirMenuPrincipal());
 
         cerrarForm.btnConfirmarCerrarCuenta.addActionListener(e -> confirmarCancelacion());
 
@@ -90,6 +93,13 @@ public class CerrarCuentaControl {
                 JOptionPane.showMessageDialog(cerrarForm, "Error al cancelar la cuenta: " + ex.getMessage());
             }
         }
+    }
+
+    private void abrirMenuPrincipal() {
+        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
+        cerrarForm.dispose();
     }
 
 }
