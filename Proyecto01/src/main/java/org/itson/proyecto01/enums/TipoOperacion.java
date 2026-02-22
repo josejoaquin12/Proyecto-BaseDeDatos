@@ -12,6 +12,6 @@ public enum TipoOperacion {
     
     TRANSFERENCIA,
     RETIRO_SIN_CUENTA,
-    ALTA_DE_CUENTA
+    ALTA_CUENTA
     
 }

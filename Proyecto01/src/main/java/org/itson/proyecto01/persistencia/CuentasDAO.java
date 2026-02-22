@@ -141,13 +141,13 @@ public class CuentasDAO implements ICuentasDAO {
             conexion = ConexionBD.crearConexion();
 
             String codigoSQLCuenta = """
-                                    insert into Cuentas(numero_cuenta, fecha_apertura,
+                                    insert into cuentas(numero_cuenta, fecha_apertura,
                                                       saldo, estado, id_cliente)
                                     values (?, ?, ?, ?, ?);
                                    """;
 
             String codigoSQLOperacion = """
-                                      insert into Operaciones (tipo_operacion, fecha_hora, monto, id_cuenta)
+                                      insert into operaciones (tipo_operacion, fecha_hora, monto, id_cuenta)
                                       values (?,?,?,?);
                                       """;
 
@@ -176,7 +176,7 @@ public class CuentasDAO implements ICuentasDAO {
 
             //insertar la operacion de alte de cuenta de la cuenta que acabamos de crear
             PreparedStatement psOperacion = conexion.prepareStatement(codigoSQLOperacion);
-            psOperacion.setString(1, TipoOperacion.ALTA_DE_CUENTA.name());
+            psOperacion.setString(1, TipoOperacion.ALTA_CUENTA.name());
             psOperacion.setTimestamp(2, Timestamp.valueOf(nuevaCuenta.getFechaApertura()));
             psOperacion.setDouble(3, nuevaCuenta.getSaldo());
             psOperacion.setInt(4, idCuentaGenerada);
@@ -331,5 +331,4 @@ public class CuentasDAO implements ICuentasDAO {
         return numeroCuenta;
     }
 
-     
 }

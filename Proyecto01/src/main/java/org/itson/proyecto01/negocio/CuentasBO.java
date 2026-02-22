@@ -64,7 +64,7 @@ public class CuentasBO implements ICuentasBO {
             return cuentasDAO.altaCuenta(nuevaCuenta);
 
         } catch (PersistenciaException ex) {
-            throw new NegocioException(" :Error al crear la cuenta.", ex);
+            throw new NegocioException(" :Error al crear la cuenta.", null);
         }
     }
 

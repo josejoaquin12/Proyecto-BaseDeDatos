@@ -5,6 +5,7 @@
 package org.itson.proyecto01.control;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.dtos.NuevaCuentaDTO;
@@ -49,7 +50,9 @@ public class AltaCuentaControl {
             Cliente cliente = clientesBO.obtenerClientePorId(idCliente);
             altaForm.txtNombreCliente.setText(cliente.getNombres() + " " + cliente.getApellidoP() + " " + cliente.getApellidoM());
             altaForm.txtNumeroCliente.setText(String.valueOf(cliente.getId()));
-            altaForm.txtFecha.setText(LocalDateTime.now().toString());
+            LocalDateTime fechaActual = LocalDateTime.now();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            altaForm.txtFecha.setText(fechaActual.format(formato));
         } catch (NegocioException ex) {
             LOGGER.severe(ex.getMessage());
             JOptionPane.showMessageDialog(altaForm, "Error al cargar datos del cliente");
