@@ -32,6 +32,15 @@ public class NuevoClienteDTO {
         this.edad = edad;
         this.idDomicilio = idDomicilio;
     }
+    public NuevoClienteDTO(String nombres, String apellidoP, String apelidoM, LocalDate fechaNacimiento,LocalDateTime fechaRegistro,Integer edad, Integer idDomicilio) {
+        this.nombres = nombres;
+        this.apellidoP = apellidoP;
+        this.apelidoM = apelidoM;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaRegistro = fechaRegistro;
+        this.edad = edad;
+        this.idDomicilio = idDomicilio;
+    }
 
     public String getNombres() {
         return nombres;

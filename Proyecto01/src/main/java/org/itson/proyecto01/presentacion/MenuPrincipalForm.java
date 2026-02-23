@@ -154,7 +154,7 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         btnCerrarSesion.setText("Cerrar Sesion");
 
         btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta.setText("<html>Realizar <br>Retiro</html> ");
         btnRetiroSinCuenta.setToolTipText("");
         btnRetiroSinCuenta.setActionCommand("  ");
         btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {

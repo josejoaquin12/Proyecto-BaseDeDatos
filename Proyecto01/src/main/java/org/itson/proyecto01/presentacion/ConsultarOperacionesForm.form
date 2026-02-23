@@ -50,7 +50,7 @@
                       <Component id="lblTituloOperaciones" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -132,12 +132,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Variable" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ver Cuentas"/>
+            <Property name="text" type="java.lang.String" value="Menu Principal"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerCuentasActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRealizarTransferencia">
           <Properties>
@@ -146,9 +143,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Realizar&lt;br&gt;Transferencia&lt;/html&gt; "/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRealizarTransferenciaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCerrarSesion">
           <Properties>
@@ -163,13 +157,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Variable" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Retiro sin &lt;br&gt;Cuenta&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Realizar &lt;br&gt;Retiro&lt;/html&gt; "/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="actionCommand" type="java.lang.String" value="  "/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetiroSinCuenta1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

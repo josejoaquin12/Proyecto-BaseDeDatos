@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
+import org.itson.proyecto01.control.SesionControl;
 import org.itson.proyecto01.dtos.NuevoDomicilioDTO;
 import org.itson.proyecto01.entidades.Domicilio;
 
@@ -20,6 +21,7 @@ import org.itson.proyecto01.entidades.Domicilio;
 public class DomiciliosDAO implements IDomiciliosDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DomiciliosDAO.class.getName());
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
     @Override
     public Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio) throws PersistenciaException {
@@ -75,17 +77,57 @@ public class DomiciliosDAO implements IDomiciliosDAO {
             comando.setInt(1, idDomicilio);
 
             ResultSet resultados = comando.executeQuery();
-            
+
             if (resultados.next()) {
                 Integer id = resultados.getInt("id_domicilio");
                 String calle = resultados.getString("calle");
                 String numero = resultados.getString("numero");
                 String colonia = resultados.getString("colonia");
                 String ciudad = resultados.getString("ciudad");
-                String estado = resultados.getString("ciudad");           
+                String estado = resultados.getString("ciudad");
                 String codigoPostal = resultados.getString("codigo_postal");
                 conexion.close();
-                return new Domicilio(id,calle,numero,colonia,ciudad,estado,codigoPostal);
+                return new Domicilio(id, calle, numero, colonia, ciudad, estado, codigoPostal);
+            } else {
+                conexion.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo obtener el domicilio", null);
+        }
+    }
+
+    @Override
+    public Domicilio actualizarDomicilio(NuevoDomicilioDTO nuevoDomicilio,Integer idDomicilio) throws PersistenciaException {
+        try {
+            String comandoSQL = """
+                                Update domicilios 
+                                Set calle=?, numero=?, colonia=?, ciudad=?, estado=?, codigo_postal=?  
+
+                                where id_domicilio = ?;
+                                """;
+            Connection conexion = ConexionBD.crearConexion();
+            PreparedStatement comando = conexion.prepareStatement(comandoSQL);
+            comando.setString(1, nuevoDomicilio.getCalle());
+            comando.setString(2, nuevoDomicilio.getNumero());
+            comando.setString(3, nuevoDomicilio.getColonia());
+            comando.setString(4, nuevoDomicilio.getCiudad());
+            comando.setString(5, nuevoDomicilio.getEstado());
+            comando.setString(6, nuevoDomicilio.getCodigoPostal());
+            comando.setInt(7, idDomicilio);
+
+            int resultados = comando.executeUpdate();
+
+            if (resultados > 0) {
+                String calle = nuevoDomicilio.getCalle();
+                String numero = nuevoDomicilio.getNumero();
+                String colonia = nuevoDomicilio.getColonia();
+                String ciudad = nuevoDomicilio.getCiudad();
+                String estado = nuevoDomicilio.getEstado();
+                String codigoPostal = nuevoDomicilio.getCodigoPostal();
+                conexion.close();
+                return new Domicilio( idDomicilio,calle, numero, colonia, ciudad, estado, codigoPostal);
             } else {
                 conexion.close();
                 return null;

@@ -69,34 +69,19 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         btnUsuario.setText("Usuario");
 
         btnVerCuentas.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnVerCuentas.setText("Ver Cuentas");
+        btnVerCuentas.setText("Menu Principal");
         btnVerCuentas.setToolTipText("");
-        btnVerCuentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerCuentasActionPerformed(evt);
-            }
-        });
 
         btnRealizarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnRealizarTransferencia.setText("<html>Realizar<br>Transferencia</html> ");
-        btnRealizarTransferencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarTransferenciaActionPerformed(evt);
-            }
-        });
 
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
 
         btnRetiroSinCuenta1.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta1.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta1.setText("<html>Realizar <br>Retiro</html> ");
         btnRetiroSinCuenta1.setToolTipText("");
         btnRetiroSinCuenta1.setActionCommand("  ");
-        btnRetiroSinCuenta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuenta1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
         panMenuBar.setLayout(panMenuBarLayout);
@@ -198,7 +183,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(301, 301, 301)
                         .addComponent(lblTituloOperaciones)))
-                .addGap(0, 78, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,18 +246,6 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         return tablaOperaciones;
     }
     
-    private void btnVerCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCuentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerCuentasActionPerformed
-
-    private void btnRealizarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarTransferenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRealizarTransferenciaActionPerformed
-
-    private void btnRetiroSinCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuenta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuenta1ActionPerformed
-
     public void setModelTipoOperacion(DefaultComboBoxModel<String> modelo){
         this.TipoOperacionComboBox.setModel(modelo);
     }

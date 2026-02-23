@@ -102,7 +102,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         btnUsuario.setText("Usuario");
 
         btnVerCuentas.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnVerCuentas.setText("Ver Cuentas");
+        btnVerCuentas.setText("Menu Principal");
         btnVerCuentas.setToolTipText("");
         btnVerCuentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         btnCerrarSesion.setText("Cerrar Sesion");
 
         btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnRetiroSinCuenta.setText("<html>Retiro sin <br>Cuenta</html> ");
+        btnRetiroSinCuenta.setText("<html>Realizar <br>Retiro</html> ");
         btnRetiroSinCuenta.setToolTipText("");
         btnRetiroSinCuenta.setActionCommand("  ");
         btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -384,7 +384,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(531, 531, 531)
                         .addComponent(lblTrasnferirTitulo)))
-                .addGap(0, 290, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

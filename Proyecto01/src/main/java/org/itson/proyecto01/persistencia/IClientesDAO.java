@@ -13,11 +13,13 @@ import org.itson.proyecto01.entidades.Cliente;
  */
 public interface IClientesDAO {
     
-    public Cliente crearCliente(NuevoClienteDTO nuevoCliente, Integer idDomicilio) throws PersistenciaException;
+    public Cliente crearCliente(Integer idDomicilio, NuevoClienteDTO nuevoCliente, Integer idDomicilio1) throws PersistenciaException;
     
     public Cliente obtenerClientePorId(Integer idCliente) throws PersistenciaException;
     
     public int verificarCredenciales(String NombreCompleto) throws PersistenciaException ;
     
     public String obtenerHashPorNombreCompleto(String nombreCompleto)throws PersistenciaException;
+    
+    public Cliente actualizarCliente( Integer idCliente,NuevoClienteDTO clienteDTO, int idDomicilio) throws PersistenciaException ;
 }

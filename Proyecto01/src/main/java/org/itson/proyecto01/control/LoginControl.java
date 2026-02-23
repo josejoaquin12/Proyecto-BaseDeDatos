@@ -1,5 +1,6 @@
 package org.itson.proyecto01.control;
 
+import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.negocio.ClientesBO;
 import org.itson.proyecto01.negocio.IClientesBO;
@@ -20,7 +21,6 @@ public class LoginControl {
         this.loginForm = loginForm;
         IClientesDAO clienteDAO = new ClientesDAO();
         this.clienteBO = new ClientesBO(clienteDAO);
-        this.loginForm = loginForm;
         inicializarEventos();
     }
 
@@ -44,8 +44,8 @@ public class LoginControl {
             SesionControl.getSesion().guardarSesion(cliente);
             // Manda al usuario al menu principal
             abrirMenuPrincipal();
-        } catch (NegocioException ex) {
-            throw new NegocioException("Error, no se encontro el cliente", null);
+        } catch (NegocioException | ControlException  ex) {
+            JOptionPane.showMessageDialog(loginForm,"Error, no se encontro el cliente "+ex.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
         }
     }
     private void inicializarEventos() {

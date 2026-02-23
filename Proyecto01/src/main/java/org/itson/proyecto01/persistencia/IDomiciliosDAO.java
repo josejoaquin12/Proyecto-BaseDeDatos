@@ -14,5 +14,6 @@ import org.itson.proyecto01.entidades.Domicilio;
 public interface IDomiciliosDAO {
     
     public  Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio)throws PersistenciaException;
-    public  Domicilio obtenerDomicilioID(Integer idDomicilio)throws PersistenciaException;    
+    public  Domicilio obtenerDomicilioID(Integer idDomicilio)throws PersistenciaException;   
+    public  Domicilio actualizarDomicilio(NuevoDomicilioDTO nuevoDomicilio,Integer idDomicilio)throws PersistenciaException;    
 }

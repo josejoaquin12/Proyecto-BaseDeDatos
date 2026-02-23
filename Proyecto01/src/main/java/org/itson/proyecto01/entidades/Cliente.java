@@ -38,6 +38,16 @@ public class Cliente {
         this.edad = edad;
         this.idDomicilio = idDomicilio;
     }
+    public Cliente( Integer id,String nombres, String apellidoP, String apellidoM, LocalDate fechaNacimiento, LocalDateTime fechaRegistro, Integer edad, Integer idDomicilio) {
+        this.id=id;
+        this.nombres = nombres;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaRegistro = fechaRegistro;
+        this.edad = edad;
+        this.idDomicilio = idDomicilio;
+    }
 
     public void setId(Integer id) {
         this.id = id;

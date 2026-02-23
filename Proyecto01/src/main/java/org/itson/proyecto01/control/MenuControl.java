@@ -7,25 +7,18 @@ import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.negocio.ClientesBO;
 import org.itson.proyecto01.negocio.IClientesBO;
-import org.itson.proyecto01.negocio.ITransferenciasBO;
 import org.itson.proyecto01.negocio.NegocioException;
-import org.itson.proyecto01.negocio.TransferenciasBO;
 import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
-import org.itson.proyecto01.persistencia.ITransferenciasDAO;
-import org.itson.proyecto01.persistencia.TransferenciasDAO;
 
 public class MenuControl {
 
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
-    private final ITransferenciasBO transferenciasBO;
     private final MenuPrincipalForm menuForm;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
@@ -35,11 +28,9 @@ public class MenuControl {
         // Inicializar BO 
         ICuentasDAO cuentasDAO = new CuentasDAO();
         IClientesDAO clientesDAO = new ClientesDAO();
-        ITransferenciasDAO transferenciasDAO = new TransferenciasDAO(cuentasDAO);
 
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
-        this.transferenciasBO = new TransferenciasBO(transferenciasDAO, cuentasDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
 
         inicializarEventos();
@@ -81,9 +72,14 @@ public class MenuControl {
     }
 
     private void abrirPantallaUsuario() {
+        try {
         UsuarioForm usuarioForm = new UsuarioForm();
+        UsuarioControl usuarioControl = new UsuarioControl(usuarioForm);
         usuarioForm.setVisible(true);
         menuForm.dispose();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(menuForm, "Error al cargar nombre del cliente: " + ex.getMessage());
+        }
     }
 
     public void cargarNombreCliente() {

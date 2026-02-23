@@ -76,10 +76,6 @@
                           <Component id="lblApellidoP" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblApellidoM" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblFechaNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblContrasenia" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblConfirmarContrasenia" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtContrasenia" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtConfirmarContrasenia" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -163,25 +159,13 @@
                       <Component id="txtCiudad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblEstado" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txtEstado" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblConfirmarContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblCodigoPostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblCodigoPostal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtConfirmarContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodigoPostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txtCodigoPostal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnActualizarDatos" min="-2" pref="39" max="-2" attributes="0"/>
@@ -262,26 +246,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Calle"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblContrasenia">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblConfirmarContrasenia">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="txtContrasenia">
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="txtConfirmarContrasenia">
         </Component>
         <Component class="javax.swing.JLabel" name="lblDatosIdentificacion">
           <Properties>
