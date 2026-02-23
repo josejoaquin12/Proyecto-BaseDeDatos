@@ -123,11 +123,11 @@ public class MenuControl {
 
     private void abrirConsultarOperacionesForm() {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
-        //OperacionControl operacionesControl = new OperacionControl();
+        OperacionControl operacionesControl = new OperacionControl();
         operacionesForm.setVisible(true);
         menuForm.dispose();
     }
-
+    
     private void cerrarSesion() {
         menuForm.dispose(); // cierra menu principal
         LoginForm loginForm = new LoginForm();
