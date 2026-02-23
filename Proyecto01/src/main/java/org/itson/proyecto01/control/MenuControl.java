@@ -15,6 +15,24 @@ import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 
+/**
+ * Clase controladora que gestiona la lógica del Menú Principal de la
+ * aplicación.
+ * <p>
+ * Este controlador actúa como el punto central de navegación del usuario,
+ * encargándose de:
+ * <ul>
+ * <li>Cargar y mostrar las cuentas bancarias asociadas al cliente en
+ * sesión.</li>
+ * <li>Mostrar el saludo personalizado con el nombre completo del cliente.</li>
+ * <li>Gestionar la redirección hacia los módulos de transferencias, retiros,
+ * alta/baja de cuentas y consulta de movimientos.</li>
+ * <li>Administrar la finalización de la sesión del usuario.</li>
+ * </ul>
+ * </p>
+ *
+ * * @author Jesus Omar
+ */
 public class MenuControl {
 
     private final ICuentasBO cuentasBO;
@@ -22,6 +40,16 @@ public class MenuControl {
     private final MenuPrincipalForm menuForm;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
+    /**
+     * Constructor que inicializa el controlador del menú.
+     * <p>
+     * Configura las dependencias BO, inicializa los DAOs necesarios y establece
+     * los escuchadores de eventos para los componentes de la vista.
+     * </p>
+     *
+     * * @param menuForm Instancia de la vista {@link MenuPrincipalForm} a
+     * administrar.
+     */
     public MenuControl(MenuPrincipalForm menuForm) {
         this.menuForm = menuForm;
 
@@ -36,6 +64,14 @@ public class MenuControl {
         inicializarEventos();
     }
 
+    /**
+     * Recupera las cuentas bancarias del cliente desde la base de datos y las
+     * renderiza en la vista.
+     * <p>
+     * Por cada cuenta encontrada, solicita al {@code menuForm} la creación
+     * dinámica de un panel con el número de cuenta, estado y saldo actual.
+     * </p>
+     */
     public void cargarCuentasCliente() {
         try {
             List<Cuenta> cuentas = cuentasBO.consultarCuentasCliente(idCliente); // obtiene datos
@@ -47,6 +83,10 @@ public class MenuControl {
         }
     }
 
+    /**
+     * Configura los disparadores de eventos para todos los botones de la
+     * interfaz. Centraliza la navegación y las acciones de cierre de sesión.
+     */
     private void inicializarEventos() {
 //         Evento para btnUsuario
         menuForm.getBtnUsuario().addActionListener(e -> abrirPantallaUsuario());
@@ -71,17 +111,28 @@ public class MenuControl {
         menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
     }
 
+    /**
+     * Realiza la transición hacia la pantalla de perfil de usuario.
+     * <p>
+     * Cierra el menú actual y libera recursos tras instanciar el nuevo
+     * formulario.
+     * </p>
+     */
     private void abrirPantallaUsuario() {
         try {
-        UsuarioForm usuarioForm = new UsuarioForm();
-        UsuarioControl usuarioControl = new UsuarioControl(usuarioForm);
-        usuarioForm.setVisible(true);
-        menuForm.dispose();
+            UsuarioForm usuarioForm = new UsuarioForm();
+            UsuarioControl usuarioControl = new UsuarioControl(usuarioForm);
+            usuarioForm.setVisible(true);
+            menuForm.dispose();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(menuForm, "Error al cargar nombre del cliente: " + ex.getMessage());
         }
     }
 
+    /**
+     * Consulta el nombre completo del cliente (Nombres + Apellidos) y actualiza
+     * la etiqueta de bienvenida en la interfaz gráfica.
+     */
     public void cargarNombreCliente() {
         try {
             String nombreCompleto = clientesBO.obtenerClientePorId(idCliente).getNombres() + " " + clientesBO.obtenerClientePorId(idCliente).getApellidoP() + " " + clientesBO.obtenerClientePorId(idCliente).getApellidoM();
@@ -91,7 +142,10 @@ public class MenuControl {
         }
     }
 
-    private void abrirTransferenciaForm(){
+    /**
+     * Gestiona la transición hacia el formulario de Transferencias.
+     */
+    private void abrirTransferenciaForm() {
 
         TransferenciaForm form = new TransferenciaForm();
         TransferenciaControl TransferenciaControl = new TransferenciaControl(form);
@@ -100,6 +154,9 @@ public class MenuControl {
 
     }
 
+    /**
+     * Gestiona la transición hacia el formulario de Retiros con Cuenta.
+     */
     private void abrirRetiroConCuenta() {
         RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
         RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
@@ -107,6 +164,10 @@ public class MenuControl {
         menuForm.dispose();
     }
 
+    /**
+     * Gestiona la transición hacia el formulario para dar de alta una nueva
+     * cuenta.
+     */
     private void abrirAltaCuentaForm() {
         AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
         AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO);
@@ -114,13 +175,21 @@ public class MenuControl {
         menuForm.dispose();
     }
 
+    /**
+     * Gestiona la transición hacia el formulario para cancelar o cerrar una
+     * cuenta.
+     */
     private void abrirCerrarCuentaForm() {
         CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO,  clientesBO);
+        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO, clientesBO);
         cerrarCuentaForm.setVisible(true);
         menuForm.dispose();
     }
 
+    /**
+     * Gestiona la transición hacia el formulario de consulta de operaciones
+     * históricas. Configura la ventana para aparecer centrada en la pantalla.
+     */
     private void abrirConsultarOperacionesForm() {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
         operacionesForm.setLocationRelativeTo(null);
@@ -128,7 +197,14 @@ public class MenuControl {
         operacionesForm.setVisible(true);
         menuForm.dispose();
     }
-    
+
+    /**
+     * Finaliza la sesión actual del usuario.
+     * <p>
+     * Destruye la ventana del menú principal y redirige al usuario de vuelta a
+     * la pantalla de Login.
+     * </p>
+     */
     private void cerrarSesion() {
         menuForm.dispose(); // cierra menu principal
         LoginForm loginForm = new LoginForm();

@@ -26,8 +26,17 @@ import org.itson.proyecto01.presentacion.TransferenciaForm;
 import org.itson.proyecto01.presentacion.UsuarioForm;
 
 /**
+ * Clase controladora para la gestión y consulta de operaciones financieras.
+ * <p>
+ * Esta clase actúa como el mediador (Controller) en el patrón MVC para la
+ * pantalla de consulta de operaciones. Se encarga de gestionar la lógica de
+ * filtrado (por tipo de operación y rango de fecha), coordinar la actualización
+ * de la interfaz gráfica (Swing) y manejar la navegación hacia otros módulos
+ * del sistema.
+ * </p>
  *
- * @author Jesus Omar
+ * * @author Jesus Omar
+ * @version 1.0
  */
 public class OperacionControl {
 
@@ -36,25 +45,52 @@ public class OperacionControl {
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(OperacionControl.class.getName());
 
+    /**
+     * Constructor que inicializa el controlador de operaciones.
+     * <p>
+     * Realiza la inyección de dependencias de la vista, inicializa la capa de
+     * negocio, configura los modelos de los filtros y establece los
+     * escuchadores (Listeners) para los botones de navegación.
+     * </p>
+     *
+     * @param consultarOperacionesForm La instancia de la interfaz gráfica a
+     * controlar.
+     */
     public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm) {
         this.consultarOperacionesForm = consultarOperacionesForm;
         IOperacionesDAO operacionesDAO = new OperacionesDAO();
         this.operacionesBO = new OperacionesBO(operacionesDAO);
         this.configurarFiltros();
         this.cargarOperaciones();
-        
-        consultarOperacionesForm.getBtnUsuario().addActionListener(e->{try {
-            abrirPantallaUsuario();
+
+        consultarOperacionesForm.getBtnUsuario().addActionListener(e -> {
+            try {
+                abrirPantallaUsuario();
             } catch (NegocioException ex) {
                 Logger.getLogger(OperacionControl.class.getName()).log(Level.SEVERE, null, ex);
             }
-});
-        consultarOperacionesForm.getBtnVerCuentas().addActionListener(e->{abrirMenuPrincipal();});
-        consultarOperacionesForm.getBtnRetiroSinCuenta1().addActionListener(e->{abrirRetiroConCuenta();});
-        consultarOperacionesForm.getBtnRealizarTransferencia().addActionListener(e->{abrirPantallaTransferencia();});
+        });
+        consultarOperacionesForm.getBtnVerCuentas().addActionListener(e -> {
+            abrirMenuPrincipal();
+        });
+        consultarOperacionesForm.getBtnRetiroSinCuenta1().addActionListener(e -> {
+            abrirRetiroConCuenta();
+        });
+        consultarOperacionesForm.getBtnRealizarTransferencia().addActionListener(e -> {
+            abrirPantallaTransferencia();
+        });
     }
 
-    // Metodo para cargar todas las operaciones del cliente a la tabla
+    /**
+     * Recupera y filtra las operaciones del cliente para mostrarlas en la
+     * tabla.
+     * <p>
+     * Consulta los valores seleccionados en los ComboBox de la vista para
+     * aplicar filtros dinámicos. Dependiendo de la selección, invoca diferentes
+     * métodos de {@link IOperacionesBO}. Si no se encuentran registros,
+     * notifica al usuario.
+     * </p>
+     */
     public void cargarOperaciones() {
         try {
             // Valores de los comboBox
@@ -93,7 +129,17 @@ public class OperacionControl {
         }
     }
 
-    // Llenar tabla
+    /**
+     * Actualiza el contenido visual de la tabla en la interfaz.
+     * <p>
+     * Limpia el modelo de la tabla actual y formatea los datos de cada objeto
+     * {@link Operacion} (ID, Tipo, Fecha/Hora, Monto y Cuenta) para insertarlos
+     * como filas nuevas.
+     * </p>
+     *
+     * @param listaOperaciones Lista de operaciones obtenidas desde la base de
+     * datos.
+     */
     private void llenarTabla(List<Operacion> listaOperaciones) {
         DefaultTableModel modelo = (DefaultTableModel) consultarOperacionesForm.getTablaOperaciones().getModel();
         modelo.setRowCount(0);
@@ -112,7 +158,15 @@ public class OperacionControl {
         }
     }
 
-    // calcular las fechas inicio
+    /**
+     * Determina el objeto de fecha y hora inicial basado en la selección del
+     * usuario.
+     *
+     * * @param seleccion El texto descriptivo del rango (ej. "Hoy", "Ultima
+     * semana").
+     * @return {@link LocalDateTime} configurado con el inicio del rango, o
+     * {@code null} si se deben mostrar todas las fechas.
+     */
     private LocalDateTime calcularFechaInicio(String seleccion) {
         switch (seleccion) {
             case "Hoy":
@@ -126,6 +180,14 @@ public class OperacionControl {
         }
     }
 
+    /**
+     * Inicializa los modelos de los ComboBox de filtrado y sus eventos.
+     * <p>
+     * Carga dinámicamente los valores del enum {@link TipoOperacion} y los
+     * rangos de fecha predefinidos. Configura la actualización automática de la
+     * tabla al cambiar cualquier filtro.
+     * </p>
+     */
     private void configurarFiltros() {
         // Carga las opciones del tipo de operacion
         DefaultComboBoxModel<String> modeloTipo = new DefaultComboBoxModel<>();
@@ -142,41 +204,57 @@ public class OperacionControl {
         modeloFechas.addElement("Ultima semana");
         modeloFechas.addElement("Mes actual");
         consultarOperacionesForm.setModelRangoFechas(modeloFechas);
-        
+
         // Listeners de los comboBox
-        consultarOperacionesForm.getTipoOperacionComboBox().addActionListener(e-> {
+        consultarOperacionesForm.getTipoOperacionComboBox().addActionListener(e -> {
             cargarOperaciones();
         });
-        consultarOperacionesForm.getRangoFechasComboBox().addActionListener(e->{
+        consultarOperacionesForm.getRangoFechasComboBox().addActionListener(e -> {
             cargarOperaciones();
         });
     }
 
-    private void abrirMenuPrincipal(){
+    /**
+     * Realiza la transición hacia la pantalla del Menú Principal. Cierra la
+     * ventana actual y libera sus recursos.
+     */
+    private void abrirMenuPrincipal() {
         MenuPrincipalForm menuPrincipal = new MenuPrincipalForm();
         MenuControl menuPrinciCont = new MenuControl(menuPrincipal);
         menuPrincipal.setLocationRelativeTo(null);
         menuPrincipal.setVisible(true);
         consultarOperacionesForm.dispose();
     }
-    
-    private void abrirPantallaUsuario() throws NegocioException{
-        
+
+    /**
+     * Realiza la transición hacia la pantalla de gestión de Usuario.
+     *
+     * * @throws NegocioException Si ocurre un error al cargar la información
+     * del usuario.
+     */
+    private void abrirPantallaUsuario() throws NegocioException {
+
         UsuarioForm usuarioForm = new UsuarioForm();
         UsuarioControl usControl = new UsuarioControl(usuarioForm);
         usuarioForm.setLocationRelativeTo(null);
         usuarioForm.setVisible(true);
         consultarOperacionesForm.dispose();
     }
-    
+
+    /**
+     * Realiza la transición hacia la pantalla de Retiro con Cuenta.
+     */
     private void abrirRetiroConCuenta() {
         RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
         RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
         RetiroConCuenta.setVisible(true);
         consultarOperacionesForm.dispose();
     }
-    
-    private void abrirPantallaTransferencia(){
+
+    /**
+     * Realiza la transición hacia la pantalla de realizar Transferencias.
+     */
+    private void abrirPantallaTransferencia() {
 
         TransferenciaForm Transferenciaform = new TransferenciaForm();
         TransferenciaControl TransferenciaControl = new TransferenciaControl(Transferenciaform);
@@ -184,5 +262,5 @@ public class OperacionControl {
         consultarOperacionesForm.dispose();
 
     }
-    
+
 }
