@@ -26,14 +26,13 @@ public class AltaCuentaControl {
     private final AltaCuentaForm altaForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();;
     private static final Logger LOGGER = Logger.getLogger(AltaCuentaControl.class.getName());
 
-    public AltaCuentaControl(AltaCuentaForm altaForm, ICuentasBO cuentasBO, IClientesBO clientesBO, int idCliente) {
+    public AltaCuentaControl(AltaCuentaForm altaForm, ICuentasBO cuentasBO, IClientesBO clientesBO) {
         this.altaForm = altaForm;
         this.cuentasBO = cuentasBO;
         this.clientesBO = clientesBO;
-        this.idCliente = idCliente;
 
         altaForm.BtnConfirmarAlta.addActionListener(e -> confirmarAlta());
 
@@ -80,7 +79,7 @@ public class AltaCuentaControl {
     }
 
     private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         altaForm.dispose();

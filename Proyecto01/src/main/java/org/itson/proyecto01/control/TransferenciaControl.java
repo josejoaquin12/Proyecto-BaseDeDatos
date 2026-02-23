@@ -33,10 +33,10 @@ public class TransferenciaControl {
     private final ICuentasBO cuentasBO;
     private final ITransferenciasBO transferenciasBO;
     private final IClientesBO clientesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
 
-    public TransferenciaControl(TransferenciaForm transfrom, int idCliente) {
+    public TransferenciaControl(TransferenciaForm transfrom) {
          // Inicializar BO 
         ICuentasDAO cuentasDAO = new CuentasDAO();
         IClientesDAO clientesDAO = new ClientesDAO();
@@ -48,7 +48,6 @@ public class TransferenciaControl {
         this.transferenciasBO = new TransferenciasBO(transferenciasDAO, cuentasDAO);
         
         this.transfrom = transfrom;
-        this.idCliente = idCliente;
 
         transfrom.getBtnContinuarTransferencia().addActionListener(e -> continuar());
         transfrom.getTxtNumeroCuentaDestino().addActionListener(e -> buscarCuentaDestino());
@@ -62,7 +61,7 @@ public class TransferenciaControl {
     }
 
     private void abrirMenuPrincipal(int idCliente) {
-        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         transfrom.dispose();
@@ -75,7 +74,7 @@ public class TransferenciaControl {
 
     private void abrirRetiroConCuenta() {
         RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, idCliente);
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
         RetiroConCuenta.setVisible(true);
         transfrom.dispose();
     }

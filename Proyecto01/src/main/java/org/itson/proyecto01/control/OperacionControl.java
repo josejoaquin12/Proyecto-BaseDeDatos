@@ -27,16 +27,15 @@ public class OperacionControl {
     
     private final ConsultarOperacionesForm consultarOperacionesForm;
     private final IOperacionesBO operacionesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(OperacionControl.class.getName());
 
-    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm, int idCliente) {
+    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm) {
         this.consultarOperacionesForm = consultarOperacionesForm;
         IOperacionesDAO operacionesDAO = new OperacionesDAO();
         this.operacionesBO = new OperacionesBO(operacionesDAO);
-        this.idCliente = idCliente;
+        configurarFiltros();
         this.cargarOperaciones();
-        this.configurarFiltros();
     }
     
     // Metodo para cargar todas las operaciones del cliente a la tabla

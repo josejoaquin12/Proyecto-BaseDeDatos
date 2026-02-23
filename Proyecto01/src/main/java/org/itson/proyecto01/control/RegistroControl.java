@@ -106,7 +106,7 @@ public class RegistroControl {
                     "Éxito",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            MenuPrincipalForm menu = new MenuPrincipalForm(clie.getId());
+            MenuPrincipalForm menu = new MenuPrincipalForm();
             menu.setLocationRelativeTo(null);
             menu.setVisible(true);
             registroForm.dispose(); 

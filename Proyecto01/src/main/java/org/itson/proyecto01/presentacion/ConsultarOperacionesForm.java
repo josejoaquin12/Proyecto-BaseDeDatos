@@ -26,7 +26,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
     public ConsultarOperacionesForm() {
         initComponents();
         Integer idCliente = SesionControl.getSesion().getCliente().getId();
-        this.operacionControl = new OperacionControl(this, idCliente);
+        this.operacionControl = new OperacionControl(this);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         utileriasBoton(btnUsuario);
@@ -137,10 +137,6 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
 
         lblTipoOperacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTipoOperacion.setText("Tipo de operacion");
-
-        TipoOperacionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        rangoFechasComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tablaOperaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

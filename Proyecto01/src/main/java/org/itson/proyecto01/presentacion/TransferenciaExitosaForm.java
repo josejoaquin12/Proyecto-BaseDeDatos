@@ -168,7 +168,7 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
         Cliente cliente = new Cliente();
         cliente = SesionControl.getSesion().getCliente();
                 
-        MenuPrincipalForm menu = new MenuPrincipalForm(cliente.getId());
+        MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         this.dispose();

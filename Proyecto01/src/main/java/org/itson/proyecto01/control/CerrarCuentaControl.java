@@ -24,14 +24,13 @@ public class CerrarCuentaControl {
     private final CerrarCuentaForm cerrarForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(CerrarCuentaControl.class.getName());
 
-    public CerrarCuentaControl(CerrarCuentaForm cerrarForm, ICuentasBO cuentasBO, IClientesBO clientesBO, int idCliente) {
+    public CerrarCuentaControl(CerrarCuentaForm cerrarForm, ICuentasBO cuentasBO, IClientesBO clientesBO) {
         this.cerrarForm = cerrarForm;
         this.cuentasBO = cuentasBO;
         this.clientesBO = clientesBO;
-        this.idCliente = idCliente;
 
         cerrarForm.btnCancelar.addActionListener(e -> abrirMenuPrincipal());
 
@@ -96,7 +95,7 @@ public class CerrarCuentaControl {
     }
 
     private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         cerrarForm.dispose();

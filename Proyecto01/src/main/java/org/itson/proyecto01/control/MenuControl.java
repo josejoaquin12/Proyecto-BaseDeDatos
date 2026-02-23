@@ -27,11 +27,10 @@ public class MenuControl {
     private final IClientesBO clientesBO;
     private final ITransferenciasBO transferenciasBO;
     private final MenuPrincipalForm menuForm;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
-    public MenuControl(MenuPrincipalForm menuForm, int idCliente) {
+    public MenuControl(MenuPrincipalForm menuForm) {
         this.menuForm = menuForm;
-        this.idCliente = idCliente;
 
         // Inicializar BO 
         ICuentasDAO cuentasDAO = new CuentasDAO();
@@ -99,7 +98,7 @@ public class MenuControl {
     private void abrirTransferenciaForm(){
 
         TransferenciaForm form = new TransferenciaForm();
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(form, idCliente);
+        TransferenciaControl TransferenciaControl = new TransferenciaControl(form);
         form.setVisible(true);
         menuForm.dispose();
 
@@ -107,30 +106,29 @@ public class MenuControl {
 
     private void abrirRetiroConCuenta() {
         RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, idCliente);
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
         RetiroConCuenta.setVisible(true);
         menuForm.dispose();
     }
 
     private void abrirAltaCuentaForm() {
         AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
-        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO, idCliente);
+        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO);
         altaCuentaForm.setVisible(true);
         menuForm.dispose();
     }
 
     private void abrirCerrarCuentaForm() {
         CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO,  clientesBO,  idCliente);
+        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO,  clientesBO);
         cerrarCuentaForm.setVisible(true);
         menuForm.dispose();
     }
 
     private void abrirConsultarOperacionesForm() {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
-        //OperacionControl operacionesControl = new OperacionControl();
         operacionesForm.setLocationRelativeTo(null);
-        OperacionControl operacionesControl = new OperacionControl(operacionesForm, idCliente);
+        OperacionControl operacionesControl = new OperacionControl(operacionesForm);
         operacionesForm.setVisible(true);
         menuForm.dispose();
     }
