@@ -4,8 +4,10 @@
  */
 package org.itson.proyecto01.persistencia;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.itson.proyecto01.entidades.Operacion;
+import org.itson.proyecto01.enums.TipoOperacion;
 
 /**
  *
@@ -15,9 +17,9 @@ public interface IOperacionesDAO {
     
     public abstract List<Operacion> obtenerOperaciones(Integer idCliente)throws PersistenciaException;
     
-    public abstract List<Operacion> operacionesPorTipo(Integer idCliente, String filtro)throws PersistenciaException;
+    public abstract List<Operacion> operacionesPorTipo(Integer idCliente, TipoOperacion filtro)throws PersistenciaException;
     
-    public abstract List<Operacion> operacionesPorFecha(Integer idCliente, String fechaInicio, String fechaFin)throws PersistenciaException;
+    public abstract List<Operacion> operacionesPorFecha(Integer idCliente, LocalDateTime fechaInicio, LocalDateTime fechaFin)throws PersistenciaException;
     
-    public abstract List<Operacion> operacionesPorFechaTipo(Integer idCliente, String filtroTipo, String fechaInicio, String fechaFin)throws PersistenciaException;
+    public abstract List<Operacion> operacionesPorFechaTipo(Integer idCliente, TipoOperacion filtroTipo, LocalDateTime fechaInicio, LocalDateTime fechaFin)throws PersistenciaException;
 }
