@@ -152,7 +152,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Variable" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Retiro sin &lt;br&gt;Cuenta&lt;/html&gt; "/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;Realizar &lt;br&gt;Retiro&lt;/html&gt; "/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="actionCommand" type="java.lang.String" value="  "/>
               </Properties>

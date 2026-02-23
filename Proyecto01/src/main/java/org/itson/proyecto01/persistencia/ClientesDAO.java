@@ -27,7 +27,7 @@ public class ClientesDAO implements IClientesDAO {
     private static final Logger LOGGER = Logger.getLogger(ClientesDAO.class.getName());
 
     @Override
-    public Cliente crearCliente(NuevoClienteDTO nuevoCliente, Integer idDomicilio) throws PersistenciaException {
+    public Cliente crearCliente(Integer idDomicilio, NuevoClienteDTO nuevoCliente, Integer idDomicilio1) throws PersistenciaException {
 
         try {
             String codigoSQL = """
@@ -177,6 +177,59 @@ public class ClientesDAO implements IClientesDAO {
             throw new PersistenciaException("Error al obtener contraseña", ex);
         } catch (IllegalArgumentException ex) {
             throw new PersistenciaException("Error al obtener contraseña", ex);
+        }
+    }
+    @Override
+    public Cliente actualizarCliente( Integer idCliente,NuevoClienteDTO clienteDTO, int idDomicilio) throws PersistenciaException {
+        try {
+            String comandoSQL = """
+                UPDATE clientes
+                SET nombres = ?, apellido_paterno = ?, apellido_materno = ?, fecha_nacimiento = ?,fecha_registro = ?,edad = ?, id_domicilio = ?
+                WHERE id_cliente = ?;
+            """;
+            
+            //Haseho de contraseña
+            String passwordPlano = clienteDTO.getContrasenia();
+            String hashed = BCrypt.hashpw(passwordPlano, BCrypt.gensalt());
+            
+            //Calculo de edad
+            LocalDate fechaActual = LocalDate.now(); 
+            Integer edadCliente = Period.between(clienteDTO.getFechaNacimiento(), fechaActual).getYears();
+            
+            Connection conexion = ConexionBD.crearConexion();
+            PreparedStatement comando = conexion.prepareStatement(comandoSQL);
+            comando.setString(1, clienteDTO.getNombres());
+            comando.setString(2, clienteDTO.getApellidoP());
+            comando.setString(3, clienteDTO.getApelidoM());
+            comando.setDate(4, java.sql.Date.valueOf(clienteDTO.getFechaNacimiento()));
+            comando.setTimestamp(5, java.sql.Timestamp.valueOf(clienteDTO.getFechaRegistro()));
+            comando.setInt(6, edadCliente);
+            comando.setInt(7, idDomicilio);
+            comando.setInt(8, idCliente);
+
+            int filasActualizadas = comando.executeUpdate();
+            conexion.close();
+
+            if (filasActualizadas > 0) {
+                // Retornamos el cliente actualizado
+                return new Cliente(
+                        idCliente,
+                        clienteDTO.getNombres(),
+                        clienteDTO.getApellidoP(),
+                        clienteDTO.getApelidoM(),
+                        clienteDTO.getFechaNacimiento(),
+                        hashed, 
+                        clienteDTO.getFechaRegistro(),
+                        clienteDTO.getEdad(),
+                        idDomicilio
+                );
+            } else {
+                return null;
+            }
+
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo actualizar el cliente", ex);
         }
     }
 }

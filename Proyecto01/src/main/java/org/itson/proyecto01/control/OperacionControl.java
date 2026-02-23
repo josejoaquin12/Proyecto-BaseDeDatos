@@ -7,6 +7,7 @@ package org.itson.proyecto01.control;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ import org.itson.proyecto01.presentacion.ConsultarOperacionesForm;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 import org.itson.proyecto01.presentacion.TransferenciaForm;
+import org.itson.proyecto01.presentacion.UsuarioForm;
 
 /**
  *
@@ -31,18 +33,22 @@ public class OperacionControl {
 
     private final ConsultarOperacionesForm consultarOperacionesForm;
     private final IOperacionesBO operacionesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(OperacionControl.class.getName());
 
-    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm, int idCliente) {
+    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm) {
         this.consultarOperacionesForm = consultarOperacionesForm;
         IOperacionesDAO operacionesDAO = new OperacionesDAO();
         this.operacionesBO = new OperacionesBO(operacionesDAO);
-        this.idCliente = idCliente;
         this.configurarFiltros();
         this.cargarOperaciones();
         
-        consultarOperacionesForm.getBtnUsuario().addActionListener(e->{abrirPantallaUsuario();});
+        consultarOperacionesForm.getBtnUsuario().addActionListener(e->{try {
+            abrirPantallaUsuario();
+            } catch (NegocioException ex) {
+                Logger.getLogger(OperacionControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+});
         consultarOperacionesForm.getBtnVerCuentas().addActionListener(e->{abrirMenuPrincipal();});
         consultarOperacionesForm.getBtnRetiroSinCuenta1().addActionListener(e->{abrirRetiroConCuenta();});
         consultarOperacionesForm.getBtnRealizarTransferencia().addActionListener(e->{abrirPantallaTransferencia();});
@@ -147,31 +153,36 @@ public class OperacionControl {
     }
 
     private void abrirMenuPrincipal(){
-        MenuPrincipalForm menuPrincipal = new MenuPrincipalForm(idCliente);
+        MenuPrincipalForm menuPrincipal = new MenuPrincipalForm();
+        MenuControl menuPrinciCont = new MenuControl(menuPrincipal);
         menuPrincipal.setLocationRelativeTo(null);
         menuPrincipal.setVisible(true);
         consultarOperacionesForm.dispose();
     }
     
-    private void abrirPantallaUsuario(){
-        PerfilUsuarioForm usuarioForm = new PerfilUsuarioForm();
+    private void abrirPantallaUsuario() throws NegocioException{
+        
+        UsuarioForm usuarioForm = new UsuarioForm();
+        UsuarioControl usControl = new UsuarioControl(usuarioForm);
         usuarioForm.setLocationRelativeTo(null);
         usuarioForm.setVisible(true);
         consultarOperacionesForm.dispose();
     }
     
-    private void abrirRetiroConCuenta(){
-        RetiroConCuentaForm pantallaRetiro = new RetiroConCuentaForm();
-        pantallaRetiro.setLocationRelativeTo(null);
-        pantallaRetiro.setVisible(true);
+    private void abrirRetiroConCuenta() {
+        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
+        RetiroConCuenta.setVisible(true);
         consultarOperacionesForm.dispose();
     }
     
     private void abrirPantallaTransferencia(){
-        TransferenciaForm pantallaTransferencia = new TransferenciaForm();
-        pantallaTransferencia.setLocationRelativeTo(null);
-        pantallaTransferencia.setVisible(true);
+
+        TransferenciaForm Transferenciaform = new TransferenciaForm();
+        TransferenciaControl TransferenciaControl = new TransferenciaControl(Transferenciaform);
+        Transferenciaform.setVisible(true);
         consultarOperacionesForm.dispose();
+
     }
     
 }

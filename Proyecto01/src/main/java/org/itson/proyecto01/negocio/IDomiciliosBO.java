@@ -14,6 +14,7 @@ import org.itson.proyecto01.entidades.Domicilio;
 public interface IDomiciliosBO {
     
     public abstract Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio)throws NegocioException;
-     public Domicilio obtenerDomicilioPorID(Integer idDom)throws NegocioException;
+    public Domicilio obtenerDomicilioPorID(Integer idDom)throws NegocioException;
+    public Domicilio actualizarDomicilio( NuevoDomicilioDTO nuevoDomicilio) throws NegocioException; 
     
 }

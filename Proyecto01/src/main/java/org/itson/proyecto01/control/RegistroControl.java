@@ -1,7 +1,6 @@
 
 package org.itson.proyecto01.control;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -60,11 +59,11 @@ public class RegistroControl {
 
             
             if (nombres.isEmpty() || apellidoP.isEmpty() || password.isEmpty()) {
-                throw new NegocioException("Todos los campos obligatorios deben llenarse",null);
+                throw new ControlException("Todos los campos obligatorios deben llenarse",null);
             }
 
             if (!password.equals(confirmar)) {
-                throw new NegocioException("Las contraseñas no coinciden",null);
+                throw new ControlException("Las contraseñas no coinciden",null);
             }
 
             LocalDate fechaNacimiento = LocalDate.parse(fechaTexto);
@@ -111,7 +110,7 @@ public class RegistroControl {
             menu.setVisible(true);
             registroForm.dispose(); 
 
-        }  catch (NegocioException | DateTimeParseException ex) {
+        }  catch (NegocioException |ControlException| DateTimeParseException ex) {
             JOptionPane.showMessageDialog(
                     registroForm,
                     "Error al registrar cliente: "+ ex.getMessage(),

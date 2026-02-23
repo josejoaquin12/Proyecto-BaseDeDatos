@@ -20,6 +20,7 @@ public class UsuarioForm extends javax.swing.JFrame {
      */
     public UsuarioForm() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -42,10 +43,6 @@ public class UsuarioForm extends javax.swing.JFrame {
         lblApellidoM = new javax.swing.JLabel();
         lblFechaNacimiento = new javax.swing.JLabel();
         lblDomicilio = new javax.swing.JLabel();
-        lblContrasenia = new javax.swing.JLabel();
-        lblConfirmarContrasenia = new javax.swing.JLabel();
-        txtContrasenia = new javax.swing.JPasswordField();
-        txtConfirmarContrasenia = new javax.swing.JPasswordField();
         lblDatosIdentificacion = new javax.swing.JLabel();
         lblDatosDomicilio = new javax.swing.JLabel();
         txtCalle = new javax.swing.JTextField();
@@ -119,12 +116,6 @@ public class UsuarioForm extends javax.swing.JFrame {
         lblDomicilio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDomicilio.setText("Calle");
 
-        lblContrasenia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblContrasenia.setText("Contraseña");
-
-        lblConfirmarContrasenia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblConfirmarContrasenia.setText("Confirmar contraseña");
-
         lblDatosIdentificacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDatosIdentificacion.setText("Datos de identificacion");
 
@@ -180,10 +171,6 @@ public class UsuarioForm extends javax.swing.JFrame {
                         .addComponent(lblApellidoP)
                         .addComponent(lblApellidoM)
                         .addComponent(lblFechaNacimiento)
-                        .addComponent(lblContrasenia)
-                        .addComponent(lblConfirmarContrasenia)
-                        .addComponent(txtContrasenia)
-                        .addComponent(txtConfirmarContrasenia)
                         .addComponent(txtNombre))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -251,21 +238,13 @@ public class UsuarioForm extends javax.swing.JFrame {
                     .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContrasenia)
-                    .addComponent(lblEstado))
+                .addComponent(lblEstado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblConfirmarContrasenia)
-                    .addComponent(lblCodigoPostal))
+                .addComponent(lblCodigoPostal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtConfirmarContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnActualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,13 +339,6 @@ public class UsuarioForm extends javax.swing.JFrame {
         return txtColonia;
     }
 
-    public JPasswordField getTxtConfirmarContrasenia() {
-        return txtConfirmarContrasenia;
-    }
-
-    public JPasswordField getTxtContrasenia() {
-        return txtContrasenia;
-    }
 
     public JTextField getTxtEstado() {
         return txtEstado;
@@ -393,8 +365,6 @@ public class UsuarioForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblCiudad;
     private javax.swing.JLabel lblCodigoPostal;
     private javax.swing.JLabel lblColonia;
-    private javax.swing.JLabel lblConfirmarContrasenia;
-    private javax.swing.JLabel lblContrasenia;
     private javax.swing.JLabel lblDatosDomicilio;
     private javax.swing.JLabel lblDatosIdentificacion;
     private javax.swing.JLabel lblDomicilio;
@@ -409,8 +379,6 @@ public class UsuarioForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtCodigoPostal;
     private javax.swing.JTextField txtColonia;
-    private javax.swing.JPasswordField txtConfirmarContrasenia;
-    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombre;
