@@ -4,8 +4,10 @@
  */
 package org.itson.proyecto01.negocio;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.itson.proyecto01.entidades.Operacion;
+import org.itson.proyecto01.enums.TipoOperacion;
 import org.itson.proyecto01.persistencia.IOperacionesDAO;
 import org.itson.proyecto01.persistencia.PersistenciaException;
 
@@ -32,7 +34,7 @@ public class OperacionesBO implements IOperacionesBO{
     }
 
     @Override
-    public List<Operacion> operacionesPorTipo(Integer idCliente, String filtro) throws NegocioException {
+    public List<Operacion> operacionesPorTipo(Integer idCliente, TipoOperacion filtro) throws NegocioException {
         try{
             List<Operacion> listaOperaciones = operacionesDAO.operacionesPorTipo(idCliente, filtro);
             return listaOperaciones;
@@ -42,7 +44,7 @@ public class OperacionesBO implements IOperacionesBO{
     }
 
     @Override
-    public List<Operacion> operacionesPorFecha(Integer idCliente, String fechaInicio, String fechaFin) throws NegocioException {
+    public List<Operacion> operacionesPorFecha(Integer idCliente, LocalDateTime fechaInicio, LocalDateTime fechaFin) throws NegocioException {
         try{
             List<Operacion> listaOperaciones = operacionesDAO.operacionesPorFecha(idCliente, fechaInicio, fechaFin);
             return listaOperaciones;
@@ -52,7 +54,7 @@ public class OperacionesBO implements IOperacionesBO{
     }
 
     @Override
-    public List<Operacion> operacionesPorFechaTipo(Integer idCliente, String filtroTipo, String fechaInicio, String fechaFin) throws NegocioException {
+    public List<Operacion> operacionesPorFechaTipo(Integer idCliente, TipoOperacion filtroTipo, LocalDateTime fechaInicio, LocalDateTime fechaFin) throws NegocioException {
         try{
             List<Operacion> listaOperaciones = operacionesDAO.operacionesPorFechaTipo(idCliente, filtroTipo, fechaInicio, fechaFin);
             return listaOperaciones;

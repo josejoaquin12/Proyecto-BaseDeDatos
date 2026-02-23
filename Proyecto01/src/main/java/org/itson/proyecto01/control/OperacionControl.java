@@ -8,11 +8,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import org.itson.proyecto01.entidades.Operacion;
 import org.itson.proyecto01.enums.TipoOperacion;
 import org.itson.proyecto01.negocio.IOperacionesBO;
 import org.itson.proyecto01.negocio.NegocioException;
+import org.itson.proyecto01.negocio.OperacionesBO;
+import org.itson.proyecto01.persistencia.IOperacionesDAO;
+import org.itson.proyecto01.persistencia.OperacionesDAO;
 import org.itson.proyecto01.presentacion.ConsultarOperacionesForm;
 
 /**
@@ -23,26 +27,27 @@ public class OperacionControl {
     
     private final ConsultarOperacionesForm consultarOperacionesForm;
     private final IOperacionesBO operacionesBO;
-    private final SesionControl sesion;
+    private final int idCliente;
     private static final Logger LOGGER = Logger.getLogger(OperacionControl.class.getName());
 
-    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm, IOperacionesBO operacionesBO, SesionControl sesion) {
+    public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm, int idCliente) {
         this.consultarOperacionesForm = consultarOperacionesForm;
-        this.operacionesBO = operacionesBO;
-        this.sesion = sesion;
+        IOperacionesDAO operacionesDAO = new OperacionesDAO();
+        this.operacionesBO = new OperacionesBO(operacionesDAO);
+        this.idCliente = idCliente;
+        this.cargarOperaciones();
+        this.configurarFiltros();
     }
     
     // Metodo para cargar todas las operaciones del cliente a la tabla
     public void cargarOperaciones(){
         try{
-            // Obtenemos el id del cliente de la sesion
-            Integer idCliente = sesion.getCliente().getId();
             // Valores de los comboBox
             String seleccionTipo = (String)consultarOperacionesForm.getTipoOperacionComboBox().getSelectedItem();
             String seleccionFecha = (String)consultarOperacionesForm.getRangoFechasComboBox().getSelectedItem();
             
             boolean filtroTipoActivo = !seleccionTipo.equals("TODAS");
-            boolean filtroFechaActivo = !seleccionTipo.equals("TODAS");
+            boolean filtroFechaActivo = !seleccionFecha.equals("TODAS");
             
             List<Operacion> listaOperaciones;
             
@@ -51,18 +56,18 @@ public class OperacionControl {
                 TipoOperacion tipo = TipoOperacion.valueOf(seleccionTipo);
                 // calcularFechaInicio es un metodo auxiliar esta mas abajo
                 LocalDateTime fechaInicio = calcularFechaInicio(seleccionFecha);
-                //listaOperaciones = operacionesBO.operacionesPorFechaTipo(idCliente, tipo, fechaInicio, LocalDateTime.now());
+                listaOperaciones = operacionesBO.operacionesPorFechaTipo(idCliente, tipo, fechaInicio, LocalDateTime.now());
             }else if(filtroTipoActivo){
                 TipoOperacion tipo = TipoOperacion.valueOf(seleccionTipo);
-                //listaOperaciones = operacionesBO.operacionesPorTipo(idCliente, tipo);
+                listaOperaciones = operacionesBO.operacionesPorTipo(idCliente, tipo);
             }else if(filtroFechaActivo){
                 LocalDateTime fechaInicio = calcularFechaInicio(seleccionFecha);
-                //listaOperaciones = operacionesBO.operacionesPorFecha(idCliente, fechaInicio, LocalDateTime.now());
+                listaOperaciones = operacionesBO.operacionesPorFecha(idCliente, fechaInicio, LocalDateTime.now());
             }else{
                 listaOperaciones = operacionesBO.obtenerOperaciones(idCliente);
             }
             // Llenar tabla es otro metodo que hice tambien mas abajo
-            //llenarTabla(listaOperaciones);
+            llenarTabla(listaOperaciones);
             
         }catch(NegocioException ex){
             LOGGER.severe(ex.getMessage());
@@ -100,6 +105,24 @@ public class OperacionControl {
             default:
                 return null;
         }
+    }
+    
+    private void configurarFiltros(){
+        // Carga las opciones del tipo de operacion
+        DefaultComboBoxModel<String> modeloTipo = new DefaultComboBoxModel<>();
+        modeloTipo.addElement("TODAS");
+        for(TipoOperacion tipo : TipoOperacion.values()){
+            modeloTipo.addElement(tipo.name());
+        }
+        consultarOperacionesForm.setModelTipoOperacion(modeloTipo);
+        
+        // Carga las opciones de fechas
+        DefaultComboBoxModel<String> modeloFechas = new DefaultComboBoxModel<>();
+        modeloFechas.addElement("TODAS");
+        modeloFechas.addElement("Hoy");
+        modeloFechas.addElement("Ultima semana");
+        modeloFechas.addElement("Este mes");
+        consultarOperacionesForm.setModelRangoFechas(modeloFechas);
     }
     
 }

@@ -66,7 +66,7 @@ public class OperacionesDAO implements IOperacionesDAO {
     }
 
     @Override
-    public List<Operacion> operacionesPorTipo(Integer idCliente, String filtro) throws PersistenciaException {
+    public List<Operacion> operacionesPorTipo(Integer idCliente, TipoOperacion filtro) throws PersistenciaException {
         List<Operacion> listaOperaciones = new LinkedList<>();
         try {
             Connection conexion = ConexionBD.crearConexion();
@@ -78,7 +78,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
             comandoSQL.setInt(1, idCliente);
-            comandoSQL.setString(2, filtro);
+            comandoSQL.setString(2, filtro.name());
             ResultSet resultados = comandoSQL.executeQuery();
 
             while (resultados.next()) {
@@ -109,7 +109,7 @@ public class OperacionesDAO implements IOperacionesDAO {
     }
 
     @Override
-    public List<Operacion> operacionesPorFecha(Integer idCliente, String fechaInicio, String fechaFin) throws PersistenciaException {
+    public List<Operacion> operacionesPorFecha(Integer idCliente, LocalDateTime fechaInicio, LocalDateTime fechaFin) throws PersistenciaException {
         List<Operacion> listaOperaciones = new LinkedList<>();
         try {
             Connection conexion = ConexionBD.crearConexion();
@@ -121,8 +121,8 @@ public class OperacionesDAO implements IOperacionesDAO {
                                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
             comandoSQL.setInt(1, idCliente);
-            comandoSQL.setString(2, fechaInicio);
-            comandoSQL.setString(3, fechaFin);
+            comandoSQL.setObject(2, fechaInicio);
+            comandoSQL.setObject(3, fechaFin);
             ResultSet resultados = comandoSQL.executeQuery();
 
             while (resultados.next()) {
@@ -153,7 +153,7 @@ public class OperacionesDAO implements IOperacionesDAO {
     }
 
     @Override
-    public List<Operacion> operacionesPorFechaTipo(Integer idCliente, String filtroTipo, String fechaInicio, String fechaFin) throws PersistenciaException {
+    public List<Operacion> operacionesPorFechaTipo(Integer idCliente, TipoOperacion filtroTipo, LocalDateTime fechaInicio, LocalDateTime fechaFin) throws PersistenciaException {
         List<Operacion> listaOperaciones = new LinkedList<>();
         try {
             Connection conexion = ConexionBD.crearConexion();
@@ -167,9 +167,9 @@ public class OperacionesDAO implements IOperacionesDAO {
                                 """;
             PreparedStatement comandoSQL = conexion.prepareStatement(codigoSQL);
             comandoSQL.setInt(1, idCliente);
-            comandoSQL.setString(2, filtroTipo);
-            comandoSQL.setString(3, fechaInicio);
-            comandoSQL.setString(4, fechaFin);
+            comandoSQL.setString(2, filtroTipo.name());
+            comandoSQL.setObject(3, fechaInicio);
+            comandoSQL.setObject(4, fechaFin);
             ResultSet resultados = comandoSQL.executeQuery();
 
             while (resultados.next()) {

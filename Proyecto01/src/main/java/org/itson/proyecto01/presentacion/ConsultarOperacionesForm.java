@@ -7,24 +7,28 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import org.itson.proyecto01.enums.TipoOperacion;
+import org.itson.proyecto01.control.OperacionControl;
+import org.itson.proyecto01.control.SesionControl;
 /**
  *
  * @author Jesus Omar
  */
 public class ConsultarOperacionesForm extends javax.swing.JFrame {
 
+    private OperacionControl operacionControl;
     /**
      * Creates new form ConsultarOperacionesForm
      */
     public ConsultarOperacionesForm() {
         initComponents();
+        Integer idCliente = SesionControl.getSesion().getCliente().getId();
+        this.operacionControl = new OperacionControl(this, idCliente);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
-        llenarComboBox();
         utileriasBoton(btnUsuario);
         utileriasBoton(btnCerrarSesion);
         utileriasBoton(btnRealizarTransferencia);
@@ -228,16 +232,6 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         btn.setContentAreaFilled(true);
         btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
     }
-    private void llenarComboBox(){
-        // se limpia el comboBox
-        TipoOperacionComboBox.removeAllItems();
-        // Este item es para indicar que seleccione un filtro
-        TipoOperacionComboBox.addItem("Seleccionar filtro");
-        // Agrega al comboBox los tipos de opercaiones que hay
-        for(TipoOperacion tipo : TipoOperacion.values()){
-            TipoOperacionComboBox.addItem(tipo.toString());
-        }
-    }
 
     public JComboBox<String> getTipoOperacionComboBox() {
         return TipoOperacionComboBox;
@@ -283,7 +277,14 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRetiroSinCuenta1ActionPerformed
 
-
+    public void setModelTipoOperacion(DefaultComboBoxModel<String> modelo){
+        this.TipoOperacionComboBox.setModel(modelo);
+    }
+    
+    public void setModelRangoFechas(DefaultComboBoxModel<String> modeloFechas){
+        this.rangoFechasComboBox.setModel(modeloFechas);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> TipoOperacionComboBox;
     private javax.swing.JButton btnCerrarSesion;

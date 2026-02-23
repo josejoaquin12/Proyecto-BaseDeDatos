@@ -15,7 +15,7 @@ import org.itson.proyecto01.negocio.NegocioException;
 
 /**
  *
- * @author elgps
+ * @author Jesus Omar
  */
 public class LoginForm extends javax.swing.JFrame {
 

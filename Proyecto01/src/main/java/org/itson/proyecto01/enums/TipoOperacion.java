@@ -6,7 +6,7 @@ package org.itson.proyecto01.enums;
 
 /**
  *
- * @author elgps
+ * @author Jesus Omar
  */
 public enum TipoOperacion {
     

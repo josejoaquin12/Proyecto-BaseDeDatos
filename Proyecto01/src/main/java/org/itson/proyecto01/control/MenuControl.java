@@ -130,10 +130,11 @@ public class MenuControl {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
         //OperacionControl operacionesControl = new OperacionControl();
         operacionesForm.setLocationRelativeTo(null);
+        OperacionControl operacionesControl = new OperacionControl(operacionesForm, idCliente);
         operacionesForm.setVisible(true);
         menuForm.dispose();
     }
-
+    
     private void cerrarSesion() {
         menuForm.dispose(); // cierra menu principal
         LoginForm loginForm = new LoginForm();
