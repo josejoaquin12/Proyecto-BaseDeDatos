@@ -24,8 +24,17 @@ import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 
 /**
+ * Clase controladora para la generación de retiros sin cuenta desde la sesión
+ * del cliente.
+ * <p>
+ * Este controlador vincula la interfaz {@link RetiroConCuentaForm} con la
+ * lógica de negocio de cuentas y retiros. Permite a un cliente autenticado
+ * seleccionar una de sus cuentas activas para generar un folio y una contraseña
+ * de retiro, validando en tiempo real que el monto solicitado no exceda el
+ * saldo disponible.
+ * </p>
  *
- * @author joset
+ * * @author joset
  */
 public class RetiroConCuentaControl {
 
@@ -35,13 +44,24 @@ public class RetiroConCuentaControl {
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
 
+    /**
+     * Constructor que inicializa el controlador de retiros.
+     * <p>
+     * Instancia las capas de negocio (BO), carga las cuentas activas del
+     * cliente en el selector de la interfaz y configura los eventos de los
+     * componentes.
+     * </p>
+     *
+     * * @param retiroCForm Instancia de la interfaz gráfica
+     * {@link RetiroConCuentaForm}.
+     */
     public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm) {
         this.retiroCForm = retiroCForm;
-        
+
         // Inicializar BO 
         ICuentasDAO cuentasDAO = new CuentasDAO();
         IClientesDAO clientesDAO = new ClientesDAO();
-        
+
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
@@ -50,6 +70,13 @@ public class RetiroConCuentaControl {
 
     }
 
+    /**
+     * Actualiza dinámicamente la etiqueta de saldo en la interfaz.
+     * <p>
+     * Se ejecuta cada vez que el usuario cambia la cuenta seleccionada en el
+     * ComboBox, formateando el saldo en moneda local (ej. $1,000.00).
+     * </p>
+     */
     private void actualizarSaldo() {
         Cuenta cuenta = (Cuenta) retiroCForm.getCboCuentasCliente().getSelectedItem();
 
@@ -60,6 +87,14 @@ public class RetiroConCuentaControl {
         }
     }
 
+    /**
+     * Recupera y despliega las cuentas activas del cliente en el selector de la
+     * vista.
+     * <p>
+     * Incluye una opción inicial por defecto para forzar la selección explícita
+     * de una cuenta válida.
+     * </p>
+     */
     private void cargarCuentasCliente() {
 
         try {
@@ -79,12 +114,32 @@ public class RetiroConCuentaControl {
         }
     }
 
+    /**
+     * Inicializa los escuchadores de eventos para botones y componentes de
+     * selección.
+     */
     private void inicializarEventos() {
         retiroCForm.getBtnCancelarRetiro().addActionListener(e -> abrirMenuPrincipal());
         retiroCForm.getBtnGenerarRetiro().addActionListener(e -> generarRetiroConCuenta());
         retiroCForm.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
     }
 
+    /**
+     * Realiza validaciones de seguridad y formato antes de proceder con el
+     * retiro.
+     * <p>
+     * Verifica que:
+     * <ul>
+     * <li>Se haya seleccionado una cuenta válida.</li>
+     * <li>El monto ingresado sea un número válido.</li>
+     * <li>El monto sea mayor a cero y no exceda el saldo disponible de la
+     * cuenta.</li>
+     * </ul>
+     * </p>
+     *
+     * * @return {@code true} si todos los criterios son válidos, {@code false}
+     * en caso contrario.
+     */
     private boolean validarBotonGenerarRetiro() {
         Cuenta cuenta = (Cuenta) retiroCForm.getCboCuentasCliente().getSelectedItem();
 
@@ -97,15 +152,14 @@ public class RetiroConCuentaControl {
                 .replace("$", "")
                 .replace(",", "")
                 .trim();
-        
-        
+
         try {
-            if(cuenta == null || cuenta.getId() == 0 || textoMonto.isEmpty()) {
+            if (cuenta == null || cuenta.getId() == 0 || textoMonto.isEmpty()) {
                 retiroCForm.getBtnGenerarRetiro().setEnabled(false);
                 retiroCForm.getBtnGenerarRetiro().setEnabled(true);
-                JOptionPane.showMessageDialog(retiroCForm,"Error: cuenta o monto invalidos");
+                JOptionPane.showMessageDialog(retiroCForm, "Error: cuenta o monto invalidos");
                 return false;
-                
+
             }
             double monto = Double.parseDouble(textoMonto);
             double saldoDisponible = Double.parseDouble(textoSaldo);
@@ -117,12 +171,15 @@ public class RetiroConCuentaControl {
 
         } catch (NumberFormatException e) {
             retiroCForm.getBtnGenerarRetiro().setEnabled(false);
-            JOptionPane.showMessageDialog(retiroCForm,"Error: cuenta o monto invalidos");
+            JOptionPane.showMessageDialog(retiroCForm, "Error: cuenta o monto invalidos");
             return false;
         }
         return true;
     }
 
+    /**
+     * Gestiona la transición de retorno hacia el Menú Principal.
+     */
     private void abrirMenuPrincipal() {
         MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
@@ -130,8 +187,17 @@ public class RetiroConCuentaControl {
         retiroCForm.dispose();
     }
 
+    /**
+     * Procesa la solicitud y genera las credenciales del retiro sin cuenta.
+     * <p>
+     * Tras validar los datos, utiliza {@link RetiroBO} para registrar la
+     * operación y generar un folio y contraseña únicos. Al finalizar, muestra
+     * estos datos al usuario mediante un mensaje informativo y limpia el
+     * formulario.
+     * </p>
+     */
     private void generarRetiroConCuenta() {
-        try { 
+        try {
             if (validarBotonGenerarRetiro()) {
 
                 Cuenta cuentaSeleccionada = (Cuenta) retiroCForm.getCboCuentasCliente().getSelectedItem();
@@ -141,10 +207,10 @@ public class RetiroConCuentaControl {
                 Cuenta cuentaNueva = cuentasBO.obtenerCuentaporNumeroCuenta(numeroCuenta);
                 System.out.println(cuentaNueva);
                 double monto = Double.parseDouble(retiroCForm.getTxtMonto().getText());
-                
+
                 RetiroBO retiroBO = new RetiroBO();
                 Retiro retiroGenerado = retiroBO.generarRetiro(cuentaNueva, monto);
-                
+
                 JOptionPane.showMessageDialog(retiroCForm,
                         "Retiro generado correctamente\n\n"
                         + "Folio: " + retiroGenerado.getFolio() + "\n"

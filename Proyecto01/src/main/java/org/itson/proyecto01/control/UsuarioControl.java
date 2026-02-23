@@ -20,7 +20,19 @@ import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.UsuarioForm;
 
 /**
- * Control para mostrar y actualizar los datos de un usuario
+ * Clase controladora encargada de la gestión del perfil del usuario.
+ * <p>
+ * Este controlador administra la interfaz {@link UsuarioForm} y permite:
+ * <ul>
+ * <li>Visualizar los datos personales y de domicilio del cliente actualmente
+ * autenticado.</li>
+ * <li>Validar y procesar la actualización de la información del perfil.</li>
+ * <li>Coordinar con las capas de negocio de clientes y domicilios para
+ * persistir cambios.</li>
+ * </ul>
+ * </p>
+ *
+ * * @author joset
  */
 public class UsuarioControl {
 
@@ -30,6 +42,18 @@ public class UsuarioControl {
     private Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private Cliente cliente;
 
+    /**
+     * Constructor que inicializa el controlador de usuario.
+     * <p>
+     * Configura los DAOs y BOs necesarios, recupera la información inicial del
+     * cliente desde la base de datos y prepara la vista.
+     * </p>
+     *
+     * * @param usuarioForm Instancia de la vista {@link UsuarioForm} a
+     * administrar.
+     * @throws NegocioException Si ocurre un error al recuperar los datos
+     * iniciales del cliente.
+     */
     public UsuarioControl(UsuarioForm usuarioForm) throws NegocioException {
         this.usuarioForm = usuarioForm;
 
@@ -44,12 +68,19 @@ public class UsuarioControl {
         cargarDatosUsuario();
     }
 
+    /**
+     * Extrae la información del cliente y su domicilio para poblar los campos
+     * de texto en la interfaz gráfica.
+     *
+     * * @throws NegocioException Si hay un error en la consulta a la base de
+     * datos.
+     */
     private void cargarDatosUsuario() throws NegocioException {
         usuarioForm.getTxtNombre().setText(cliente.getNombres());
         usuarioForm.getTxtApellidoP().setText(cliente.getApellidoP());
         usuarioForm.getTxtApellidoM().setText(cliente.getApellidoM());
         usuarioForm.getTxtFechaNacimiento().setText(cliente.getFechaNacimiento().toString());
-        
+
         Domicilio dom = domiciliosBO.obtenerDomicilioPorID(idCliente);
 
         if (dom != null) {
@@ -62,11 +93,18 @@ public class UsuarioControl {
         }
     }
 
+    /**
+     * Inicializa los escuchadores de eventos para los botones de actualizar y
+     * navegación.
+     */
     private void inicializarEventos() {
         usuarioForm.getBtnActualizarDatos().addActionListener(e -> actualizarUsuario());
         usuarioForm.getBtnVolverMenuPrincipal().addActionListener(e -> abrirMenuPrincipal());
     }
 
+    /**
+     * Gestiona la transición de regreso hacia el Menú Principal.
+     */
     private void abrirMenuPrincipal() {
         MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
@@ -74,6 +112,24 @@ public class UsuarioControl {
         usuarioForm.dispose();
     }
 
+    /**
+     * Procesa la solicitud de actualización de datos del perfil.
+     * <p>
+     * El flujo de actualización comprende:
+     * <ol>
+     * <li>Recolección y limpieza (trim) de los datos en el formulario.</li>
+     * <li>Validación de campos obligatorios y formato de fecha de
+     * nacimiento.</li>
+     * <li>Creación de objetos DTO ({@link NuevoClienteDTO} y
+     * {@link NuevoDomicilioDTO}) para el transporte de datos.</li>
+     * <li>Actualización secuencial: primero el domicilio y posteriormente el
+     * cliente.</li>
+     * <li>Notificación del resultado al usuario mediante un cuadro de
+     * diálogo.</li>
+     * </ol>
+     * </ol>
+     * </p>
+     */
     private void actualizarUsuario() {
         try {
             //Usuario
@@ -88,8 +144,8 @@ public class UsuarioControl {
 
             LocalDate fechaNacimiento = LocalDate.parse(fechaTexto);
             Domicilio actual = domiciliosBO.obtenerDomicilioPorID(idCliente);
-            
-            NuevoClienteDTO clienteActualizado = new NuevoClienteDTO(nombres,apellidoP,apellidoM,fechaNacimiento,cliente.getFechaRegistro(),cliente.getEdad(),actual.getId());
+
+            NuevoClienteDTO clienteActualizado = new NuevoClienteDTO(nombres, apellidoP, apellidoM, fechaNacimiento, cliente.getFechaRegistro(), cliente.getEdad(), actual.getId());
 
             // Domicilio
             String calle = usuarioForm.getTxtCalle().getText().trim();
@@ -103,7 +159,7 @@ public class UsuarioControl {
 
             Domicilio domicilioActualizado = domiciliosBO.actualizarDomicilio(domicilioDTO);
 
-            Cliente cliente = clientesBO.actualizarCliente(idCliente,clienteActualizado, domicilioActualizado.getId());
+            Cliente cliente = clientesBO.actualizarCliente(idCliente, clienteActualizado, domicilioActualizado.getId());
 
             JOptionPane.showMessageDialog(
                     usuarioForm,
@@ -112,7 +168,7 @@ public class UsuarioControl {
                     JOptionPane.INFORMATION_MESSAGE
             );
 
-        } catch (NegocioException | DateTimeParseException |ControlException ex) {
+        } catch (NegocioException | DateTimeParseException | ControlException ex) {
             JOptionPane.showMessageDialog(
                     usuarioForm,
                     "Error al actualizar usuario: " + ex.getMessage(),

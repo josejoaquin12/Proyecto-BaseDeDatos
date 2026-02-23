@@ -18,17 +18,47 @@ import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.AltaCuentaForm;
 
 /**
+ * Clase controladora encargada de gestionar el proceso de apertura (alta) de
+ * nuevas cuentas bancarias.
+ * <p>
+ * Este controlador vincula la interfaz {@link AltaCuentaForm} con las capas de
+ * negocio de clientes y cuentas. Sus responsabilidades incluyen:
+ * <ul>
+ * <li>Visualizar la información del cliente y la fecha actual en el
+ * formulario.</li>
+ * <li>Validar la aceptación de términos y condiciones por parte del
+ * usuario.</li>
+ * <li>Coordinar la creación de una nueva cuenta vinculada al cliente en
+ * sesión.</li>
+ * <li>Gestionar la navegación de retorno al menú principal tras el éxito o
+ * cancelación.</li>
+ * </ul>
+ * </p>
  *
- * @author joset
+ * * @author joset
  */
 public class AltaCuentaControl {
 
     private final AltaCuentaForm altaForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
-    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
+    ;
     private static final Logger LOGGER = Logger.getLogger(AltaCuentaControl.class.getName());
 
+    /**
+     * Constructor que inicializa el controlador de alta de cuenta.
+     * <p>
+     * Configura las dependencias BO, establece los escuchadores de eventos para
+     * confirmar la operación o volver al menú, y dispara la carga inicial de
+     * datos informativos en la vista.
+     * </p>
+     *
+     * * @param altaForm Instancia de la interfaz gráfica
+     * {@link AltaCuentaForm}.
+     * @param cuentasBO Lógica de negocio para operaciones con cuentas.
+     * @param clientesBO Lógica de negocio para operaciones con clientes.
+     */
     public AltaCuentaControl(AltaCuentaForm altaForm, ICuentasBO cuentasBO, IClientesBO clientesBO) {
         this.altaForm = altaForm;
         this.cuentasBO = cuentasBO;
@@ -41,6 +71,15 @@ public class AltaCuentaControl {
         cargarDatosCliente();
     }
 
+    /**
+     * Recupera y muestra los datos del cliente y la fecha actual en la
+     * interfaz.
+     * <p>
+     * Este método consulta el nombre completo y ID del cliente para
+     * personalizar el formulario, proporcionando un formato de fecha
+     * "dd/MM/yyyy HH:mm".
+     * </p>
+     */
     private void cargarDatosCliente() {
         try {
             Cliente cliente = clientesBO.obtenerClientePorId(idCliente);
@@ -55,6 +94,22 @@ public class AltaCuentaControl {
         }
     }
 
+    /**
+     * Valida los requisitos y ejecuta la creación de una nueva cuenta.
+     * <p>
+     * El proceso sigue estos pasos:
+     * <ol>
+     * <li>Verifica que el CheckBox de términos y condiciones esté
+     * seleccionado.</li>
+     * <li>Construye un objeto {@link NuevaCuentaDTO} con la marca de tiempo
+     * actual.</li>
+     * <li>Solicita a la capa de negocio la generación de la nueva cuenta.</li>
+     * <li>Muestra un mensaje de éxito con el número de cuenta generado.</li>
+     * <li>Redirige al usuario al menú principal.</li>
+     * </ol>
+     * </ol>
+     * </p>
+     */
     private void confirmarAlta() {
         if (!altaForm.chbTyC.isSelected()) {
             JOptionPane.showMessageDialog(altaForm, "Debe aceptar los términos y condiciones.");
@@ -78,6 +133,12 @@ public class AltaCuentaControl {
         }
     }
 
+    /**
+     * Gestiona la transición hacia el Menú Principal de la aplicación.
+     * <p>
+     * Cierra la ventana de alta de cuenta y libera los recursos asociados.
+     * </p>
+     */
     private void abrirMenuPrincipal() {
         MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);

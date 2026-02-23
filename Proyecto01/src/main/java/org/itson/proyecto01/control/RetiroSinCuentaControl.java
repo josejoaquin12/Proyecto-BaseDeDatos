@@ -21,8 +21,18 @@ import org.itson.proyecto01.presentacion.LoginForm;
 import org.itson.proyecto01.presentacion.RetiroSinCuentaForm;
 
 /**
- *
- * @author joset
+ * Clase controladora encargada de gestionar el cobro de retiros sin cuenta.
+ * <p>
+ * A diferencia de otros controladores, este permite la interacción con el sistema 
+ * sin una sesión activa. Sus principales responsabilidades son:
+ * <ul>
+ * <li>Validar la existencia y vigencia de un retiro mediante folio y contraseña.</li>
+ * <li>Actualizar dinámicamente la información del retiro (monto, emisor y expiración) 
+ * en la interfaz al perder el foco o presionar Enter en los campos de texto.</li>
+ * <li>Ejecutar la transacción de cobro final a través de la capa de negocio.</li>
+ * </ul>
+ * </p>
+ * * @author joset
  */
 public class RetiroSinCuentaControl {
 
@@ -40,6 +50,15 @@ public class RetiroSinCuentaControl {
     private  String contrasenia;
     private  Retiro retiro;
 
+    /**
+     * Constructor que inicializa el controlador de retiros sin cuenta.
+     * <p>
+     * Configura manualmente las dependencias de DAO y BO para permitir el 
+     * funcionamiento independiente de una sesión. Establece la vista y 
+     * dispara la inicialización de eventos.
+     * </p>
+     * * @param retiroSForm Instancia de la interfaz gráfica {@link RetiroSinCuentaForm}.
+     */
     public RetiroSinCuentaControl(RetiroSinCuentaForm retiroSForm) {
         this.cuentasDAO = new CuentasDAO();
         this.cuentasBO = new CuentasBO(cuentasDAO);
@@ -52,6 +71,13 @@ public class RetiroSinCuentaControl {
         inicializarEventos();
     }
 
+    /**
+     * Configura los escuchadores de eventos para los campos de texto y botones.
+     * <p>
+     * Implementa un {@code FocusListener} en el campo de contraseña para gatillar 
+     * la actualización de datos informativos cuando el usuario termina de escribir.
+     * </p>
+     */
     private void inicializarEventos() {
         retiroSForm.getBtnRetirar().addActionListener(e -> cobrarRetiro());
         retiroSForm.getBtnCancelar().addActionListener(e -> abrirLogin());
@@ -67,6 +93,18 @@ public class RetiroSinCuentaControl {
 
     }
 
+    /**
+     * Actualiza las etiquetas informativas de la vista con los datos del retiro encontrado.
+     * <p>
+     * Si el folio y la contraseña coinciden con un registro válido, el método:
+     * <ol>
+     * <li>Recupera el nombre del cliente emisor.</li>
+     * <li>Formatea la fecha de expiración del retiro.</li>
+     * <li>Muestra el monto total a retirar.</li>
+     * </ol>
+     * Si no hay coincidencia, restablece los valores visuales a su estado inicial.
+     * </p>
+     */
     private void actualizarLabels() {
         if (this.retiro != null) {
             return;
@@ -106,6 +144,13 @@ public class RetiroSinCuentaControl {
         }
     }
 
+    /**
+     * Realiza una consulta a la capa de negocio para verificar las credenciales del retiro.
+     * * @param numFolio Identificador único del retiro.
+     * @param contrasenia Clave de seguridad asociada al folio.
+     * @return El objeto {@link Retiro} si es válido.
+     * @throws NegocioException Si las credenciales no coinciden o el retiro ha expirado.
+     */
     public Retiro validarRetiro(String numFolio, String contrasenia) throws NegocioException {
 
         IRetiroBO retiroBO = new RetiroBO();
@@ -113,7 +158,14 @@ public class RetiroSinCuentaControl {
 
     }
     
-    
+    /**
+     * Procesa la transacción final para cobrar el dinero del retiro.
+     * <p>
+     * Verifica que el objeto {@code retiro} haya sido previamente validado y 
+     * solicita a {@link IRetiroBO} que marque la operación como cobrada. 
+     * Al finalizar, notifica al usuario del éxito de la operación.
+     * </p>
+     */
     public void cobrarRetiro() {
         try {
             this.numeroFolio = retiroSForm.getTxtFolio().getText().trim();
@@ -149,6 +201,12 @@ public class RetiroSinCuentaControl {
         }
     }
 
+    /**
+     * Gestiona el retorno a la pantalla de Login.
+     * <p>
+     * Centra la ventana de inicio de sesión y libera los recursos del formulario actual.
+     * </p>
+     */
     private void abrirLogin() {
         LoginForm login = new LoginForm();
         login.setLocationRelativeTo(null);
