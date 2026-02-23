@@ -16,13 +16,10 @@ import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.negocio.RetiroBO;
-import org.itson.proyecto01.negocio.TransferenciasBO;
 import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
-import org.itson.proyecto01.persistencia.ITransferenciasDAO;
-import org.itson.proyecto01.persistencia.TransferenciasDAO;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 
@@ -83,7 +80,7 @@ public class RetiroConCuentaControl {
     }
 
     private void inicializarEventos() {
-        retiroCForm.getBtnCancelarRetiro().addActionListener(e -> abrirMenuPrincipal(idCliente));
+        retiroCForm.getBtnCancelarRetiro().addActionListener(e -> abrirMenuPrincipal());
         retiroCForm.getBtnGenerarRetiro().addActionListener(e -> generarRetiroConCuenta());
         retiroCForm.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
     }
@@ -126,7 +123,7 @@ public class RetiroConCuentaControl {
         return true;
     }
 
-    private void abrirMenuPrincipal(int idCliente) {
+    private void abrirMenuPrincipal() {
         MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);

@@ -13,6 +13,6 @@ import org.itson.proyecto01.entidades.Domicilio;
  */
 public interface IDomiciliosDAO {
     
-    public abstract Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio)throws PersistenciaException;
-    
+    public  Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio)throws PersistenciaException;
+    public  Domicilio obtenerDomicilioID(Integer idDomicilio)throws PersistenciaException;    
 }

@@ -72,4 +72,12 @@ public class DomiciliosBO implements IDomiciliosBO{
         }
     }
     
+    public Domicilio obtenerDomicilioPorID(Integer idDom)throws NegocioException{
+        try {
+            return domiciliosDAO.obtenerDomicilioID(idDom);
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error al obtener el domicilio" + ex.getMessage(), ex);
+        }
+    }
+    
 }

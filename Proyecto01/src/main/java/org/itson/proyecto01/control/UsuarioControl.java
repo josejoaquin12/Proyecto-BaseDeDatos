@@ -17,6 +17,7 @@
 //import org.itson.proyecto01.persistencia.DomiciliosDAO;
 //import org.itson.proyecto01.persistencia.IClientesDAO;
 //import org.itson.proyecto01.persistencia.IDomiciliosDAO;
+//import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 //import org.itson.proyecto01.presentacion.UsuarioForm;
 //
 ///**
@@ -28,30 +29,30 @@
 //    private final IDomiciliosBO domiciliosBO;
 //    private UsuarioForm usuarioForm;
 //    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
+//    private Cliente cliente;
 //
-//    public UsuarioControl(UsuarioForm usuarioForm) {
+//    public UsuarioControl(UsuarioForm usuarioForm) throws NegocioException {
 //        this.usuarioForm = usuarioForm;
-//        this.cliente = cliente;
 //
-//        // Inicializamos las capas de negocio
 //        IClientesDAO clientesDAO = new ClientesDAO();
 //        this.clientesBO = new ClientesBO(clientesDAO);
 //
 //        IDomiciliosDAO domiciliosDAO = new DomiciliosDAO();
 //        this.domiciliosBO = new DomiciliosBO(domiciliosDAO);
+//        Cliente cliente = clientesBO.obtenerClientePorId(idCliente);
 //
 //        inicializarEventos();
 //        cargarDatosUsuario();
 //    }
 //
-//    // Cargar datos del usuario en los TextFields
-//    private void cargarDatosUsuario() {
-//        usuarioForm.getTxtNombre().setText(cliente.getNombre());
-//        usuarioForm.getTxtApellidoP().setText(cliente.getApellidoPaterno());
-//        usuarioForm.getTxtApellidoM().setText(cliente.getApellidoMaterno());
+//    private void cargarDatosUsuario() throws NegocioException {
+//        usuarioForm.getTxtNombre().setText(cliente.getNombres());
+//        usuarioForm.getTxtApellidoP().setText(cliente.getApellidoP());
+//        usuarioForm.getTxtApellidoM().setText(cliente.getApellidoM());
 //        usuarioForm.getTxtFechaNacimiento().setText(cliente.getFechaNacimiento().toString());
 //
-//        Domicilio dom = cliente.getDomicilio();
+//        Domicilio dom = domiciliosBO.obtenerDomicilioPorID(idCliente);
+//
 //        if (dom != null) {
 //            usuarioForm.getTxtCalle().setText(dom.getCalle());
 //            usuarioForm.getTxtNumero().setText(dom.getNumero());
@@ -62,12 +63,18 @@
 //        }
 //    }
 //
-//    // Inicializar eventos
 //    private void inicializarEventos() {
-//        usuarioForm.getBtnActualizar().addActionListener(e -> actualizarUsuario());
+//        usuarioForm.getBtnActualizarDatos().addActionListener(e -> actualizarUsuario());
+//        usuarioForm.getBtnVolverMenuPrincipal().addActionListener(e -> abrirMenuPrincipal());
 //    }
 //
-//    // Método para actualizar datos del usuario
+//    private void abrirMenuPrincipal() {
+//        MenuPrincipalForm menu = new MenuPrincipalForm();
+//        menu.setLocationRelativeTo(null);
+//        menu.setVisible(true);
+//        usuarioForm.dispose();
+//    }
+//
 //    private void actualizarUsuario() {
 //        try {
 //            String nombres = usuarioForm.getTxtNombre().getText().trim();
@@ -80,17 +87,9 @@
 //            }
 //
 //            LocalDate fechaNacimiento = LocalDate.parse(fechaTexto);
-//
-//            // Actualizamos DTO
-//            NuevoClienteDTO clienteActualizado = new NuevoClienteDTO(
-//                    nombres,
-//                    apellidoP,
-//                    apellidoM,
-//                    fechaNacimiento,
-//                    null, // password no se actualiza aquí
-//                    clienteActual.getFechaRegistro(),
-//                    clienteActual.getEdad(),
-//                    clienteActual.getDomicilio() != null ? clienteActual.getDomicilio().getId() : null
+//            Domicilio actual = domiciliosBO.obtenerDomicilioPorID(idCliente);
+//            NuevoClienteDTO clienteActualizado = new NuevoClienteDTO(nombres,apellidoP,apellidoM,fechaNacimiento,null,cliente.getFechaRegistro(),cliente.getEdad(),
+//                    actual != null ? cliente.getDomicilio().getId() : null
 //            );
 //
 //            // Domicilio
@@ -105,18 +104,12 @@
 //                    calle, numero, colonia, ciudad, estado, codigoPostal
 //            );
 //
-//            // Guardamos domicilio
 //            Domicilio domicilioActualizado;
-//            if (clienteActual.getDomicilio() != null) {
-//                // Si ya tenía domicilio, actualizamos
-//                domicilioActualizado = domiciliosBO.actualizarDomicilio(clienteActual.getDomicilio().getId(), domicilioDTO);
-//            } else {
-//                // Si no, lo registramos
-//                domicilioActualizado = domiciliosBO.registrarDomicilio(domicilioDTO);
-//            }
+//            domicilioActualizado = domiciliosBO.actualizarDomicilio(cliente.getDomicilio().getId(), domicilioDTO);
+//
 //
 //            // Actualizamos cliente
-//            Cliente cliente = clientesBO.actualizarCliente(clienteActual.getId(), clienteActualizado, domicilioActualizado.getId());
+//            Cliente cliente = clientesBO.actualizarCliente(cliente.getId(), clienteActualizado, domicilioActualizado.getId());
 //
 //            JOptionPane.showMessageDialog(
 //                    usuarioForm,

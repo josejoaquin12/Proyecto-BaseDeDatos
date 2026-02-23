@@ -20,10 +20,10 @@ import org.itson.proyecto01.entidades.Domicilio;
 public class DomiciliosDAO implements IDomiciliosDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DomiciliosDAO.class.getName());
-    
+
     @Override
     public Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio) throws PersistenciaException {
-        try{
+        try {
             String comandoSQL = """
                                 insert into domicilios (calle, numero, colonia, ciudad, estado, codigo_postal)
                                 values(?,?,?,?,?, ?);
@@ -36,13 +36,13 @@ public class DomiciliosDAO implements IDomiciliosDAO {
             comando.setString(4, nuevoDomicilio.getCiudad());
             comando.setString(5, nuevoDomicilio.getEstado());
             comando.setString(6, nuevoDomicilio.getCodigoPostal());
-            
+
             boolean resultado = comando.execute();
-            
+
             LOGGER.fine("Se ha registrado el domicilio correctamente");
             ResultSet keys = comando.getGeneratedKeys();
-            
-            if(keys.next()){
+
+            if (keys.next()) {
                 int idGenerado = keys.getInt(1);
                 return new Domicilio(
                         idGenerado,
@@ -52,14 +52,48 @@ public class DomiciliosDAO implements IDomiciliosDAO {
                         nuevoDomicilio.getCiudad(),
                         nuevoDomicilio.getEstado(),
                         nuevoDomicilio.getCodigoPostal());
-            }else{
-                conexion.close(); 
+            } else {
+                conexion.close();
                 return null;
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("No se pudo registrar el domicilio", null);
         }
     }
-    
+
+    @Override
+    public Domicilio obtenerDomicilioID(Integer idDomicilio) throws PersistenciaException {
+        try {
+            String comandoSQL = """
+                                select id_domicilio,calle, numero, colonia, ciudad, estado, codigo_postal  
+                                from domicilios 
+                                where id_domicilio = ?;
+                                """;
+            Connection conexion = ConexionBD.crearConexion();
+            PreparedStatement comando = conexion.prepareStatement(comandoSQL);
+            comando.setInt(1, idDomicilio);
+
+            ResultSet resultados = comando.executeQuery();
+            
+            if (resultados.next()) {
+                Integer id = resultados.getInt("id_domicilio");
+                String calle = resultados.getString("calle");
+                String numero = resultados.getString("numero");
+                String colonia = resultados.getString("colonia");
+                String ciudad = resultados.getString("ciudad");
+                String estado = resultados.getString("ciudad");           
+                String codigoPostal = resultados.getString("codigo_postal");
+                conexion.close();
+                return new Domicilio(id,calle,numero,colonia,ciudad,estado,codigoPostal);
+            } else {
+                conexion.close();
+                return null;
+            }
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No se pudo obtener el domicilio", null);
+        }
+    }
+
 }

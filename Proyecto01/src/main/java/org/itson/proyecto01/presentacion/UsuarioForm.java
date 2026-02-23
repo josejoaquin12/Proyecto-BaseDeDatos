@@ -327,10 +327,11 @@ public class UsuarioForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarDatosActionPerformed
     
-    public JButton getBtnRegistrarse() {
+    public JButton getBtnActualizarDatos() {
         return btnActualizarDatos;
     }
-    public JButton getVolverMenuPrincipal() {
+
+    public JButton getBtnVolverMenuPrincipal() {
         return btnVolverMenu;
     }
 
