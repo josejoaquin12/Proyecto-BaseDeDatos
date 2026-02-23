@@ -67,6 +67,7 @@ public class RegistroForm extends javax.swing.JFrame {
         lblCodigoPostal = new javax.swing.JLabel();
         txtCodigoPostal = new javax.swing.JTextField();
         btnRegistrarse = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         txtFechaNacimiento1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +175,10 @@ public class RegistroForm extends javax.swing.JFrame {
         btnRegistrarse.setForeground(new java.awt.Color(225, 225, 225));
         btnRegistrarse.setText("Registrarse");
 
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(45, 102, 237));
+        btnCancelar.setText("Cancelar");
+
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
         panPrincipalLayout.setHorizontalGroup(
@@ -222,7 +227,11 @@ public class RegistroForm extends javax.swing.JFrame {
                             .addComponent(txtCodigoPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(btnRegistrarse)))
+                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panPrincipalLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnCancelar))
+                            .addComponent(btnRegistrarse))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         panPrincipalLayout.setVerticalGroup(
@@ -284,7 +293,9 @@ public class RegistroForm extends javax.swing.JFrame {
                     .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrarse)
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,10 +309,10 @@ public class RegistroForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(panPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(panPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -400,6 +411,7 @@ public class RegistroForm extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JLabel lblApellidoM;
