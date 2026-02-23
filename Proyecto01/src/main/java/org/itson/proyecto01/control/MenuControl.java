@@ -82,7 +82,7 @@ public class MenuControl {
     }
 
     private void abrirPantallaUsuario() {
-        PerfilUsuarioForm usuarioForm = new PerfilUsuarioForm();
+        UsuarioForm usuarioForm = new UsuarioForm();
         usuarioForm.setVisible(true);
         menuForm.dispose();
     }

@@ -24,6 +24,7 @@ import org.itson.proyecto01.presentacion.ConfirmarTransferenciaForm;
 import org.itson.proyecto01.presentacion.ConsultarOperacionesForm;
 import org.itson.proyecto01.presentacion.LoginForm;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
+import org.itson.proyecto01.presentacion.UsuarioForm;
 import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 
 public class TransferenciaControl {
@@ -67,7 +68,7 @@ public class TransferenciaControl {
         transfrom.dispose();
     }
     private void abrirPantallaUsuario() {
-        PerfilUsuarioForm usuarioForm = new PerfilUsuarioForm();
+        UsuarioForm usuarioForm = new UsuarioForm();
         usuarioForm.setVisible(true);
         transfrom.dispose();
     }
