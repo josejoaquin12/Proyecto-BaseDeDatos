@@ -11,10 +11,50 @@ import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.enums.EstadoCuenta;
 import org.itson.proyecto01.enums.TipoOperacion;
 
+/**
+ * <p>
+ * Implementación del DAO para la entidad <b>Cuenta</b>. Esta clase encapsula el acceso
+ * a datos y las operaciones de persistencia relacionadas con la tabla
+ * <code>cuentas</code>, así como el registro de operaciones en la tabla
+ * <code>operaciones</code> cuando aplica.
+ * </p>
+ *
+ * <p>
+ * Entre sus responsabilidades se incluyen:
+ * </p>
+ * <ul>
+ *   <li>Consultar cuentas (todas o solo activas) de un cliente.</li>
+ *   <li>Consultar saldo por número de cuenta.</li>
+ *   <li>Dar de alta una cuenta (con transacción y registro de operación).</li>
+ *   <li>Actualizar saldo.</li>
+ *   <li>Cancelar cuenta.</li>
+ *   <li>Consultar una cuenta por número de cuenta.</li>
+ *   <li>Generar un número de cuenta único.</li>
+ * </ul>
+ *
+ * @author
+ */
 public class CuentasDAO implements ICuentasDAO {
 
     private static final Logger LOGGER = Logger.getLogger(CuentasDAO.class.getName());
 
+    /**
+     * <p>
+     * Obtiene la lista de cuentas <b>activas</b> asociadas a un cliente.
+     * </p>
+     *
+     * <p>
+     * La consulta filtra por:
+     * </p>
+     * <ul>
+     *   <li><code>id_cliente = ?</code></li>
+     *   <li><code>estado = 'ACTIVA'</code></li>
+     * </ul>
+     *
+     * @param idCliente identificador del cliente dueño de las cuentas.
+     * @return lista de {@link Cuenta} activas; si no hay registros, retorna una lista vacía.
+     * @throws PersistenciaException si ocurre un error al consultar la base de datos.
+     */
     @Override
     public List<Cuenta> obtenerCuentasActivas(Integer idCliente) throws PersistenciaException {
         List<Cuenta> listaCuentas = new LinkedList<>();
@@ -59,6 +99,15 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Obtiene la lista de <b>todas</b> las cuentas asociadas a un cliente, sin filtrar por estado.
+     * </p>
+     *
+     * @param idCliente identificador del cliente dueño de las cuentas.
+     * @return lista de {@link Cuenta} del cliente; si no hay registros, retorna una lista vacía.
+     * @throws PersistenciaException si ocurre un error al consultar la base de datos.
+     */
     @Override
     public List<Cuenta> obtenerCuentas(Integer idCliente) throws PersistenciaException {
         List<Cuenta> listaCuentas = new LinkedList<>();
@@ -103,6 +152,15 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Obtiene el saldo asociado a un número de cuenta.
+     * </p>
+     *
+     * @param numeroCuenta número de cuenta a buscar.
+     * @return el saldo de la cuenta si existe; si no existe la cuenta, retorna <code>null</code>.
+     * @throws PersistenciaException si ocurre un error al consultar la base de datos.
+     */
     @Override
     public Double obtenerSaldoPorNumeroCuenta(String numeroCuenta) throws PersistenciaException {
 
@@ -133,6 +191,27 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Da de alta una nueva cuenta para un cliente y registra una operación de tipo
+     * <code>ALTA_CUENTA</code> en la tabla <code>operaciones</code>.
+     * </p>
+     *
+     * <p>
+     * Se ejecuta dentro de una <b>transacción</b>:
+     * </p>
+     * <ul>
+     *   <li>Inserta el registro en <code>cuentas</code>.</li>
+     *   <li>Obtiene el <code>id_cuenta</code> generado.</li>
+     *   <li>Inserta el registro correspondiente en <code>operaciones</code>.</li>
+     *   <li>Confirma con <code>commit()</code>.</li>
+     *   <li>Si falla algo, ejecuta <code>rollback()</code>.</li>
+     * </ul>
+     *
+     * @param nuevaCuenta DTO con la información necesaria para crear la cuenta.
+     * @return objeto {@link Cuenta} con el ID generado y datos persistidos.
+     * @throws PersistenciaException si ocurre un error en cualquiera de los inserts o en la transacción.
+     */
     @Override
     public Cuenta altaCuenta(NuevaCuentaDTO nuevaCuenta) throws PersistenciaException {
 
@@ -217,6 +296,15 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Actualiza el saldo de una cuenta por su identificador.
+     * </p>
+     *
+     * @param idCuenta identificador de la cuenta a modificar.
+     * @param nuevoSaldo nuevo saldo a establecer.
+     * @throws PersistenciaException si ocurre un error al ejecutar el <code>UPDATE</code>.
+     */
     @Override
     public void actualizarSaldo(Integer idCuenta, double nuevoSaldo) throws PersistenciaException {
 
@@ -242,6 +330,14 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Cancela una cuenta cambiando su estado a <code>CANCELADA</code>.
+     * </p>
+     *
+     * @param idCuenta identificador de la cuenta a cancelar.
+     * @throws PersistenciaException si ocurre un error al ejecutar el <code>UPDATE</code>.
+     */
     @Override
     public void cancelarCuenta(Integer idCuenta) throws PersistenciaException {
 
@@ -266,6 +362,16 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Obtiene una cuenta por su número de cuenta.
+     * </p>
+     *
+     * @param numeroCuenta número de cuenta a buscar.
+     * @return objeto {@link Cuenta} si existe el registro.
+     * @throws PersistenciaException si la cuenta no existe, si el número es incorrecto
+     *                              o si ocurre un error al consultar.
+     */
     @Override
     public Cuenta obtenerCuentaporNumeroCuenta(String numeroCuenta) throws PersistenciaException {
         try {
@@ -305,6 +411,22 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * <p>
+     * Genera un número de cuenta aleatorio de 18 dígitos y verifica que no exista en la base de datos.
+     * </p>
+     *
+     * <p>
+     * El método repite la generación hasta que el número sea único, consultando:
+     * </p>
+     * <ul>
+     *   <li><code>SELECT COUNT(id_cuenta) FROM Cuentas WHERE numero_cuenta = ?</code></li>
+     * </ul>
+     *
+     * @param conexion conexión activa a la base de datos (usada para validar unicidad).
+     * @return número de cuenta único de 18 dígitos.
+     * @throws SQLException si ocurre un error durante la validación en base de datos.
+     */
     private String generarNumeroCuenta(Connection conexion) throws SQLException {
         Random random = new Random();
         String numeroCuenta;
