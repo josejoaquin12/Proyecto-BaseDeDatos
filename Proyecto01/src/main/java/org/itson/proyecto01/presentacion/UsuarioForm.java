@@ -5,26 +5,21 @@
 package org.itson.proyecto01.presentacion;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
  *
- * @author elgps
+ * @author joset
  */
-public class RegistroForm extends javax.swing.JFrame {
+public class UsuarioForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroForm
+     * Creates new form PerfilUsuarioForm
      */
-    public RegistroForm() {
+    public UsuarioForm() {
         initComponents();
-        txtFechaNacimiento.setText("Formato : aaaa-mm-dd");
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
-        setIconImage(icon);
     }
 
     /**
@@ -36,8 +31,6 @@ public class RegistroForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtFechaNacimiento1 = new javax.swing.JTextField();
-        btnRegistrar = new javax.swing.JButton();
         panPrincipal = new javax.swing.JPanel();
         lblTituloRegistrarse = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -66,34 +59,18 @@ public class RegistroForm extends javax.swing.JFrame {
         txtEstado = new javax.swing.JTextField();
         lblCodigoPostal = new javax.swing.JLabel();
         txtCodigoPostal = new javax.swing.JTextField();
-        btnRegistrarse = new javax.swing.JButton();
-
-        txtFechaNacimiento1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacimiento1ActionPerformed(evt);
-            }
-        });
-
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(45, 102, 237));
-        btnRegistrar.setText("Registrarse");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
+        btnActualizarDatos = new javax.swing.JButton();
+        btnVolverMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Registro de cliente");
-        setBackground(new java.awt.Color(245, 247, 250));
-        setResizable(false);
+        setTitle("Usuario");
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         panPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         panPrincipal.setPreferredSize(new java.awt.Dimension(256, 300));
 
         lblTituloRegistrarse.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblTituloRegistrarse.setText("Registrarse");
+        lblTituloRegistrarse.setText("Mi usuario");
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,10 +146,20 @@ public class RegistroForm extends javax.swing.JFrame {
         lblCodigoPostal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCodigoPostal.setText("Codigo postal");
 
-        btnRegistrarse.setBackground(new java.awt.Color(45, 102, 237));
-        btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrarse.setForeground(new java.awt.Color(225, 225, 225));
-        btnRegistrarse.setText("Registrarse");
+        btnActualizarDatos.setBackground(new java.awt.Color(45, 102, 237));
+        btnActualizarDatos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizarDatos.setForeground(new java.awt.Color(225, 225, 225));
+        btnActualizarDatos.setText("Actualizar datos");
+        btnActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarDatosActionPerformed(evt);
+            }
+        });
+
+        btnVolverMenu.setBackground(new java.awt.Color(45, 102, 237));
+        btnVolverMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVolverMenu.setForeground(new java.awt.Color(225, 225, 225));
+        btnVolverMenu.setText("<html> Volver al<br> Menu <html>");
 
         javax.swing.GroupLayout panPrincipalLayout = new javax.swing.GroupLayout(panPrincipal);
         panPrincipal.setLayout(panPrincipalLayout);
@@ -183,46 +170,43 @@ public class RegistroForm extends javax.swing.JFrame {
                 .addComponent(lblTituloRegistrarse)
                 .addGap(167, 167, 167))
             .addGroup(panPrincipalLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(txtApellidoP)
+                        .addComponent(txtApellidoM)
+                        .addComponent(lblNombres)
+                        .addComponent(lblApellidoP)
+                        .addComponent(lblApellidoM)
+                        .addComponent(lblFechaNacimiento)
+                        .addComponent(lblContrasenia)
+                        .addComponent(lblConfirmarContrasenia)
+                        .addComponent(txtContrasenia)
+                        .addComponent(txtConfirmarContrasenia)
+                        .addComponent(txtNombre))
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                .addComponent(txtApellidoP)
-                                .addComponent(txtApellidoM)
-                                .addComponent(lblNombres)
-                                .addComponent(lblApellidoP)
-                                .addComponent(lblApellidoM)
-                                .addComponent(lblFechaNacimiento)
-                                .addComponent(lblContrasenia)
-                                .addComponent(lblConfirmarContrasenia)
-                                .addComponent(txtContrasenia)
-                                .addComponent(txtConfirmarContrasenia)
-                                .addComponent(txtNombre))
-                            .addGroup(panPrincipalLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(lblDatosIdentificacion)))
-                        .addGap(38, 38, 38)
-                        .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblDomicilio)
-                            .addComponent(txtCalle)
-                            .addGroup(panPrincipalLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(lblDatosDomicilio))
-                            .addComponent(lblCalle)
-                            .addComponent(txtNumero)
-                            .addComponent(lblColonia)
-                            .addComponent(txtColonia)
-                            .addComponent(lblCiudad)
-                            .addComponent(txtCiudad)
-                            .addComponent(lblEstado)
-                            .addComponent(txtEstado)
-                            .addComponent(lblCodigoPostal)
-                            .addComponent(txtCodigoPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                        .addGap(27, 27, 27)
+                        .addComponent(lblDatosIdentificacion))
+                    .addComponent(btnVolverMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblDomicilio)
+                    .addComponent(txtCalle)
                     .addGroup(panPrincipalLayout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(btnRegistrarse)))
+                        .addGap(41, 41, 41)
+                        .addComponent(lblDatosDomicilio))
+                    .addComponent(lblCalle)
+                    .addComponent(txtNumero)
+                    .addComponent(lblColonia)
+                    .addComponent(txtColonia)
+                    .addComponent(lblCiudad)
+                    .addComponent(txtCiudad)
+                    .addComponent(lblEstado)
+                    .addComponent(txtEstado)
+                    .addComponent(lblCodigoPostal)
+                    .addComponent(txtCodigoPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(btnActualizarDatos))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         panPrincipalLayout.setVerticalGroup(
@@ -282,9 +266,11 @@ public class RegistroForm extends javax.swing.JFrame {
                 .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConfirmarContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrarse)
-                .addGap(50, 50, 50))
+                .addGap(21, 21, 21)
+                .addGroup(panPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnActualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVolverMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,16 +278,16 @@ public class RegistroForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(284, 284, 284)
+                .addGap(191, 191, 191)
                 .addComponent(panPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
                 .addComponent(panPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
@@ -319,17 +305,12 @@ public class RegistroForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoPActionPerformed
 
-    private void txtFechaNacimiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimiento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacimiento1ActionPerformed
-
-    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    private void txtFechaNacimientoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoFocusGained
+        if (txtFechaNacimiento.getText().equals("Formato : aaaa-mm-dd")) {
+            txtFechaNacimiento.setForeground(Color.BLACK);
+            txtFechaNacimiento.setText("");
+        }
+    }//GEN-LAST:event_txtFechaNacimientoFocusGained
 
     private void txtFechaNacimientoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoFocusLost
         if (txtFechaNacimiento.getText().isEmpty()) {
@@ -338,16 +319,21 @@ public class RegistroForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtFechaNacimientoFocusLost
 
-    private void txtFechaNacimientoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFechaNacimientoFocusGained
-       if (txtFechaNacimiento.getText().equals("Formato : aaaa-mm-dd")) {
-            txtFechaNacimiento.setForeground(Color.BLACK);
-            txtFechaNacimiento.setText("");
-        }
-    }//GEN-LAST:event_txtFechaNacimientoFocusGained
+    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
+    private void btnActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarDatosActionPerformed
+    
     public JButton getBtnRegistrarse() {
-        return btnRegistrarse;
+        return btnActualizarDatos;
     }
+    public JButton getVolverMenuPrincipal() {
+        return btnVolverMenu;
+    }
+
 
     public JTextField getTxtApellidoM() {
         return txtApellidoM;
@@ -397,11 +383,9 @@ public class RegistroForm extends javax.swing.JFrame {
         return txtNumero;
     }
 
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnActualizarDatos;
+    private javax.swing.JButton btnVolverMenu;
     private javax.swing.JLabel lblApellidoM;
     private javax.swing.JLabel lblApellidoP;
     private javax.swing.JLabel lblCalle;
@@ -428,7 +412,6 @@ public class RegistroForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFechaNacimiento;
-    private javax.swing.JTextField txtFechaNacimiento1;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables

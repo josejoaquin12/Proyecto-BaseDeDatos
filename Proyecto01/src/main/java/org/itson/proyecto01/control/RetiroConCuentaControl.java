@@ -35,10 +35,10 @@ public class RetiroConCuentaControl {
     private final RetiroConCuentaForm retiroCForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
-    private final int idCliente;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
 
-    public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm, int idCliente) {
+    public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm) {
         this.retiroCForm = retiroCForm;
         
         // Inicializar BO 
@@ -48,7 +48,6 @@ public class RetiroConCuentaControl {
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
-        this.idCliente = idCliente;
         cargarCuentasCliente();
         inicializarEventos();
 
@@ -128,7 +127,7 @@ public class RetiroConCuentaControl {
     }
 
     private void abrirMenuPrincipal(int idCliente) {
-        MenuPrincipalForm menu = new MenuPrincipalForm(idCliente);
+        MenuPrincipalForm menu = new MenuPrincipalForm();
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
         retiroCForm.dispose();

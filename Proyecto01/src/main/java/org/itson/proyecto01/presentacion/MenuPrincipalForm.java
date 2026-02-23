@@ -18,26 +18,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.itson.proyecto01.control.MenuControl;
+import org.itson.proyecto01.control.SesionControl;
 import org.itson.proyecto01.enums.EstadoCuenta;
 
 /**
  *
  * @author joset
  */
-    public class MenuPrincipalForm extends javax.swing.JFrame {
+public class MenuPrincipalForm extends javax.swing.JFrame {
 
-        private final JPanel contenedorCuentas;
-        private final JScrollPane scrollCuentas;
-        private final MenuControl menuControl;
-
-        /**
-         * Creates new form menuPrincipal
-         */
-        public MenuPrincipalForm(int idCliente) {
+    private final JPanel contenedorCuentas;
+    private final JScrollPane scrollCuentas;
+    private final MenuControl menuControl;
+    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
+    /**
+     * Creates new form menuPrincipal
+     */
+    public MenuPrincipalForm() {
         initComponents();
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
-        menuControl = new MenuControl(this, idCliente);
+        menuControl = new MenuControl(this);
 
         // Panel que contendrá las cuentas
         contenedorCuentas = new JPanel();
@@ -70,7 +71,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         // Cargar cuentas desde el control
         menuControl.cargarCuentasCliente();
         menuControl.cargarNombreCliente();
-        
+
         // Cargar los estilos de los botones
         utileriasBoton(btnAltaCuenta);
         utileriasBoton(btnCancelarCuenta);
@@ -79,8 +80,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         utileriasBoton(btnMostrarTransferencias);
         utileriasBoton(btnUsuario);
         utileriasBoton(btnRetiroSinCuenta);
-        
-        
+
         panPieDePantalla.setLayout(new BoxLayout(panPieDePantalla, BoxLayout.X_AXIS));
         panPieDePantalla.add(Box.createHorizontalGlue());
         panPieDePantalla.add(btnCancelarCuenta);
@@ -88,7 +88,6 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         panPieDePantalla.add(btnAltaCuenta);
         panPieDePantalla.add(Box.createHorizontalGlue());
 
-        
     }
 
     /**
@@ -287,92 +286,93 @@ import org.itson.proyecto01.enums.EstadoCuenta;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JPanel crearPanelCuenta(String numeroCuenta, EstadoCuenta estado, double saldo) {
+        public JPanel crearPanelCuenta(String numeroCuenta, EstadoCuenta estado, double saldo) {
 
-        JPanel panCuenta = new JPanel(new BorderLayout());
-        panCuenta.setBackground(new Color(45, 102, 237));
-        panCuenta.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(Color.WHITE, 6, true),
-                BorderFactory.createEmptyBorder(12, 15, 12, 15)
-        ));
-        panCuenta.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
+            JPanel panCuenta = new JPanel(new BorderLayout());
+            panCuenta.setBackground(new Color(45, 102, 237));
+            panCuenta.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(Color.WHITE, 6, true),
+                    BorderFactory.createEmptyBorder(12, 15, 12, 15)
+            ));
+            panCuenta.setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
 
-        // Parte Superiro del panel
-        JPanel panelTop = new JPanel(new BorderLayout());
-        panelTop.setOpaque(false);
+            // Parte Superiro del panel
+            JPanel panelTop = new JPanel(new BorderLayout());
+            panelTop.setOpaque(false);
 
-        JLabel lblTituloCuenta = new JLabel("CUENTA EN PESOS");
-        lblTituloCuenta.setFont(new Font("Segoe UI", Font.BOLD, 22));
-        lblTituloCuenta.setForeground(Color.WHITE);
+            JLabel lblTituloCuenta = new JLabel("CUENTA EN PESOS");
+            lblTituloCuenta.setFont(new Font("Segoe UI", Font.BOLD, 22));
+            lblTituloCuenta.setForeground(Color.WHITE);
 
-        JLabel lblEstadoCuenta = new JLabel("Estado: " + estado);
-        lblEstadoCuenta.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        lblEstadoCuenta.setForeground(Color.WHITE);
+            JLabel lblEstadoCuenta = new JLabel("Estado: " + estado);
+            lblEstadoCuenta.setFont(new Font("Segoe UI", Font.BOLD, 12));
+            lblEstadoCuenta.setForeground(Color.WHITE);
 
-        panelTop.add(lblTituloCuenta, BorderLayout.WEST);
-        panelTop.add(lblEstadoCuenta, BorderLayout.EAST);
+            panelTop.add(lblTituloCuenta, BorderLayout.WEST);
+            panelTop.add(lblEstadoCuenta, BorderLayout.EAST);
 
-        //Parte central del panel
-        JPanel panelCentro = new JPanel(new BorderLayout());
-        panelCentro.setOpaque(false);
+            //Parte central del panel
+            JPanel panelCentro = new JPanel(new BorderLayout());
+            panelCentro.setOpaque(false);
 
-        // parte Izq
-        JPanel panelIzq = new JPanel();
-        panelIzq.setOpaque(false);
-        panelIzq.setLayout(new BoxLayout(panelIzq, BoxLayout.Y_AXIS));
+            // parte Izq
+            JPanel panelIzq = new JPanel();
+            panelIzq.setOpaque(false);
+            panelIzq.setLayout(new BoxLayout(panelIzq, BoxLayout.Y_AXIS));
 
-        JLabel lblNumero = new JLabel("Número de cuenta");
-        lblNumero.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        lblNumero.setForeground(new Color(220, 220, 220));
+            JLabel lblNumero = new JLabel("Número de cuenta");
+            lblNumero.setFont(new Font("Segoe UI", Font.BOLD, 12));
+            lblNumero.setForeground(new Color(220, 220, 220));
 
-        JLabel lblNumeroCuenta = new JLabel(numeroCuenta);
-        lblNumeroCuenta.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        lblNumeroCuenta.setForeground(Color.WHITE);
+            JLabel lblNumeroCuenta = new JLabel(numeroCuenta);
+            lblNumeroCuenta.setFont(new Font("Segoe UI", Font.BOLD, 16));
+            lblNumeroCuenta.setForeground(Color.WHITE);
 
-        panelIzq.add(lblNumero);
-        panelIzq.add(lblNumeroCuenta);
+            panelIzq.add(lblNumero);
+            panelIzq.add(lblNumeroCuenta);
 
-        // parte Derecha
-        JPanel panelDer = new JPanel();
-        panelDer.setOpaque(false);
-        panelDer.setLayout(new BoxLayout(panelDer, BoxLayout.Y_AXIS));
+            // parte Derecha
+            JPanel panelDer = new JPanel();
+            panelDer.setOpaque(false);
+            panelDer.setLayout(new BoxLayout(panelDer, BoxLayout.Y_AXIS));
 
-        JLabel lblSaldoDisponible = new JLabel(String.format("$%,.2f", saldo));
-        lblSaldoDisponible.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        lblSaldoDisponible.setForeground(Color.WHITE);
-        lblSaldoDisponible.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+            JLabel lblSaldoDisponible = new JLabel(String.format("$%,.2f", saldo));
+            lblSaldoDisponible.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            lblSaldoDisponible.setForeground(Color.WHITE);
+            lblSaldoDisponible.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
 
-        JLabel lblSaldo = new JLabel("Saldo Disponible");
-        lblSaldo.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-        lblSaldo.setForeground(new Color(220, 220, 220));
-        lblSaldo.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
+            JLabel lblSaldo = new JLabel("Saldo Disponible");
+            lblSaldo.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            lblSaldo.setForeground(new Color(220, 220, 220));
+            lblSaldo.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
 
-        panelDer.add(lblSaldoDisponible);
-        panelDer.add(lblSaldo);
+            panelDer.add(lblSaldoDisponible);
+            panelDer.add(lblSaldo);
 
-        panelCentro.add(panelIzq, BorderLayout.WEST);
-        panelCentro.add(panelDer, BorderLayout.EAST);
+            panelCentro.add(panelIzq, BorderLayout.WEST);
+            panelCentro.add(panelDer, BorderLayout.EAST);
 
-        //juntar las partes
-        panCuenta.add(panelTop, BorderLayout.NORTH);
-        panCuenta.add(panelCentro, BorderLayout.CENTER);
+            //juntar las partes
+            panCuenta.add(panelTop, BorderLayout.NORTH);
+            panCuenta.add(panelCentro, BorderLayout.CENTER);
 
-        return panCuenta;
-    }
+            return panCuenta;
+        }
 
-    public void agregarPanelCuenta(String numeroCuenta, EstadoCuenta estado, double saldo) {
-        JPanel panCuenta = crearPanelCuenta(numeroCuenta, estado, saldo);
-        contenedorCuentas.add(panCuenta);
-        contenedorCuentas.revalidate();
-        contenedorCuentas.repaint();
-    }
-    private void utileriasBoton(JButton btn) {
-        btn.setBackground(Color.WHITE);
-        btn.setOpaque(true);
-        btn.setFocusPainted(false);
-        btn.setContentAreaFilled(true);
-        btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
-    }
+        public void agregarPanelCuenta(String numeroCuenta, EstadoCuenta estado, double saldo) {
+            JPanel panCuenta = crearPanelCuenta(numeroCuenta, estado, saldo);
+            contenedorCuentas.add(panCuenta);
+            contenedorCuentas.revalidate();
+            contenedorCuentas.repaint();
+        }
+
+        private void utileriasBoton(JButton btn) {
+            btn.setBackground(Color.WHITE);
+            btn.setOpaque(true);
+            btn.setFocusPainted(false);
+            btn.setContentAreaFilled(true);
+            btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+        }
 
     private void btnMostrarTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTransferenciasActionPerformed
         // TODO add your handling code here:
@@ -395,7 +395,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     }//GEN-LAST:event_btnCancelarCuentaActionPerformed
 
     private void btnAltaCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaCuentaMouseEntered
-        btnAltaCuenta.setBackground(new Color(12,140,233));
+        btnAltaCuenta.setBackground(new Color(12, 140, 233));
     }//GEN-LAST:event_btnAltaCuentaMouseEntered
 
     private void btnAltaCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAltaCuentaMouseExited
@@ -403,7 +403,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     }//GEN-LAST:event_btnAltaCuentaMouseExited
 
     private void btnCancelarCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarCuentaMouseEntered
-        btnCancelarCuenta.setBackground(new Color(12,140,233));
+        btnCancelarCuenta.setBackground(new Color(12, 140, 233));
     }//GEN-LAST:event_btnCancelarCuentaMouseEntered
 
     private void btnCancelarCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarCuentaMouseExited
@@ -413,40 +413,42 @@ import org.itson.proyecto01.enums.EstadoCuenta;
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
-    // Dentro de MenuPrincipalForm
-    public JButton getBtnMostrarTransferencias() {
-        return btnMostrarTransferencias;
-    }
+        // Dentro de MenuPrincipalForm
 
-    public JButton getBtnMostrarRetiroSinCuenta() {
-        return btnRetiroSinCuenta;
-    }
-    
-    public JButton getBtnCancelarCuenta() {
-        return btnCancelarCuenta;
-    }
-    
-     public JButton getBtnAltaCuenta() {
-        return btnAltaCuenta;
-    }
+        public JButton getBtnMostrarTransferencias() {
+            return btnMostrarTransferencias;
+        }
 
-    public JButton getBtnConsultarOperaciones() {
-        return btnConsultarOperaciones;
-    }
+        public JButton getBtnMostrarRetiroSinCuenta() {
+            return btnRetiroSinCuenta;
+        }
 
-    public JButton getBtnCerrarSesion() {
-        return btnCerrarSesion;
-    }
+        public JButton getBtnCancelarCuenta() {
+            return btnCancelarCuenta;
+        }
 
-    public JButton getBtnUsuario() {
-        return btnUsuario;
-    }
-    public void actualizarBienvenida(String nombreCliente) {
-        lblBienvenido.setText("<html><center>¡Bienvenido, <b>" + nombreCliente + "</b>!</center></html>");
-        lblBienvenido.setFont(new Font("Segoe UI", Font.BOLD, 36));
-        lblBienvenido.setForeground(new Color(45, 102, 237)); 
-        lblBienvenido.setHorizontalAlignment(JLabel.CENTER);
-    }
+        public JButton getBtnAltaCuenta() {
+            return btnAltaCuenta;
+        }
+
+        public JButton getBtnConsultarOperaciones() {
+            return btnConsultarOperaciones;
+        }
+
+        public JButton getBtnCerrarSesion() {
+            return btnCerrarSesion;
+        }
+
+        public JButton getBtnUsuario() {
+            return btnUsuario;
+        }
+
+        public void actualizarBienvenida(String nombreCliente) {
+            lblBienvenido.setText("<html><center>¡Bienvenido, <b>" + nombreCliente + "</b>!</center></html>");
+            lblBienvenido.setFont(new Font("Segoe UI", Font.BOLD, 36));
+            lblBienvenido.setForeground(new Color(45, 102, 237));
+            lblBienvenido.setHorizontalAlignment(JLabel.CENTER);
+        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaCuenta;
     private javax.swing.JButton btnCancelarCuenta;

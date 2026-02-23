@@ -5,8 +5,6 @@
 package org.itson.proyecto01.negocio;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.entidades.Retiro;
 import org.itson.proyecto01.persistencia.CuentasDAO;
@@ -59,7 +57,7 @@ public class RetiroBO implements IRetiroBO{
         try {
             String numeroCuenta = cuenta.getNumeroCuenta();
             LocalDateTime fechaHora = LocalDateTime.now();
-            String contrasena = generarCodigoNumerico(10);
+            String contrasena = generarCodigoNumerico(8);
             String folio = generarCodigoNumerico(18);
             
             Retiro retiro = new Retiro(numeroCuenta, monto, contrasena, fechaHora, "RETIRO_SIN_CUENTA", folio, "PENDIENTE");
