@@ -15,9 +15,7 @@ public interface ITransferenciasBO {
 
     
     
-    public abstract Transferencia realizarTransferencia(
-            NuevaTransferenciaDTO nuevaTransferencia
-    )throws NegocioException;
+    public abstract Transferencia realizarTransferencia(NuevaTransferenciaDTO nuevaTransferencia)throws NegocioException;
         
     
 }

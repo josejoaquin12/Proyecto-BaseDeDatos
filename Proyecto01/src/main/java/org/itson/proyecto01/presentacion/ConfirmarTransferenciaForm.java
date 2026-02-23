@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import org.itson.proyecto01.control.SesionControl;
+import org.itson.proyecto01.control.TransferenciaControl;
 import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
 import org.itson.proyecto01.enums.TipoOperacion;
 import org.itson.proyecto01.negocio.ITransferenciasBO;
@@ -330,6 +332,12 @@ public class ConfirmarTransferenciaForm extends javax.swing.JFrame {
                 " :Error en la transferencia",
                 JOptionPane.ERROR_MESSAGE
             );
+            TransferenciaForm trans = new TransferenciaForm();
+            new TransferenciaControl(trans);
+            trans.setLocationRelativeTo(null);
+            trans.setVisible(true);
+
+            this.dispose();
         }
     }//GEN-LAST:event_btnConfirmarTransferenciaActionPerformed
 

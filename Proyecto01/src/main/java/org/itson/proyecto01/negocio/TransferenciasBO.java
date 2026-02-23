@@ -11,6 +11,7 @@ import org.itson.proyecto01.enums.EstadoCuenta;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
 import org.itson.proyecto01.persistencia.ITransferenciasDAO;
 import org.itson.proyecto01.persistencia.PersistenciaException;
+import org.itson.proyecto01.presentacion.TransferenciaForm;
 
 /**
  * <p>
@@ -64,6 +65,7 @@ public class TransferenciasBO implements ITransferenciasBO {
     public TransferenciasBO(ITransferenciasDAO transferenciasDAO, ICuentasDAO cuentasDAO) {
         this.transferenciasDAO = transferenciasDAO;
         this.cuentasDAO = cuentasDAO;
+        
     }
 
     /**
@@ -122,8 +124,7 @@ public class TransferenciasBO implements ITransferenciasBO {
             if (cuentaDestino.getEstado().equals(EstadoCuenta.CANCELADA)) {
                 throw new NegocioException("Imposible transferir a una cuenta cancelada.", null);
             }
-
-            Transferencia transferencia = this.transferenciasDAO.realizarTransferencia(nuevaTransferencia);
+            Transferencia transferencia = this.transferenciasDAO.realizarTransferencia( cuentaOrigen.getId(),nuevaTransferencia, cuentaDestino.getId());
             return transferencia;
 
         } catch (PersistenciaException ex) {

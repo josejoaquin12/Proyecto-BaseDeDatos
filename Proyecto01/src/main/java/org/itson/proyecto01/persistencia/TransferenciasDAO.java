@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.logging.Logger;
+import org.itson.proyecto01.control.SesionControl;
 import org.itson.proyecto01.dtos.NuevaTransferenciaDTO;
 import org.itson.proyecto01.entidades.Transferencia;
 
@@ -87,7 +88,7 @@ public class TransferenciasDAO implements ITransferenciasDAO {
      * @throws PersistenciaException si ocurre un error al actualizar saldos o registrar la operación/transferencia.
      */
     @Override
-    public Transferencia realizarTransferencia(NuevaTransferenciaDTO nuevaTransferencia) throws PersistenciaException {
+    public Transferencia realizarTransferencia(Integer idCuentaOrigen,NuevaTransferenciaDTO nuevaTransferencia,Integer idCuentaDestino) throws PersistenciaException {
 
         try {
 
@@ -137,7 +138,7 @@ public class TransferenciasDAO implements ITransferenciasDAO {
             comandoOperacion.setString(1, nuevaTransferencia.getTipoOperacion().name());
             comandoOperacion.setTimestamp(2, Timestamp.valueOf(nuevaTransferencia.getFechaHoraOperacion()));
             comandoOperacion.setDouble(3, nuevaTransferencia.getMonto());
-            comandoOperacion.setInt(4, 2); //CLIENTE HARCODEADO 
+            comandoOperacion.setInt(4, idCuentaOrigen ); //CLIENTE HARCODEADO 
 
             comandoOperacion.executeUpdate();
             ResultSet rs = comandoOperacion.getGeneratedKeys();
@@ -146,7 +147,7 @@ public class TransferenciasDAO implements ITransferenciasDAO {
 
             PreparedStatement comandoTransferencia = conexion.prepareStatement(codigoSQLTransferencia);
             comandoTransferencia.setInt(1, idTransaccion);
-            comandoTransferencia.setInt(2, 4);
+            comandoTransferencia.setInt(2, idCuentaDestino);
 
             comandoTransferencia.executeUpdate(); //CLIENTE HARCODEADO 
 

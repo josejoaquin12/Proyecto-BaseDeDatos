@@ -14,8 +14,8 @@ import org.itson.proyecto01.entidades.Transferencia;
 public interface ITransferenciasDAO {
     
     
-    public Transferencia realizarTransferencia(
-            NuevaTransferenciaDTO nuevaTransferenciaDTO
+    public Transferencia realizarTransferencia(Integer idCuentaOrigen,
+            NuevaTransferenciaDTO nuevaTransferenciaDTO,Integer idCuentaDestino
     ) throws PersistenciaException;
 
 }
