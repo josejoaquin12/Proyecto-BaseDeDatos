@@ -10,10 +10,19 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cuenta;
 import org.itson.proyecto01.entidades.Retiro;
+import org.itson.proyecto01.negocio.ClientesBO;
+import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.negocio.RetiroBO;
+import org.itson.proyecto01.negocio.TransferenciasBO;
+import org.itson.proyecto01.persistencia.ClientesDAO;
+import org.itson.proyecto01.persistencia.CuentasDAO;
+import org.itson.proyecto01.persistencia.IClientesDAO;
+import org.itson.proyecto01.persistencia.ICuentasDAO;
+import org.itson.proyecto01.persistencia.ITransferenciasDAO;
+import org.itson.proyecto01.persistencia.TransferenciasDAO;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
 
@@ -29,10 +38,16 @@ public class RetiroConCuentaControl {
     private final int idCliente;
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
 
-    public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm, ICuentasBO cuentasBO, IClientesBO clientesBO, int idCliente) {
+    public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm, int idCliente) {
         this.retiroCForm = retiroCForm;
-        this.cuentasBO = cuentasBO;
-        this.clientesBO = clientesBO;
+        
+        // Inicializar BO 
+        ICuentasDAO cuentasDAO = new CuentasDAO();
+        IClientesDAO clientesDAO = new ClientesDAO();
+        
+        //InicializarBO
+        this.clientesBO = new ClientesBO(clientesDAO);
+        this.cuentasBO = new CuentasBO(cuentasDAO);
         this.idCliente = idCliente;
         cargarCuentasCliente();
         inicializarEventos();

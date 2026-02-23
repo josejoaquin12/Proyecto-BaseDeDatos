@@ -62,7 +62,9 @@ public class LoginControl {
         loginForm.dispose();
     }
     private void abrirPantallaRegistroForm() {
+        
         RegistroForm RegistroForm = new RegistroForm();
+        RegistroControl registorControl = new RegistroControl(RegistroForm);
         RegistroForm.setLocationRelativeTo(null);
         RegistroForm.setVisible(true);
         loginForm.dispose(); 

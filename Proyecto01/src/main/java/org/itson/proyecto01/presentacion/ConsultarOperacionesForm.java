@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package org.itson.proyecto01.presentacion;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -23,6 +25,11 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         llenarComboBox();
+        utileriasBoton(btnUsuario);
+        utileriasBoton(btnCerrarSesion);
+        utileriasBoton(btnRealizarTransferencia);
+        utileriasBoton(btnRetiroSinCuenta1);
+        utileriasBoton(btnVerCuentas);
     }
 
     /**
@@ -37,7 +44,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         panMenuBar = new javax.swing.JPanel();
         btnUsuario = new javax.swing.JButton();
         btnVerCuentas = new javax.swing.JButton();
-        btnConsultarOperaciones = new javax.swing.JButton();
+        btnRealizarTransferencia = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnRetiroSinCuenta1 = new javax.swing.JButton();
         lblTituloOperaciones = new javax.swing.JLabel();
@@ -66,11 +73,11 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
             }
         });
 
-        btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
-        btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
+        btnRealizarTransferencia.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnRealizarTransferencia.setText("<html>Realizar<br>Transferencia</html> ");
+        btnRealizarTransferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarOperacionesActionPerformed(evt);
+                btnRealizarTransferenciaActionPerformed(evt);
             }
         });
 
@@ -97,7 +104,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
                     .addComponent(btnRetiroSinCuenta1)
                     .addComponent(btnUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerCuentas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRealizarTransferencia, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -109,7 +116,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(btnVerCuentas)
                 .addGap(32, 32, 32)
-                .addComponent(btnConsultarOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRealizarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnCerrarSesion)
                 .addGap(18, 18, 18)
@@ -191,7 +198,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(301, 301, 301)
                         .addComponent(lblTituloOperaciones)))
-                .addGap(0, 80, Short.MAX_VALUE))
+                .addGap(0, 78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +221,13 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void utileriasBoton(JButton btn) {
+        btn.setBackground(Color.WHITE);
+        btn.setOpaque(true);
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(true);
+        btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+    }
     private void llenarComboBox(){
         // se limpia el comboBox
         TipoOperacionComboBox.removeAllItems();
@@ -234,8 +247,8 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         return btnCerrarSesion;
     }
 
-    public JButton getBtnConsultarOperaciones() {
-        return btnConsultarOperaciones;
+    public JButton getBtnRealizarTransferencia() {
+        return btnRealizarTransferencia;
     }
 
     public JButton getBtnRetiroSinCuenta1() {
@@ -262,9 +275,9 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerCuentasActionPerformed
 
-    private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
+    private void btnRealizarTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarTransferenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
+    }//GEN-LAST:event_btnRealizarTransferenciaActionPerformed
 
     private void btnRetiroSinCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuenta1ActionPerformed
         // TODO add your handling code here:
@@ -274,7 +287,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> TipoOperacionComboBox;
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnConsultarOperaciones;
+    private javax.swing.JButton btnRealizarTransferencia;
     private javax.swing.JButton btnRetiroSinCuenta1;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVerCuentas;

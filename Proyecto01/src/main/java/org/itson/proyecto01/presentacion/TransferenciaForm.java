@@ -43,6 +43,7 @@ public class TransferenciaForm extends javax.swing.JFrame {
         utileriasBoton(btnConsultarOperaciones);
         utileriasBoton(btnVerCuentas);
         utileriasBoton(btnRetiroSinCuenta);
+        utileriasBoton(btnContinuarTransferencia);
     }
 
     /**
@@ -519,6 +520,15 @@ public class TransferenciaForm extends javax.swing.JFrame {
     }
     public JButton getBtnMostrarMenu() {
         return btnVerCuentas;
+    }
+    public JButton getBtnConsultarOperaciones() {
+        return btnConsultarOperaciones;
+    }
+    public JButton getBtnCerrarSesion() {
+        return btnCerrarSesion;
+    }
+    public JButton getBtnUsuario() {
+        return btnUsuario;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

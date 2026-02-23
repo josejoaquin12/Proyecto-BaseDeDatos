@@ -1,6 +1,7 @@
 package org.itson.proyecto01.control;
 
 import org.itson.proyecto01.presentacion.*;
+import org.itson.proyecto01.presentacion.AltaCuentaForm;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
@@ -28,21 +29,20 @@ public class MenuControl {
     private final MenuPrincipalForm menuForm;
     private final int idCliente;
 
-
     public MenuControl(MenuPrincipalForm menuForm, int idCliente) {
         this.menuForm = menuForm;
         this.idCliente = idCliente;
 
         // Inicializar BO 
-        ICuentasDAO cuentasDAO = new CuentasDAO(); 
+        ICuentasDAO cuentasDAO = new CuentasDAO();
         IClientesDAO clientesDAO = new ClientesDAO();
         ITransferenciasDAO transferenciasDAO = new TransferenciasDAO(cuentasDAO);
-        
+
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
-        this.transferenciasBO = new TransferenciasBO(transferenciasDAO,cuentasDAO);
+        this.transferenciasBO = new TransferenciasBO(transferenciasDAO, cuentasDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
-        
+
         inicializarEventos();
     }
 
@@ -50,7 +50,7 @@ public class MenuControl {
         try {
             List<Cuenta> cuentas = cuentasBO.consultarCuentasCliente(idCliente); // obtiene datos
             for (Cuenta c : cuentas) {
-                menuForm.agregarPanelCuenta( c.getNumeroCuenta(), c.getEstado(), c.getSaldo());
+                menuForm.agregarPanelCuenta(c.getNumeroCuenta(), c.getEstado(), c.getSaldo());
             }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(menuForm, "Error al cargar cuentas: " + ex.getMessage());
@@ -59,16 +59,10 @@ public class MenuControl {
 
     private void inicializarEventos() {
 //         Evento para btnUsuario
-//         menuForm.getBtnUsuario().addActionListener(e -> abrirPantallaUsuario());
-//
+        menuForm.getBtnUsuario().addActionListener(e -> abrirPantallaUsuario());
+
 //         Evento para btnRealizarTransferencia
-        menuForm.getBtnMostrarTransferencias().addActionListener(e -> {
-            try {
-                abrirTransferenciaForm();
-            } catch (NegocioException ex) {
-                Logger.getLogger(MenuControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        menuForm.getBtnMostrarTransferencias().addActionListener(e -> abrirTransferenciaForm());
 
 //
 //         Evento para btnConsultarOperaciones
@@ -76,53 +70,66 @@ public class MenuControl {
 //
 //         Evento para btnCerrarSesion
         menuForm.getBtnCerrarSesion().addActionListener(e -> cerrarSesion());
-        
+
         // Evento para btnCancelarCuenta
         menuForm.getBtnCancelarCuenta().addActionListener(e -> abrirCerrarCuentaForm());
-        
+
         // Evento para btnAltaCuenta
         menuForm.getBtnAltaCuenta().addActionListener(e -> abrirAltaCuentaForm());
-        
+
         //Evento para btnRetiroConCuenta
         menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
-//
-//    private void abrirPantallaUsuario() {
-//        UsuarioForm usuarioForm = new UsuarioForm(idCliente);
-//        usuarioForm.setVisible(true);
-//        menuForm.dispose(); 
     }
 
-    private void abrirTransferenciaForm() throws NegocioException {
-
-        TransferenciaForm form = new TransferenciaForm();
-
-        TransferenciaControl TransferenciaControl= new TransferenciaControl(form,cuentasBO,transferenciasBO,clientesBO,idCliente);
-        form.setVisible(true);
+    private void abrirPantallaUsuario() {
+        PerfilUsuarioForm usuarioForm = new PerfilUsuarioForm();
+        usuarioForm.setVisible(true);
         menuForm.dispose();
     }
+
+    public void cargarNombreCliente() {
+        try {
+            String nombreCompleto = clientesBO.obtenerClientePorId(idCliente).getNombres() + " " + clientesBO.obtenerClientePorId(idCliente).getApellidoP() + " " + clientesBO.obtenerClientePorId(idCliente).getApellidoM();
+            menuForm.actualizarBienvenida(nombreCompleto);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(menuForm, "Error al cargar nombre del cliente: " + ex.getMessage());
+        }
+    }
+
+    private void abrirTransferenciaForm(){
+
+        TransferenciaForm form = new TransferenciaForm();
+        TransferenciaControl TransferenciaControl = new TransferenciaControl(form, idCliente);
+        form.setVisible(true);
+        menuForm.dispose();
+
+    }
+
     private void abrirRetiroConCuenta() {
-        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm( );
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, cuentasBO, clientesBO, idCliente);
+        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
+        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta, idCliente);
         RetiroConCuenta.setVisible(true);
         menuForm.dispose();
     }
-    
+
     private void abrirAltaCuentaForm() {
-        AltaCuentaForm altaCuentaForm = new AltaCuentaForm( );
-        AltaCuentaControl altaCuentaControl = new AltaCuentaControl();
+        AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
+        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO, idCliente);
         altaCuentaForm.setVisible(true);
         menuForm.dispose();
     }
+
     private void abrirCerrarCuentaForm() {
-        CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm( );
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl();
-        
+        CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
+        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO,  clientesBO,  idCliente);
         cerrarCuentaForm.setVisible(true);
         menuForm.dispose();
     }
 
     private void abrirConsultarOperacionesForm() {
         ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
+        //OperacionControl operacionesControl = new OperacionControl();
+        operacionesForm.setLocationRelativeTo(null);
         OperacionControl operacionesControl = new OperacionControl();
         operacionesForm.setVisible(true);
         menuForm.dispose();

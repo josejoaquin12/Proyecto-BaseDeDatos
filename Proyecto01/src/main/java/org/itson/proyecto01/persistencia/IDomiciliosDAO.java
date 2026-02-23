@@ -11,7 +11,7 @@ import org.itson.proyecto01.entidades.Domicilio;
  *
  * @author Jesus Omar
  */
-public interface IDomciliosDAO {
+public interface IDomiciliosDAO {
     
     public abstract Domicilio registrarDomicilio(NuevoDomicilioDTO nuevoDomicilio)throws PersistenciaException;
     

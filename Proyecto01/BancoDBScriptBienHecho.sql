@@ -23,7 +23,7 @@ CREATE TABLE Clientes (
 );
 CREATE TABLE Cuentas (
  id_cuenta INT PRIMARY KEY AUTO_INCREMENT,
- numero_cuenta VARCHAR(20) UNIQUE NOT NULL,
+ numero_cuenta VARCHAR(18) UNIQUE NOT NULL,
  fecha_apertura DATETIME NOT NULL,
  saldo DECIMAL(15,2) NOT NULL,
  estado ENUM('ACTIVA','CANCELADA') NOT NULL,
