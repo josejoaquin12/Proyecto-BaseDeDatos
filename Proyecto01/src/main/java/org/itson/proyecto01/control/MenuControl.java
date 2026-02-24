@@ -38,6 +38,7 @@ public class MenuControl {
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
     private final MenuPrincipalForm menuForm;
+    private  UtileriasControl utilerias;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
     /**
@@ -51,6 +52,7 @@ public class MenuControl {
      * administrar.
      */
     public MenuControl(MenuPrincipalForm menuForm) {
+        this.utilerias = new UtileriasControl();
         this.menuForm = menuForm;
 
         // Inicializar BO 
@@ -89,44 +91,26 @@ public class MenuControl {
      */
     private void inicializarEventos() {
 //         Evento para btnUsuario
-        menuForm.getBtnUsuario().addActionListener(e -> abrirPantallaUsuario());
+        menuForm.getBtnUsuario().addActionListener(e -> utilerias.abrirPantallaUsuario(menuForm));
 
 //         Evento para btnRealizarTransferencia
-        menuForm.getBtnMostrarTransferencias().addActionListener(e -> abrirTransferenciaForm());
+        menuForm.getBtnMostrarTransferencias().addActionListener(e -> utilerias.abrirTransferenciaForm(menuForm));
 
 //
 //         Evento para btnConsultarOperaciones
-        menuForm.getBtnConsultarOperaciones().addActionListener(e -> abrirConsultarOperacionesForm());
+        menuForm.getBtnConsultarOperaciones().addActionListener(e -> utilerias.abrirConsultarOperacionesForm(menuForm));
 //
 //         Evento para btnCerrarSesion
-        menuForm.getBtnCerrarSesion().addActionListener(e -> cerrarSesion());
+        menuForm.getBtnCerrarSesion().addActionListener(e -> utilerias.cerrarSesion(menuForm));
 
         // Evento para btnCancelarCuenta
-        menuForm.getBtnCancelarCuenta().addActionListener(e -> abrirCerrarCuentaForm());
+        menuForm.getBtnCancelarCuenta().addActionListener(e -> utilerias.abrirCerrarCuentaForm(menuForm));
 
         // Evento para btnAltaCuenta
-        menuForm.getBtnAltaCuenta().addActionListener(e -> abrirAltaCuentaForm());
+        menuForm.getBtnAltaCuenta().addActionListener(e -> utilerias.abrirAltaCuentaForm(menuForm));
 
         //Evento para btnRetiroConCuenta
-        menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
-    }
-
-    /**
-     * Realiza la transición hacia la pantalla de perfil de usuario.
-     * <p>
-     * Cierra el menú actual y libera recursos tras instanciar el nuevo
-     * formulario.
-     * </p>
-     */
-    private void abrirPantallaUsuario() {
-        try {
-            UsuarioForm usuarioForm = new UsuarioForm();
-            UsuarioControl usuarioControl = new UsuarioControl(usuarioForm);
-            usuarioForm.setVisible(true);
-            menuForm.dispose();
-        } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(menuForm, "Error al cargar nombre del cliente: " + ex.getMessage());
-        }
+        menuForm.getBtnMostrarRetiroSinCuenta().addActionListener(e -> utilerias.abrirRetiroConCuenta(menuForm));
     }
 
     /**
@@ -140,75 +124,5 @@ public class MenuControl {
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(menuForm, "Error al cargar nombre del cliente: " + ex.getMessage());
         }
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario de Transferencias.
-     */
-    private void abrirTransferenciaForm() {
-
-        TransferenciaForm form = new TransferenciaForm();
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(form);
-        form.setVisible(true);
-        menuForm.dispose();
-
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario de Retiros con Cuenta.
-     */
-    private void abrirRetiroConCuenta() {
-        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
-        RetiroConCuenta.setVisible(true);
-        menuForm.dispose();
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario para dar de alta una nueva
-     * cuenta.
-     */
-    private void abrirAltaCuentaForm() {
-        AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
-        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm, cuentasBO, clientesBO);
-        altaCuentaForm.setVisible(true);
-        menuForm.dispose();
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario para cancelar o cerrar una
-     * cuenta.
-     */
-    private void abrirCerrarCuentaForm() {
-        CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm, cuentasBO, clientesBO);
-        cerrarCuentaForm.setVisible(true);
-        menuForm.dispose();
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario de consulta de operaciones
-     * históricas. Configura la ventana para aparecer centrada en la pantalla.
-     */
-    private void abrirConsultarOperacionesForm() {
-        ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
-        operacionesForm.setLocationRelativeTo(null);
-        OperacionControl operacionesControl = new OperacionControl(operacionesForm);
-        operacionesForm.setVisible(true);
-        menuForm.dispose();
-    }
-
-    /**
-     * Finaliza la sesión actual del usuario.
-     * <p>
-     * Destruye la ventana del menú principal y redirige al usuario de vuelta a
-     * la pantalla de Login.
-     * </p>
-     */
-    private void cerrarSesion() {
-        menuForm.dispose(); // cierra menu principal
-        LoginForm loginForm = new LoginForm();
-        loginForm.setLocationRelativeTo(null);
-        loginForm.setVisible(true);
     }
 }

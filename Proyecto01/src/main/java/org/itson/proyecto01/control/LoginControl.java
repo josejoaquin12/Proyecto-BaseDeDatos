@@ -28,6 +28,7 @@ public class LoginControl {
 
     private final IClientesBO clienteBO;
     private LoginForm loginForm;
+    private UtileriasControl utilerias;
 
     /**
      * Constructor que inicializa el controlador de inicio de sesión.
@@ -40,6 +41,7 @@ public class LoginControl {
      * administrar.
      */
     public LoginControl(LoginForm loginForm) {
+        this.utilerias = new UtileriasControl();
         this.loginForm = loginForm;
         IClientesDAO clienteDAO = new ClientesDAO();
         this.clienteBO = new ClientesBO(clienteDAO);
@@ -88,7 +90,7 @@ public class LoginControl {
             // Guarda la sesion
             SesionControl.getSesion().guardarSesion(cliente);
             // Manda al usuario al menu principal
-            abrirMenuPrincipal();
+            utilerias.abrirMenuPrincipal(loginForm);
         } catch (NegocioException | ControlException ex) {
             JOptionPane.showMessageDialog(loginForm, "Error, no se encontro el cliente " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -102,53 +104,7 @@ public class LoginControl {
      * </p>
      */
     private void inicializarEventos() {
-        loginForm.getBtnRegistrar().addActionListener(e -> abrirPantallaRegistroForm());
-        loginForm.getBtnRetiroSinCuenta().addActionListener(e -> abrirRetiroSinCuenta());
-    }
-
-    /**
-     * Gestiona la transición hacia el Menú Principal de la aplicación.
-     * <p>
-     * Centra la nueva ventana y libera la instancia actual de
-     * {@code loginForm}.
-     * </p>
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        loginForm.dispose();
-    }
-
-    /**
-     * Gestiona la transición hacia el formulario de Registro de Clientes.
-     * <p>
-     * Instancia el nuevo controlador {@link RegistroControl} y destruye la
-     * vista actual.
-     * </p>
-     */
-    private void abrirPantallaRegistroForm() {
-
-        RegistroForm RegistroForm = new RegistroForm();
-        RegistroControl registorControl = new RegistroControl(RegistroForm);
-        RegistroForm.setLocationRelativeTo(null);
-        RegistroForm.setVisible(true);
-        loginForm.dispose();
-    }
-
-    /**
-     * Gestiona la transición hacia el módulo de Retiros sin Cuenta.
-     * <p>
-     * Permite al usuario acceder a esta funcionalidad específica sin haber
-     * iniciado sesión previamente.
-     * </p>
-     */
-    private void abrirRetiroSinCuenta() {
-
-        RetiroSinCuentaForm retiroSinCuenta = new RetiroSinCuentaForm();
-        RetiroSinCuentaControl retiroSinCuentaControl = new RetiroSinCuentaControl(retiroSinCuenta);
-        retiroSinCuenta.setLocationRelativeTo(null);
-        retiroSinCuenta.setVisible(true);
-        loginForm.dispose();
+        loginForm.getBtnRegistrar().addActionListener(e -> utilerias.abrirPantallaRegistroForm(loginForm));
+        loginForm.getBtnRetiroSinCuenta().addActionListener(e -> utilerias.abrirRetiroSinCuenta(loginForm));
     }
 }

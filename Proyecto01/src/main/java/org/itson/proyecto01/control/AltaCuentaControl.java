@@ -11,10 +11,13 @@ import javax.swing.JOptionPane;
 import org.itson.proyecto01.dtos.NuevaCuentaDTO;
 import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Cuenta;
+import org.itson.proyecto01.negocio.ClientesBO;
+import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
-import org.itson.proyecto01.presentacion.MenuPrincipalForm;
+import org.itson.proyecto01.persistencia.ClientesDAO;
+import org.itson.proyecto01.persistencia.CuentasDAO;
 import org.itson.proyecto01.presentacion.AltaCuentaForm;
 
 /**
@@ -42,6 +45,7 @@ public class AltaCuentaControl {
     private final AltaCuentaForm altaForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
+    private UtileriasControl utilerias;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     ;
     private static final Logger LOGGER = Logger.getLogger(AltaCuentaControl.class.getName());
@@ -56,17 +60,19 @@ public class AltaCuentaControl {
      *
      * * @param altaForm Instancia de la interfaz gráfica
      * {@link AltaCuentaForm}.
-     * @param cuentasBO Lógica de negocio para operaciones con cuentas.
-     * @param clientesBO Lógica de negocio para operaciones con clientes.
+     * @param altaForm Instancia de la vista {@link AltaCuentaForm} 
      */
-    public AltaCuentaControl(AltaCuentaForm altaForm, ICuentasBO cuentasBO, IClientesBO clientesBO) {
+    public AltaCuentaControl(AltaCuentaForm altaForm) {
+        this.utilerias = new UtileriasControl();
         this.altaForm = altaForm;
-        this.cuentasBO = cuentasBO;
-        this.clientesBO = clientesBO;
+        CuentasDAO cuenta = new CuentasDAO();
+        this.cuentasBO = new CuentasBO(cuenta);
+        ClientesDAO clientes = new ClientesDAO();
+        this.clientesBO = new ClientesBO(clientes);
 
         altaForm.BtnConfirmarAlta.addActionListener(e -> confirmarAlta());
 
-        altaForm.BtnMostrarMenu.addActionListener(e -> abrirMenuPrincipal());
+        altaForm.BtnMostrarMenu.addActionListener(e -> utilerias.abrirMenuPrincipal(this.altaForm));
 
         cargarDatosCliente();
     }
@@ -125,24 +131,11 @@ public class AltaCuentaControl {
                     "Alta de Cuenta",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            abrirMenuPrincipal();
+            utilerias.abrirMenuPrincipal(altaForm);
 
         } catch (NegocioException ex) {
             LOGGER.severe(ex.getMessage());
             JOptionPane.showMessageDialog(altaForm, "Error al crear la cuenta: " + ex.getMessage());
         }
-    }
-
-    /**
-     * Gestiona la transición hacia el Menú Principal de la aplicación.
-     * <p>
-     * Cierra la ventana de alta de cuenta y libera los recursos asociados.
-     * </p>
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        altaForm.dispose();
     }
 }

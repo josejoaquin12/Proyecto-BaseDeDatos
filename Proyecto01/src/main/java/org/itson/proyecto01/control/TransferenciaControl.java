@@ -46,13 +46,14 @@ import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
  * * @author joset
  */
 public class TransferenciaControl {
-
+    
     private final TransferenciaForm transfrom;
     private final ICuentasBO cuentasBO;
     private final ITransferenciasBO transferenciasBO;
     private final IClientesBO clientesBO;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
+    private UtileriasControl utilerias;
 
     /**
      * Constructor que inicializa el controlador de transferencias.
@@ -66,6 +67,7 @@ public class TransferenciaControl {
      * {@link TransferenciaForm}.
      */
     public TransferenciaControl(TransferenciaForm transfrom) {
+        this.utilerias = new UtileriasControl();
         // Inicializar BO 
         ICuentasDAO cuentasDAO = new CuentasDAO();
         IClientesDAO clientesDAO = new ClientesDAO();
@@ -77,60 +79,23 @@ public class TransferenciaControl {
         this.transferenciasBO = new TransferenciasBO(transferenciasDAO, cuentasDAO);
 
         this.transfrom = transfrom;
-
-        transfrom.getBtnContinuarTransferencia().addActionListener(e -> continuar());
-        transfrom.getTxtNumeroCuentaDestino().addActionListener(e -> buscarCuentaDestino());
-        transfrom.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
-        transfrom.getBtnMostrarRetiroSinCuenta().addActionListener(e -> abrirRetiroConCuenta());
-        transfrom.getBtnMostrarMenu().addActionListener(e -> abrirMenuPrincipal(idCliente));
-        transfrom.getBtnCerrarSesion().addActionListener(e -> cerrarSesion());
-        transfrom.getBtnConsultarOperaciones().addActionListener(e -> abrirConsultarOperacionesForm());
-        transfrom.getBtnUsuario().addActionListener(e -> abrirMenuPrincipal(idCliente));
+        inicializarEventos();
         cargarCuentasCliente();
     }
 
     /**
-     * Gestiona la transición hacia el Menú Principal.
-     *
-     * * @param idCliente Identificador del cliente para contextualizar el
-     * menú.
+     * Inicializa los escuchadores de eventos para botones y componentes de
+     * selección.
      */
-    private void abrirMenuPrincipal(int idCliente) {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        transfrom.dispose();
-    }
-
-    private void abrirPantallaUsuario() {
-        UsuarioForm usuarioForm = new UsuarioForm();
-        usuarioForm.setVisible(true);
-        transfrom.dispose();
-    }
-
-    private void abrirRetiroConCuenta() {
-        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
-        RetiroConCuenta.setVisible(true);
-        transfrom.dispose();
-    }
-
-    private void abrirConsultarOperacionesForm() {
-        ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
-        //OperacionControl operacionesControl = new OperacionControl();
-        operacionesForm.setLocationRelativeTo(null);
-        operacionesForm.setVisible(true);
-        transfrom.dispose();
-    }
-
-    /**
-     * Finaliza la sesión del usuario y redirige a la pantalla de Login.
-     */
-    private void cerrarSesion() {
-        transfrom.dispose(); // cierra menu principal
-        LoginForm loginForm = new LoginForm();
-        loginForm.setLocationRelativeTo(null);
-        loginForm.setVisible(true);
+    private void inicializarEventos() {
+        transfrom.getBtnContinuarTransferencia().addActionListener(e -> continuar());
+        transfrom.getTxtNumeroCuentaDestino().addActionListener(e -> buscarCuentaDestino());
+        transfrom.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
+        transfrom.getBtnMostrarRetiroSinCuenta().addActionListener(e -> utilerias.abrirRetiroConCuenta(transfrom));
+        transfrom.getBtnMostrarMenu().addActionListener(e -> utilerias.abrirMenuPrincipal(transfrom));
+        transfrom.getBtnCerrarSesion().addActionListener(e -> utilerias.cerrarSesion(transfrom));
+        transfrom.getBtnConsultarOperaciones().addActionListener(e -> utilerias.abrirConsultarOperacionesForm(transfrom));
+        transfrom.getBtnUsuario().addActionListener(e -> utilerias.abrirPantallaUsuario(transfrom));
     }
 
     /**

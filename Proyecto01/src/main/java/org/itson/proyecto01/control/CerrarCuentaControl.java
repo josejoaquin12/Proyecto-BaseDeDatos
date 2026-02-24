@@ -9,9 +9,13 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.itson.proyecto01.entidades.Cuenta;
+import org.itson.proyecto01.negocio.ClientesBO;
+import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.negocio.IClientesBO;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.NegocioException;
+import org.itson.proyecto01.persistencia.ClientesDAO;
+import org.itson.proyecto01.persistencia.CuentasDAO;
 import org.itson.proyecto01.presentacion.CerrarCuentaForm;
 import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 
@@ -33,6 +37,7 @@ public class CerrarCuentaControl {
     private final CerrarCuentaForm cerrarForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
+    private  UtileriasControl utilerias;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(CerrarCuentaControl.class.getName());
 
@@ -46,15 +51,16 @@ public class CerrarCuentaControl {
      *
      * * @param cerrarForm Instancia de la interfaz gráfica
      * {@link CerrarCuentaForm}.
-     * @param cuentasBO Lógica de negocio para operaciones con cuentas.
-     * @param clientesBO Lógica de negocio para operaciones con clientes.
      */
-    public CerrarCuentaControl(CerrarCuentaForm cerrarForm, ICuentasBO cuentasBO, IClientesBO clientesBO) {
+    public CerrarCuentaControl(CerrarCuentaForm cerrarForm) {
+        this.utilerias = new UtileriasControl();
         this.cerrarForm = cerrarForm;
-        this.cuentasBO = cuentasBO;
-        this.clientesBO = clientesBO;
+        CuentasDAO cuentasDAO = new CuentasDAO();
+        this.cuentasBO = new CuentasBO(cuentasDAO);
+        ClientesDAO clientesDAO = new ClientesDAO();
+        this.clientesBO = new ClientesBO(clientesDAO);
 
-        cerrarForm.btnCancelar.addActionListener(e -> abrirMenuPrincipal());
+        cerrarForm.btnCancelar.addActionListener(e -> utilerias.abrirMenuPrincipal(cerrarForm));
 
         cerrarForm.btnConfirmarCerrarCuenta.addActionListener(e -> confirmarCancelacion());
 
@@ -136,20 +142,6 @@ public class CerrarCuentaControl {
                 JOptionPane.showMessageDialog(cerrarForm, "Error al cancelar la cuenta: " + ex.getMessage());
             }
         }
-    }
-
-    /**
-     * Gestiona la transición hacia el Menú Principal de la aplicación.
-     * <p>
-     * Centra la ventana del menú principal y libera los recursos de la ventana
-     * actual mediante {@code dispose()}.
-     * </p>
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        cerrarForm.dispose();
     }
 
 }

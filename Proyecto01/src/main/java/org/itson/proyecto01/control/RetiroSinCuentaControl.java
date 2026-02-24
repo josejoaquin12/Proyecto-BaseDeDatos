@@ -1,10 +1,8 @@
 package org.itson.proyecto01.control;
 
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.itson.proyecto01.entidades.Cliente;
 import org.itson.proyecto01.entidades.Retiro;
 import org.itson.proyecto01.negocio.ClientesBO;
 import org.itson.proyecto01.negocio.CuentasBO;
@@ -17,7 +15,6 @@ import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
-import org.itson.proyecto01.presentacion.LoginForm;
 import org.itson.proyecto01.presentacion.RetiroSinCuentaForm;
 
 /**
@@ -49,6 +46,8 @@ public class RetiroSinCuentaControl {
     private  String numeroFolio;
     private  String contrasenia;
     private  Retiro retiro;
+    
+    private  UtileriasControl utilerias ;
 
     /**
      * Constructor que inicializa el controlador de retiros sin cuenta.
@@ -60,6 +59,7 @@ public class RetiroSinCuentaControl {
      * * @param retiroSForm Instancia de la interfaz gráfica {@link RetiroSinCuentaForm}.
      */
     public RetiroSinCuentaControl(RetiroSinCuentaForm retiroSForm) {
+        this.utilerias = new UtileriasControl();
         this.cuentasDAO = new CuentasDAO();
         this.cuentasBO = new CuentasBO(cuentasDAO);
 
@@ -80,7 +80,7 @@ public class RetiroSinCuentaControl {
      */
     private void inicializarEventos() {
         retiroSForm.getBtnRetirar().addActionListener(e -> cobrarRetiro());
-        retiroSForm.getBtnCancelar().addActionListener(e -> abrirLogin());
+        retiroSForm.getBtnCancelar().addActionListener(e -> utilerias.abrirLogin(retiroSForm));
         retiroSForm.getTxtContrasenia().addActionListener(e -> actualizarLabels());
         retiroSForm.getTxtFolio().addActionListener(e -> actualizarLabels());
         retiroSForm.getTxtContrasenia().addFocusListener(new java.awt.event.FocusAdapter() {
@@ -201,16 +201,4 @@ public class RetiroSinCuentaControl {
         }
     }
 
-    /**
-     * Gestiona el retorno a la pantalla de Login.
-     * <p>
-     * Centra la ventana de inicio de sesión y libera los recursos del formulario actual.
-     * </p>
-     */
-    private void abrirLogin() {
-        LoginForm login = new LoginForm();
-        login.setLocationRelativeTo(null);
-        login.setVisible(true);
-        retiroSForm.dispose();
-    }
 }

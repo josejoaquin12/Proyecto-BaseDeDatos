@@ -41,6 +41,7 @@ public class RetiroConCuentaControl {
     private final RetiroConCuentaForm retiroCForm;
     private final ICuentasBO cuentasBO;
     private final IClientesBO clientesBO;
+    private  UtileriasControl utilerias;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(TransferenciaControl.class.getName());
 
@@ -56,6 +57,7 @@ public class RetiroConCuentaControl {
      * {@link RetiroConCuentaForm}.
      */
     public RetiroConCuentaControl(RetiroConCuentaForm retiroCForm) {
+        this.utilerias = new UtileriasControl();
         this.retiroCForm = retiroCForm;
 
         // Inicializar BO 
@@ -119,7 +121,7 @@ public class RetiroConCuentaControl {
      * selección.
      */
     private void inicializarEventos() {
-        retiroCForm.getBtnCancelarRetiro().addActionListener(e -> abrirMenuPrincipal());
+        retiroCForm.getBtnCancelarRetiro().addActionListener(e -> utilerias.abrirMenuPrincipal(retiroCForm));
         retiroCForm.getBtnGenerarRetiro().addActionListener(e -> generarRetiroConCuenta());
         retiroCForm.getCboCuentasCliente().addActionListener(e -> actualizarSaldo());
     }
@@ -175,16 +177,6 @@ public class RetiroConCuentaControl {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Gestiona la transición de retorno hacia el Menú Principal.
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        retiroCForm.dispose();
     }
 
     /**

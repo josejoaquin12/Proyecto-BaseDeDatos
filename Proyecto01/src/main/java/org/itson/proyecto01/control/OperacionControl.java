@@ -7,7 +7,6 @@ package org.itson.proyecto01.control;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -20,10 +19,6 @@ import org.itson.proyecto01.negocio.OperacionesBO;
 import org.itson.proyecto01.persistencia.IOperacionesDAO;
 import org.itson.proyecto01.persistencia.OperacionesDAO;
 import org.itson.proyecto01.presentacion.ConsultarOperacionesForm;
-import org.itson.proyecto01.presentacion.MenuPrincipalForm;
-import org.itson.proyecto01.presentacion.RetiroConCuentaForm;
-import org.itson.proyecto01.presentacion.TransferenciaForm;
-import org.itson.proyecto01.presentacion.UsuarioForm;
 
 /**
  * Clase controladora para la gestión y consulta de operaciones financieras.
@@ -44,6 +39,7 @@ public class OperacionControl {
     private final IOperacionesBO operacionesBO;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     private static final Logger LOGGER = Logger.getLogger(OperacionControl.class.getName());
+    private UtileriasControl utilerias ;
 
     /**
      * Constructor que inicializa el controlador de operaciones.
@@ -57,6 +53,7 @@ public class OperacionControl {
      * controlar.
      */
     public OperacionControl(ConsultarOperacionesForm consultarOperacionesForm) {
+        this.utilerias = new UtileriasControl();
         this.consultarOperacionesForm = consultarOperacionesForm;
         IOperacionesDAO operacionesDAO = new OperacionesDAO();
         this.operacionesBO = new OperacionesBO(operacionesDAO);
@@ -64,20 +61,16 @@ public class OperacionControl {
         this.cargarOperaciones();
 
         consultarOperacionesForm.getBtnUsuario().addActionListener(e -> {
-            try {
-                abrirPantallaUsuario();
-            } catch (NegocioException ex) {
-                Logger.getLogger(OperacionControl.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            utilerias.abrirPantallaUsuario(consultarOperacionesForm);
         });
         consultarOperacionesForm.getBtnVerCuentas().addActionListener(e -> {
-            abrirMenuPrincipal();
+            utilerias.abrirMenuPrincipal(consultarOperacionesForm);
         });
         consultarOperacionesForm.getBtnRetiroSinCuenta1().addActionListener(e -> {
-            abrirRetiroConCuenta();
+            utilerias.abrirRetiroConCuenta(consultarOperacionesForm);
         });
         consultarOperacionesForm.getBtnRealizarTransferencia().addActionListener(e -> {
-            abrirPantallaTransferencia();
+            utilerias.abrirPantallaTransferencia(consultarOperacionesForm);
         });
     }
 
@@ -213,54 +206,4 @@ public class OperacionControl {
             cargarOperaciones();
         });
     }
-
-    /**
-     * Realiza la transición hacia la pantalla del Menú Principal. Cierra la
-     * ventana actual y libera sus recursos.
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menuPrincipal = new MenuPrincipalForm();
-        MenuControl menuPrinciCont = new MenuControl(menuPrincipal);
-        menuPrincipal.setLocationRelativeTo(null);
-        menuPrincipal.setVisible(true);
-        consultarOperacionesForm.dispose();
-    }
-
-    /**
-     * Realiza la transición hacia la pantalla de gestión de Usuario.
-     *
-     * * @throws NegocioException Si ocurre un error al cargar la información
-     * del usuario.
-     */
-    private void abrirPantallaUsuario() throws NegocioException {
-
-        UsuarioForm usuarioForm = new UsuarioForm();
-        UsuarioControl usControl = new UsuarioControl(usuarioForm);
-        usuarioForm.setLocationRelativeTo(null);
-        usuarioForm.setVisible(true);
-        consultarOperacionesForm.dispose();
-    }
-
-    /**
-     * Realiza la transición hacia la pantalla de Retiro con Cuenta.
-     */
-    private void abrirRetiroConCuenta() {
-        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
-        RetiroConCuenta.setVisible(true);
-        consultarOperacionesForm.dispose();
-    }
-
-    /**
-     * Realiza la transición hacia la pantalla de realizar Transferencias.
-     */
-    private void abrirPantallaTransferencia() {
-
-        TransferenciaForm Transferenciaform = new TransferenciaForm();
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(Transferenciaform);
-        Transferenciaform.setVisible(true);
-        consultarOperacionesForm.dispose();
-
-    }
-
 }

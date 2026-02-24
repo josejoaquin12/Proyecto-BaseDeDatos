@@ -35,12 +35,14 @@ import org.itson.proyecto01.presentacion.UsuarioForm;
  * * @author joset
  */
 public class UsuarioControl {
+    
 
     private final IClientesBO clientesBO;
     private final IDomiciliosBO domiciliosBO;
     private UsuarioForm usuarioForm;
+    private UtileriasControl utilerias;
     private Integer idCliente = SesionControl.getSesion().getCliente().getId();
-    private Cliente cliente;
+    private Cliente cliente = SesionControl.getSesion().getCliente();
 
     /**
      * Constructor que inicializa el controlador de usuario.
@@ -49,12 +51,11 @@ public class UsuarioControl {
      * cliente desde la base de datos y prepara la vista.
      * </p>
      *
-     * * @param usuarioForm Instancia de la vista {@link UsuarioForm} a
+     * @param usuarioForm Instancia de la vista {@link UsuarioForm} a
      * administrar.
-     * @throws NegocioException Si ocurre un error al recuperar los datos
-     * iniciales del cliente.
      */
-    public UsuarioControl(UsuarioForm usuarioForm) throws NegocioException {
+    public UsuarioControl(UsuarioForm usuarioForm) {
+        this.utilerias = new UtileriasControl();
         this.usuarioForm = usuarioForm;
 
         IClientesDAO clientesDAO = new ClientesDAO();
@@ -62,8 +63,6 @@ public class UsuarioControl {
 
         IDomiciliosDAO domiciliosDAO = new DomiciliosDAO();
         this.domiciliosBO = new DomiciliosBO(domiciliosDAO);
-        Cliente cliente = clientesBO.obtenerClientePorId(idCliente);
-        this.cliente = cliente;
         inicializarEventos();
         cargarDatosUsuario();
     }
@@ -75,21 +74,30 @@ public class UsuarioControl {
      * * @throws NegocioException Si hay un error en la consulta a la base de
      * datos.
      */
-    private void cargarDatosUsuario() throws NegocioException {
-        usuarioForm.getTxtNombre().setText(cliente.getNombres());
-        usuarioForm.getTxtApellidoP().setText(cliente.getApellidoP());
-        usuarioForm.getTxtApellidoM().setText(cliente.getApellidoM());
-        usuarioForm.getTxtFechaNacimiento().setText(cliente.getFechaNacimiento().toString());
+    private void cargarDatosUsuario() {
+        try {
+            usuarioForm.getTxtNombre().setText(cliente.getNombres());
+            usuarioForm.getTxtApellidoP().setText(cliente.getApellidoP());
+            usuarioForm.getTxtApellidoM().setText(cliente.getApellidoM());
+            usuarioForm.getTxtFechaNacimiento().setText(cliente.getFechaNacimiento().toString());
 
-        Domicilio dom = domiciliosBO.obtenerDomicilioPorID(idCliente);
+            Domicilio dom = domiciliosBO.obtenerDomicilioPorID(idCliente);
 
-        if (dom != null) {
-            usuarioForm.getTxtCalle().setText(dom.getCalle());
-            usuarioForm.getTxtNumero().setText(dom.getNumero());
-            usuarioForm.getTxtColonia().setText(dom.getColonia());
-            usuarioForm.getTxtCiudad().setText(dom.getCiudad());
-            usuarioForm.getTxtEstado().setText(dom.getEstado());
-            usuarioForm.getTxtCodigoPostal().setText(dom.getCodigoPostal());
+            if (dom != null) {
+                usuarioForm.getTxtCalle().setText(dom.getCalle());
+                usuarioForm.getTxtNumero().setText(dom.getNumero());
+                usuarioForm.getTxtColonia().setText(dom.getColonia());
+                usuarioForm.getTxtCiudad().setText(dom.getCiudad());
+                usuarioForm.getTxtEstado().setText(dom.getEstado());
+                usuarioForm.getTxtCodigoPostal().setText(dom.getCodigoPostal());
+            }
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(
+                    usuarioForm,
+                    "Error al los cargar datos del cliente: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
@@ -99,17 +107,7 @@ public class UsuarioControl {
      */
     private void inicializarEventos() {
         usuarioForm.getBtnActualizarDatos().addActionListener(e -> actualizarUsuario());
-        usuarioForm.getBtnVolverMenuPrincipal().addActionListener(e -> abrirMenuPrincipal());
-    }
-
-    /**
-     * Gestiona la transición de regreso hacia el Menú Principal.
-     */
-    private void abrirMenuPrincipal() {
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        usuarioForm.dispose();
+        usuarioForm.getBtnVolverMenuPrincipal().addActionListener(e -> utilerias.abrirMenuPrincipal(usuarioForm));
     }
 
     /**

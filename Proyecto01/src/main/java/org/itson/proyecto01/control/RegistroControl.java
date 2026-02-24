@@ -38,6 +38,7 @@ public class RegistroControl {
     private final IClientesBO clientesBO;
     private RegistroForm registroForm;
     private final IDomiciliosBO domiciliosBO;
+    private UtileriasControl utilerias;
 
     /**
      * Constructor que inicializa el controlador de registro.
@@ -51,6 +52,7 @@ public class RegistroControl {
      * controlar.
      */
     public RegistroControl(RegistroForm registroForm) {
+        this.utilerias = new UtileriasControl();
         this.registroForm = registroForm;
         IClientesDAO clientesDAO = new ClientesDAO();
         this.clientesBO = new ClientesBO(clientesDAO);
@@ -156,10 +158,7 @@ public class RegistroControl {
                     "Éxito",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            MenuPrincipalForm menu = new MenuPrincipalForm();
-            menu.setLocationRelativeTo(null);
-            menu.setVisible(true);
-            registroForm.dispose();
+            utilerias.abrirMenuPrincipal(registroForm);
 
         } catch (NegocioException | ControlException | DateTimeParseException ex) {
             JOptionPane.showMessageDialog(
