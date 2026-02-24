@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import org.itson.proyecto01.dtos.NuevoClienteDTO;
 import org.itson.proyecto01.entidades.Cliente;
 import org.mindrot.jbcrypt.BCrypt;
+import org.itson.proyecto01.control.SesionControl;
 
 /**
  * <p>
@@ -103,11 +104,12 @@ public class ClientesDAO implements IClientesDAO {
             Integer idCliente = null;
             if (rs.next()) {
                 idCliente = rs.getInt(1);
+                
             }
 
             conexion.close();
 
-            return new Cliente(
+            Cliente nuevocliente = new Cliente(
                     idCliente,
                     nuevoCliente.getNombres(),
                     nuevoCliente.getApellidoP(),
@@ -118,6 +120,8 @@ public class ClientesDAO implements IClientesDAO {
                     edadCliente,
                     idDomicilio
             );
+            SesionControl.getSesion().guardarSesion(nuevocliente);
+            return nuevocliente;
 
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());

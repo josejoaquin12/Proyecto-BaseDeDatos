@@ -17,7 +17,6 @@ import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.DomiciliosDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.persistencia.IDomiciliosDAO;
-import org.itson.proyecto01.presentacion.MenuPrincipalForm;
 import org.itson.proyecto01.presentacion.RegistroForm;
 
 /**
@@ -160,10 +159,17 @@ public class RegistroControl {
             );
             utilerias.abrirMenuPrincipal(registroForm);
 
-        } catch (NegocioException | ControlException | DateTimeParseException ex) {
+        } catch (NegocioException | ControlException  ex) {
             JOptionPane.showMessageDialog(
                     registroForm,
                     "Error al registrar cliente: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }catch ( DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(
+                    registroForm,
+                    "Error al registrar cliente: formato de fecha invalido" ,
                     "Error",
                     JOptionPane.ERROR_MESSAGE
             );

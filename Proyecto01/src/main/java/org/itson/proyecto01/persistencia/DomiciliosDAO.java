@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
-import org.itson.proyecto01.control.SesionControl;
 import org.itson.proyecto01.dtos.NuevoDomicilioDTO;
 import org.itson.proyecto01.entidades.Domicilio;
 
@@ -41,7 +40,6 @@ import org.itson.proyecto01.entidades.Domicilio;
 public class DomiciliosDAO implements IDomiciliosDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DomiciliosDAO.class.getName());
-    private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
 
     /**
      * <p>

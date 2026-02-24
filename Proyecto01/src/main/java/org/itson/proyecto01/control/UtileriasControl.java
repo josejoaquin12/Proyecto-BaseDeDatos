@@ -68,8 +68,7 @@ public class UtileriasControl {
      */
     public void abrirRetiroConCuenta(JFrame form) {
         RetiroConCuentaForm retiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl retiroConCuentaControl =
-                new RetiroConCuentaControl(retiroConCuenta);
+        RetiroConCuentaControl retiroConCuentaControl =new RetiroConCuentaControl(retiroConCuenta);
         retiroConCuenta.setVisible(true);
         form.dispose();
     }
@@ -116,8 +115,7 @@ public class UtileriasControl {
      */
     public void abrirRetiroSinCuenta(JFrame form) {
         RetiroSinCuentaForm retiroSinCuenta = new RetiroSinCuentaForm();
-        RetiroSinCuentaControl retiroSinCuentaControl =
-                new RetiroSinCuentaControl(retiroSinCuenta);
+        RetiroSinCuentaControl retiroSinCuentaControl = new RetiroSinCuentaControl(retiroSinCuenta);
         retiroSinCuenta.setLocationRelativeTo(null);
         retiroSinCuenta.setVisible(true);
         form.dispose();

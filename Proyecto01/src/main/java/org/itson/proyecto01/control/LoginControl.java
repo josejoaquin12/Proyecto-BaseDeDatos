@@ -8,9 +8,6 @@ import org.itson.proyecto01.negocio.NegocioException;
 import org.itson.proyecto01.persistencia.ClientesDAO;
 import org.itson.proyecto01.persistencia.IClientesDAO;
 import org.itson.proyecto01.presentacion.LoginForm;
-import org.itson.proyecto01.presentacion.MenuPrincipalForm;
-import org.itson.proyecto01.presentacion.RegistroForm;
-import org.itson.proyecto01.presentacion.RetiroSinCuentaForm;
 
 /**
  * Clase controladora que gestiona el proceso de inicio de sesión y
@@ -37,7 +34,7 @@ public class LoginControl {
      * eventos de la interfaz gráfica necesarios para la interacción inicial.
      * </p>
      *
-     * * @param loginForm Instancia de la vista {@link LoginForm} a
+     *  @param loginForm Instancia de la vista {@link LoginForm} a
      * administrar.
      */
     public LoginControl(LoginForm loginForm) {
@@ -64,7 +61,7 @@ public class LoginControl {
      * </ol>
      * </p>
      *
-     * * @param nombreCompleto Cadena con el nombre del usuario ingresado.
+     *  @param nombreCompleto Cadena con el nombre del usuario ingresado.
      * @param password Cadena con la contraseña ingresada.
      * @throws ControlException Si los campos están vacíos o las credenciales
      * son incorrectas.

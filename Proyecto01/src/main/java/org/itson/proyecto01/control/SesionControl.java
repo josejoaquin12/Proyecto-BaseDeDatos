@@ -42,6 +42,7 @@ public class SesionControl {
      * </p>
      *
      * * @return La instancia única de {@link SesionControl}.
+     * @return 
      */
     public static SesionControl getSesion() {
         if (sesion == null) {
@@ -53,7 +54,7 @@ public class SesionControl {
     /**
      * Almacena el objeto cliente tras una autenticación exitosa.
      *
-     * * @param cliente El objeto {@link Cliente} que representa al usuario
+     * @param cliente El objeto {@link Cliente} que representa al usuario
      * actual.
      */
     public void guardarSesion(Cliente cliente) {
@@ -63,7 +64,7 @@ public class SesionControl {
     /**
      * Obtiene el objeto cliente asociado a la sesión actual.
      *
-     * * @return El {@link Cliente} autenticado, o {@code null} si no hay una
+     * @return El {@link Cliente} autenticado, o {@code null} si no hay una
      * sesión activa.
      */
     public Cliente getCliente() {
