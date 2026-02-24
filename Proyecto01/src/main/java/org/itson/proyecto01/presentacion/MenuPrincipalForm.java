@@ -29,7 +29,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
 
     private final JPanel contenedorCuentas;
     private final JScrollPane scrollCuentas;
-    private final MenuControl menuControl;
     private final Integer idCliente = SesionControl.getSesion().getCliente().getId();
     /**
      * Creates new form menuPrincipal
@@ -38,7 +37,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         initComponents();
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
-        menuControl = new MenuControl(this);
 
         // Panel que contendrá las cuentas
         contenedorCuentas = new JPanel();
@@ -67,10 +65,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         // Actualizar el panel principal
         panCuentas.revalidate();
         panCuentas.repaint();
-
-        // Cargar cuentas desde el control
-        menuControl.cargarCuentasCliente();
-        menuControl.cargarNombreCliente();
 
         // Cargar los estilos de los botones
         utileriasBoton(btnAltaCuenta);
@@ -126,29 +120,14 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
 
         btnUsuario.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnUsuario.setText("Usuario");
-        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuarioActionPerformed(evt);
-            }
-        });
 
         btnMostrarTransferencias.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnMostrarTransferencias.setText("<html>Realizar<br>Transferencias</html>\n");
         btnMostrarTransferencias.setToolTipText("");
         btnMostrarTransferencias.setActionCommand("  ");
-        btnMostrarTransferencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTransferenciasActionPerformed(evt);
-            }
-        });
 
         btnConsultarOperaciones.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnConsultarOperaciones.setText("<html>Consultar<br>Operaciones</html>\n");
-        btnConsultarOperaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarOperacionesActionPerformed(evt);
-            }
-        });
 
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesion");
@@ -157,11 +136,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         btnRetiroSinCuenta.setText("<html>Realizar <br>Retiro</html> ");
         btnRetiroSinCuenta.setToolTipText("");
         btnRetiroSinCuenta.setActionCommand("  ");
-        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetiroSinCuentaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panMenuBarLayout = new javax.swing.GroupLayout(panMenuBar);
         panMenuBar.setLayout(panMenuBarLayout);
@@ -374,18 +348,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
             btn.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
         }
 
-    private void btnMostrarTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTransferenciasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMostrarTransferenciasActionPerformed
-
-    private void btnConsultarOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarOperacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarOperacionesActionPerformed
-
-    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuarioActionPerformed
-
     private void btnAltaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaCuentaActionPerformed
 
     }//GEN-LAST:event_btnAltaCuentaActionPerformed
@@ -409,10 +371,6 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
     private void btnCancelarCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarCuentaMouseExited
         btnCancelarCuenta.setBackground(Color.WHITE);
     }//GEN-LAST:event_btnCancelarCuentaMouseExited
-
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
         // Dentro de MenuPrincipalForm
 
         public JButton getBtnMostrarTransferencias() {

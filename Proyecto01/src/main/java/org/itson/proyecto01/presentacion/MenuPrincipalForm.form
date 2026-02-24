@@ -111,9 +111,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuarioActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnMostrarTransferencias">
               <Properties>
@@ -124,9 +121,6 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="actionCommand" type="java.lang.String" value="  "/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarTransferenciasActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnConsultarOperaciones">
               <Properties>
@@ -135,9 +129,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Consultar&lt;br&gt;Operaciones&lt;/html&gt;&#xa;"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarOperacionesActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCerrarSesion">
               <Properties>
@@ -156,9 +147,6 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="actionCommand" type="java.lang.String" value="  "/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetiroSinCuentaActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

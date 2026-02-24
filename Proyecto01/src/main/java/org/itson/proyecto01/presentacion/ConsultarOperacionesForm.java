@@ -11,22 +11,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import org.itson.proyecto01.control.OperacionControl;
-import org.itson.proyecto01.control.SesionControl;
 /**
  *
  * @author Jesus Omar
  */
 public class ConsultarOperacionesForm extends javax.swing.JFrame {
-
-    private OperacionControl operacionControl;
     /**
      * Creates new form ConsultarOperacionesForm
      */
     public ConsultarOperacionesForm() {
         initComponents();
-        Integer idCliente = SesionControl.getSesion().getCliente().getId();
-        this.operacionControl = new OperacionControl(this);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/logoBanco.jpg"));
         setIconImage(icon);
         utileriasBoton(btnUsuario);

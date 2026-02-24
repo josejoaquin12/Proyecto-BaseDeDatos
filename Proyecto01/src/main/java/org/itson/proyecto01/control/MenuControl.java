@@ -61,7 +61,8 @@ public class MenuControl {
         //InicializarBO
         this.clientesBO = new ClientesBO(clientesDAO);
         this.cuentasBO = new CuentasBO(cuentasDAO);
-
+        cargarCuentasCliente();
+        cargarNombreCliente();
         inicializarEventos();
     }
 
