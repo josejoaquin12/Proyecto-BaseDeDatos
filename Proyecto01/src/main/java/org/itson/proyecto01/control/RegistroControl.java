@@ -72,6 +72,7 @@ public class RegistroControl {
      */
     private void inicializarEventos() {
         registroForm.getBtnRegistrarse().addActionListener(e -> registrarCliente());
+         registroForm.getBtnCancelar().addActionListener(e -> utilerias.abrirLogin(registroForm));
     }
 
     /**

@@ -11,7 +11,6 @@ import org.itson.proyecto01.enums.EstadoCuenta;
 import org.itson.proyecto01.persistencia.ICuentasDAO;
 import org.itson.proyecto01.persistencia.ITransferenciasDAO;
 import org.itson.proyecto01.persistencia.PersistenciaException;
-import org.itson.proyecto01.presentacion.TransferenciaForm;
 
 /**
  * <p>
@@ -113,7 +112,7 @@ public class TransferenciasBO implements ITransferenciasBO {
                 throw new NegocioException("Fondos insuficientes.", null);
             }
 
-            if (cuentasDAO.obtenerSaldoPorNumeroCuenta(nuevaTransferencia.getCuentaOrigen()) < 0) {
+            if (nuevaTransferencia.getMonto() < 0) {
                 throw new NegocioException("Los montos negativos son invalidos.", null);
             }
 

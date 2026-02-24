@@ -6,14 +6,15 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.itson.proyecto01.control.SesionControl;
-import org.itson.proyecto01.entidades.Cliente;
+import org.itson.proyecto01.control.UtileriasControl;
 
 /**
  *
  * @author joset
  */
 public class TransferenciaExitosaForm extends javax.swing.JFrame {
+    private UtileriasControl utilerias = new UtileriasControl();
+    private TransferenciaExitosaForm transform; 
 
     /**
      * Creates new form TransferenciaExitosa
@@ -31,6 +32,7 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
         btnVolveralMenu.setBackground(new Color(40,167,69));
         btnVolveralMenu.setForeground(Color.WHITE);
         btnVolveralMenu.setFocusPainted(false);
+        this.transform = this;
     }
     
     
@@ -165,13 +167,8 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnVolveralMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolveralMenuActionPerformed
-        Cliente cliente = new Cliente();
-        cliente = SesionControl.getSesion().getCliente();
-                
-        MenuPrincipalForm menu = new MenuPrincipalForm();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true);
-        this.dispose();
+
+        utilerias.abrirMenuPrincipal(transform);
     }//GEN-LAST:event_btnVolveralMenuActionPerformed
 
 

@@ -359,6 +359,9 @@ public class RegistroForm extends javax.swing.JFrame {
     public JButton getBtnRegistrarse() {
         return btnRegistrarse;
     }
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
 
     public JTextField getTxtApellidoM() {
         return txtApellidoM;
