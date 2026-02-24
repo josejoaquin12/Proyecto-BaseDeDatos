@@ -54,7 +54,7 @@ public class LoginForm extends javax.swing.JFrame {
         btnRegistrarse = new javax.swing.JButton();
         btnRetiroSinCuenta = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inicio de sesion");
         setBackground(new java.awt.Color(245, 247, 250));
         setResizable(false);

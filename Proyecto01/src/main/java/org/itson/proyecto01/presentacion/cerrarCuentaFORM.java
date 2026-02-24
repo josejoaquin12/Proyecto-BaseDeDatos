@@ -44,7 +44,7 @@ public class CerrarCuentaForm extends javax.swing.JFrame {
         btnConfirmarCerrarCuenta = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         cboCuentas.setBackground(new java.awt.Color(0, 102, 204));

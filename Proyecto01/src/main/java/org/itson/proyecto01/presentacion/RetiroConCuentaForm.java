@@ -68,7 +68,7 @@ public class RetiroConCuentaForm extends javax.swing.JFrame {
         btnCancelarRetiro = new javax.swing.JButton();
         btnGenerarRetiro = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 

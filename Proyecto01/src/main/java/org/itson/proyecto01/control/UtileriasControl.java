@@ -17,29 +17,39 @@ import org.itson.proyecto01.presentacion.TransferenciaForm;
 import org.itson.proyecto01.presentacion.UsuarioForm;
 
 /**
- *
- * @author joset
+ * Clase de utilerías encargada de gestionar la navegación entre formularios
+ * de la aplicación. Cada método se encarga de abrir una nueva vista,
+ * inicializar su controlador correspondiente y cerrar el formulario actual.
  */
 public class UtileriasControl {
+
     /**
-     * Realiza la transición hacia la pantalla del Menú Principal. Cierra la
-     * ventana actual y libera sus recursos.
+     * Abre la pantalla del Menú Principal.
+     * <p>
+     * Inicializa el formulario {@link MenuPrincipalForm}, asigna su controlador
+     * y cierra la ventana actual.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirMenuPrincipal(JFrame form) {
         MenuPrincipalForm menuPrincipal = new MenuPrincipalForm();
         MenuControl menuPrinciCont = new MenuControl(menuPrincipal);
         menuPrincipal.setLocationRelativeTo(null);
         menuPrincipal.setVisible(true);
-       form.dispose();
+        form.dispose();
     }
 
     /**
-     * Realiza la transición hacia la pantalla de gestión de Usuario.* 
+     * Abre la pantalla de gestión de usuarios.
+     * <p>
+     * Inicializa el formulario {@link UsuarioForm}, crea su controlador y
+     * finaliza la vista actual.
+     * </p>
      *
-     * @param form
+     * @param form formulario actual a cerrar
      */
     public void abrirPantallaUsuario(JFrame form) {
-
         UsuarioForm usuarioForm = new UsuarioForm();
         UsuarioControl usControl = new UsuarioControl(usuarioForm);
         usuarioForm.setLocationRelativeTo(null);
@@ -48,122 +58,144 @@ public class UtileriasControl {
     }
 
     /**
-     * Realiza la transición hacia la pantalla de Retiro con Cuenta.
-     * @param form
+     * Abre la pantalla de retiro con cuenta.
+     * <p>
+     * Inicializa el formulario {@link RetiroConCuentaForm} y su controlador
+     * correspondiente.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirRetiroConCuenta(JFrame form) {
-        RetiroConCuentaForm RetiroConCuenta = new RetiroConCuentaForm();
-        RetiroConCuentaControl abrirRetiroConCuentaControl = new RetiroConCuentaControl(RetiroConCuenta);
-        RetiroConCuenta.setVisible(true);
+        RetiroConCuentaForm retiroConCuenta = new RetiroConCuentaForm();
+        RetiroConCuentaControl retiroConCuentaControl =
+                new RetiroConCuentaControl(retiroConCuenta);
+        retiroConCuenta.setVisible(true);
         form.dispose();
     }
 
     /**
-     * Realiza la transición hacia la pantalla de realizar Transferencias.
-     * @param form
+     * Abre la pantalla para realizar transferencias.
+     * <p>
+     * Inicializa el formulario {@link TransferenciaForm} y asigna su controlador.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirPantallaTransferencia(JFrame form) {
-
-        TransferenciaForm Transferenciaform = new TransferenciaForm();
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(Transferenciaform);
-        Transferenciaform.setVisible(true);
+        TransferenciaForm transferenciaForm = new TransferenciaForm();
+        TransferenciaControl transferenciaControl =
+                new TransferenciaControl(transferenciaForm);
+        transferenciaForm.setVisible(true);
         form.dispose();
-
     }
+
     /**
-     * Gestiona la transición hacia el formulario de Registro de Clientes.
+     * Abre la pantalla de registro de clientes.
      * <p>
-     * Instancia el nuevo controlador {@link RegistroControl} y destruye la
-     * vista actual.
+     * Inicializa el formulario {@link RegistroForm} junto con su controlador.
      * </p>
-     * @param form
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirPantallaRegistroForm(JFrame form) {
-
-        RegistroForm RegistroForm = new RegistroForm();
-        RegistroControl registorControl = new RegistroControl(RegistroForm);
-        RegistroForm.setLocationRelativeTo(null);
-        RegistroForm.setVisible(true);
+        RegistroForm registroForm = new RegistroForm();
+        RegistroControl registroControl = new RegistroControl(registroForm);
+        registroForm.setLocationRelativeTo(null);
+        registroForm.setVisible(true);
         form.dispose();
     }
 
     /**
-     * Gestiona la transición hacia el módulo de Retiros sin Cuenta.
+     * Abre la pantalla de retiro sin cuenta.
      * <p>
-     * Permite al usuario acceder a esta funcionalidad específica sin haber
-     * iniciado sesión previamente.
+     * Permite acceder a esta funcionalidad sin necesidad de iniciar sesión.
      * </p>
-     * @param form
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirRetiroSinCuenta(JFrame form) {
-
         RetiroSinCuentaForm retiroSinCuenta = new RetiroSinCuentaForm();
-        RetiroSinCuentaControl retiroSinCuentaControl = new RetiroSinCuentaControl(retiroSinCuenta);
+        RetiroSinCuentaControl retiroSinCuentaControl =
+                new RetiroSinCuentaControl(retiroSinCuenta);
         retiroSinCuenta.setLocationRelativeTo(null);
         retiroSinCuenta.setVisible(true);
         form.dispose();
     }
+
     /**
-     * Gestiona la transición hacia el formulario para dar de alta una nueva
-     * cuenta.
-     * @param form
+     * Abre la pantalla para dar de alta una nueva cuenta bancaria.
+     * <p>
+     * Inicializa el formulario {@link AltaCuentaForm} y su controlador.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirAltaCuentaForm(JFrame form) {
         AltaCuentaForm altaCuentaForm = new AltaCuentaForm();
-        AltaCuentaControl altaCuentaControl = new AltaCuentaControl(altaCuentaForm);
+        AltaCuentaControl altaCuentaControl =
+                new AltaCuentaControl(altaCuentaForm);
         altaCuentaForm.setVisible(true);
         form.dispose();
     }
-    /**
-     * Gestiona la transición hacia el formulario de Transferencias.
-     */
-    public void abrirTransferenciaForm(JFrame form) {
 
-        TransferenciaForm transform = new TransferenciaForm();
-        TransferenciaControl TransferenciaControl = new TransferenciaControl(transform);
-        form.setVisible(true);
-        form.dispose();
-
-    }
     /**
-     * Gestiona la transición hacia el formulario para cancelar o cerrar una
-     * cuenta.
+     * Abre la pantalla para cerrar o cancelar una cuenta.
+     * <p>
+     * Inicializa el formulario {@link CerrarCuentaForm} y su controlador.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirCerrarCuentaForm(JFrame form) {
         CerrarCuentaForm cerrarCuentaForm = new CerrarCuentaForm();
-        CerrarCuentaControl cerrarCuentaControl = new CerrarCuentaControl(cerrarCuentaForm);
+        CerrarCuentaControl cerrarCuentaControl =
+                new CerrarCuentaControl(cerrarCuentaForm);
         cerrarCuentaForm.setVisible(true);
         form.dispose();
     }
+
     /**
-     * Gestiona la transición hacia el formulario de consulta de operaciones
-     * históricas. Configura la ventana para aparecer centrada en la pantalla.
+     * Abre la pantalla de consulta de operaciones.
+     * <p>
+     * Inicializa el formulario {@link ConsultarOperacionesForm}, lo centra
+     * en pantalla y asigna su controlador.
+     * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirConsultarOperacionesForm(JFrame form) {
-        ConsultarOperacionesForm operacionesForm = new ConsultarOperacionesForm();
+        ConsultarOperacionesForm operacionesForm =
+                new ConsultarOperacionesForm();
         operacionesForm.setLocationRelativeTo(null);
-        OperacionControl operacionesControl = new OperacionControl(operacionesForm);
+        OperacionControl operacionesControl =
+                new OperacionControl(operacionesForm);
         operacionesForm.setVisible(true);
         form.dispose();
     }
-        /**
-     * Finaliza la sesión actual del usuario.
+
+    /**
+     * Cierra la sesión del usuario actual.
      * <p>
-     * Destruye la ventana del menú principal y redirige al usuario de vuelta a
-     * la pantalla de Login.
+     * Destruye la ventana activa y redirige al formulario de inicio de sesión.
      * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void cerrarSesion(JFrame form) {
-        form.dispose(); // cierra menu principal
+        form.dispose();
         LoginForm loginForm = new LoginForm();
         loginForm.setLocationRelativeTo(null);
         loginForm.setVisible(true);
     }
-     /**
-     * Gestiona el retorno a la pantalla de Login.
+
+    /**
+     * Abre la pantalla de inicio de sesión.
      * <p>
-     * Centra la ventana de inicio de sesión y libera los recursos del formulario actual.
+     * Inicializa el formulario {@link LoginForm} y cierra la vista actual.
      * </p>
+     *
+     * @param form formulario actual a cerrar
      */
     public void abrirLogin(JFrame form) {
         LoginForm login = new LoginForm();

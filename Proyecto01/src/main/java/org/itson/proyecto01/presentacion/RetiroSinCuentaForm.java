@@ -56,7 +56,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         btnCancelarRetiro = new javax.swing.JButton();
         btnRetirar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Retiro sin Cuenta");
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));

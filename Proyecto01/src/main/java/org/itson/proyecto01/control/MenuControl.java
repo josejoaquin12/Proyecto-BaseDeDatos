@@ -1,7 +1,6 @@
 package org.itson.proyecto01.control;
 
 import org.itson.proyecto01.presentacion.*;
-import org.itson.proyecto01.presentacion.AltaCuentaForm;
 import org.itson.proyecto01.negocio.ICuentasBO;
 import org.itson.proyecto01.negocio.CuentasBO;
 import org.itson.proyecto01.persistencia.CuentasDAO;
@@ -48,7 +47,7 @@ public class MenuControl {
      * los escuchadores de eventos para los componentes de la vista.
      * </p>
      *
-     * * @param menuForm Instancia de la vista {@link MenuPrincipalForm} a
+     *  @param menuForm Instancia de la vista {@link MenuPrincipalForm} a
      * administrar.
      */
     public MenuControl(MenuPrincipalForm menuForm) {
@@ -94,7 +93,7 @@ public class MenuControl {
         menuForm.getBtnUsuario().addActionListener(e -> utilerias.abrirPantallaUsuario(menuForm));
 
 //         Evento para btnRealizarTransferencia
-        menuForm.getBtnMostrarTransferencias().addActionListener(e -> utilerias.abrirTransferenciaForm(menuForm));
+        menuForm.getBtnMostrarTransferencias().addActionListener(e -> utilerias.abrirPantallaTransferencia(menuForm));
 
 //
 //         Evento para btnConsultarOperaciones

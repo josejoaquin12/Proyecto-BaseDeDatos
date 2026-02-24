@@ -59,7 +59,7 @@ public class UsuarioForm extends javax.swing.JFrame {
         btnActualizarDatos = new javax.swing.JButton();
         btnVolverMenu = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuario");
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));

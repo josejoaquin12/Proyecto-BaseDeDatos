@@ -59,7 +59,7 @@ public class TransferenciaExitosaForm extends javax.swing.JFrame {
         lblFechaHora = new javax.swing.JLabel();
         lblNombreDestinatario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ticket Transferencia");
 
         panPrincipal.setBackground(new java.awt.Color(255, 255, 255));

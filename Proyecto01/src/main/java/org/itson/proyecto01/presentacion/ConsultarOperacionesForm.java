@@ -60,7 +60,7 @@ public class ConsultarOperacionesForm extends javax.swing.JFrame {
         tablaOperaciones = new javax.swing.JTable();
         lblFecha = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Historial de Operaciones");
 
         panMenuBar.setBackground(new java.awt.Color(45, 102, 237));

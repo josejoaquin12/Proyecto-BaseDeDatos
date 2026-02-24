@@ -113,7 +113,7 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblBienvenido = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu Principal");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
